@@ -1,0 +1,311 @@
+<Window x:Class="ElsEvo.GerenciarModsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mods"
+        Height="480"
+        Width="760"
+        MinHeight="380"
+        MinWidth="600"
+        Background="{DynamicResource CorFundoPrincipal}"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+
+        <Style x:Key="BotaoFlat" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource CorBotaoFlat}"/>
+            <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="fundo" Background="{TemplateBinding Background}"
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="fundo" Property="Background" Value="{DynamicResource CorBotaoFlatHover}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BotaoPrimario" TargetType="Button" BasedOn="{StaticResource BotaoFlat}">
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1387E8"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.4"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="14">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="CmbAcaoGlobal"
+                      Grid.Column="0"
+                      HorizontalAlignment="Left"
+                      Width="240"
+                      Height="30"
+                      SelectedIndex="0"/>
+
+            <Button Grid.Column="1"
+                    Content="✔️ Aplicar"
+                    Style="{StaticResource BotaoFlat}"
+                    Margin="8,0,0,0"
+                    Click="BtnAplicarAcaoGlobal_Click"/>
+
+            <Grid Grid.Column="2" Margin="8,0,0,0">
+                <Button x:Name="BtnMenu"
+                        Content="Menu ▾"
+                        Style="{StaticResource BotaoFlat}"
+                        Click="BtnMenu_Click"/>
+                <Popup x:Name="PopupMenu"
+                       PlacementTarget="{Binding ElementName=BtnMenu}"
+                       Placement="Bottom"
+                       StaysOpen="False"
+                       AllowsTransparency="True">
+                    <Border Background="{DynamicResource CorFundoCartao}"
+                            BorderBrush="{DynamicResource CorBorda}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="4">
+                        <StackPanel Width="200">
+                            <Button Content="🆕 Novo"
+                                    Style="{StaticResource BotaoFlat}"
+                                    HorizontalContentAlignment="Left"
+                                    Background="Transparent"
+                                    Click="MenuNovo_Click"/>
+                            <Button Content="📂 Importar pasta"
+                                    Style="{StaticResource BotaoFlat}"
+                                    HorizontalContentAlignment="Left"
+                                    Background="Transparent"
+                                    Click="MenuImportarPasta_Click"/>
+                            <Button Content="🗜️ Importar .zip"
+                                    Style="{StaticResource BotaoFlat}"
+                                    HorizontalContentAlignment="Left"
+                                    Background="Transparent"
+                                    Click="MenuImportarZip_Click"/>
+                            <Separator/>
+                            <Button Content="🗑️ Excluir pack selecionado"
+                                    Style="{StaticResource BotaoFlat}"
+                                    HorizontalContentAlignment="Left"
+                                    Background="Transparent"
+                                    Foreground="#E36464"
+                                    Click="MenuExcluirPackSelecionado_Click"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
+
+            <TabControl x:Name="TabCategorias"
+                        Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        SelectionChanged="TabCategorias_SelectionChanged">
+                <TabItem x:Name="AbaGeral" Header="📄 Geral"/>
+                <TabItem x:Name="AbaBgm" Header="🎵 BGM"/>
+                <TabItem x:Name="AbaVideo" Header="🎬 Vídeo"/>
+            </TabControl>
+
+            <TextBox x:Name="TxtPesquisa"
+                     Grid.Column="1"
+                     Height="30"
+                     VerticalContentAlignment="Center"
+                     Padding="8,0"
+                     Background="{DynamicResource CorFundoCampo}"
+                     Foreground="{DynamicResource CorTextoPrimario}"
+                     BorderThickness="1"
+                     BorderBrush="{DynamicResource CorBorda}"
+                     Margin="8,4,0,0"
+                     TextChanged="TxtPesquisa_TextChanged"
+                     Tag="🔍 Pesquisar"/>
+        </Grid>
+
+        <Grid Grid.Row="2" x:Name="ProgressoImportacaoContainer" Visibility="Collapsed" Margin="0,0,0,10">
+            <Border Height="20" CornerRadius="10" Background="{DynamicResource CorFundoPrincipal}" BorderBrush="{DynamicResource CorBorda}" BorderThickness="1">
+                <Grid>
+                    <ProgressBar x:Name="BarraProgressoImportacao" Minimum="0" Maximum="100" Value="0" Height="18" Margin="1">
+                        <ProgressBar.Template>
+                            <ControlTemplate TargetType="ProgressBar">
+                                <Grid>
+                                    <Border CornerRadius="9" Background="Transparent"/>
+                                    <Border x:Name="PART_Track" CornerRadius="9"/>
+                                    <Border x:Name="PART_Indicator"
+                                            CornerRadius="9"
+                                            Background="#0078D4"
+                                            HorizontalAlignment="Left"
+                                            Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value}"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </ProgressBar.Template>
+                    </ProgressBar>
+                    <TextBlock x:Name="TxtProgressoImportacao" Text="Importando arquivos... 0%"
+                               Foreground="White" FontSize="11" FontWeight="Bold"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="3"
+                Background="{DynamicResource CorFundoPrincipal}"
+                BorderBrush="{DynamicResource CorBorda}"
+                BorderThickness="1"
+                CornerRadius="8">
+
+            <DataGrid x:Name="GridMods"
+                      Margin="4"
+                      Background="Transparent"
+                      Foreground="{DynamicResource CorTextoPrimario}"
+                      BorderThickness="0"
+                      RowBackground="{DynamicResource CorFundoCartao}"
+                      AlternatingRowBackground="{DynamicResource CorFundoPrincipal}"
+                      GridLinesVisibility="None"
+                      HeadersVisibility="Column"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="False"
+                      RowHeight="30"
+                      HorizontalScrollBarVisibility="Disabled">
+
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#2D5A8C"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#24425E"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="White"/>
+                </DataGrid.Resources>
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="{DynamicResource CorFundoCartao}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource CorTextoSecundario}"/>
+                        <Setter Property="Padding" Value="8,6"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#2D5A8C"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="8,0"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#2D5A8C"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Arquivo" Binding="{Binding Arquivo}" Width="110"/>
+
+                    <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" Width="*">
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="{DynamicResource CorFundoCampo}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource CorBorda}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Padding" Value="4,2"/>
+                                <Setter Property="SelectionBrush" Value="#2D5A8C"/>
+                                <Setter Property="CaretBrush" Value="{DynamicResource CorTextoPrimario}"/>
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTemplateColumn Header="Mod" Width="180">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding OpcoesDisponiveis}"
+                                          SelectedItem="{Binding ModSelecionado, Mode=TwoWay}"
+                                          Margin="0,2"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </Border>
+
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,12,0,0">
+
+            <Button x:Name="BtnOk"
+                    Content="OK"
+                    Width="90"
+                    Style="{StaticResource BotaoFlat}"
+                    Margin="0,0,8,0"
+                    Click="BtnOk_Click"/>
+
+            <Button x:Name="BtnCancelar"
+                    Content="Cancelar"
+                    Width="90"
+                    Style="{StaticResource BotaoFlat}"
+                    Margin="0,0,8,0"
+                    Click="BtnCancelar_Click"/>
+
+            <Button x:Name="BtnAplicar"
+                    Content="Aplicar"
+                    Width="90"
+                    Style="{StaticResource BotaoPrimario}"
+                    Click="BtnAplicar_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>

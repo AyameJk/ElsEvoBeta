@@ -1,0 +1,88 @@
+<Window x:Class="ElsEvo.AtualizacaoConcluidaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ElsEvo"
+        Width="360"
+        SizeToContent="Height"
+        Background="{DynamicResource CorFundoPrincipal}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True">
+
+    <Window.Resources>
+        <Style x:Key="BotaoPrimario" TargetType="Button">
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1387E8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="18">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Width="38" Height="38"
+                    CornerRadius="19"
+                    Background="#2E7D32"
+                    Margin="0,0,12,0">
+                <TextBlock Text="&#xE73E;"
+                           FontFamily="Segoe MDL2 Assets"
+                           FontSize="17"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock x:Name="TxtTitulo"
+                           Text="Atualização concluída"
+                           Foreground="{DynamicResource CorTextoPrimario}"
+                           FontSize="15"
+                           FontWeight="Bold"/>
+                <TextBlock x:Name="TxtDetalhe"
+                           Foreground="{DynamicResource CorTextoSecundario}"
+                           FontSize="12"
+                           Margin="0,2,0,0"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+
+        <Button Grid.Row="1"
+                x:Name="BtnOk"
+                Content="OK"
+                Width="90"
+                HorizontalAlignment="Right"
+                Style="{StaticResource BotaoPrimario}"
+                Click="BtnOk_Click"/>
+
+    </Grid>
+
+</Window>

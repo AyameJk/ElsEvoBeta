@@ -1,0 +1,2384 @@
+[
+  {
+    "FileName": "a.ogg",
+    "Description": "[BGM] Elsword ID exclusive",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "awake_short.ogg",
+    "Description": "[BGM] Elsword JP exclusive",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "carol.ogg",
+    "Description": "[BGM] Christmas character selection screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "characterselect.ogg",
+    "Description": "[BGM] Character selection screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data001.kom",
+    "Description": "[UI] Arbor Day",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data002.kom",
+    "Description": "[Textures/Models] Some attacks",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data003.kom",
+    "Description": "[Textures/Models] Ice Burners",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data004.kom",
+    "Description": "[Textures/Models] Drops",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data005.kom",
+    "Description": "[Textures/Models] Ruben's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data006.kom",
+    "Description": "[Textures/Models] Elder's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data007.kom",
+    "Description": "[Textures/Models] Bethma's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data008.kom",
+    "Description": "[Textures/Models] Feita's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data009.kom",
+    "Description": "[Textures/Models] Altera's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data010.kom",
+    "Description": "[Textures/Models] Altera's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data011.kom",
+    "Description": "[Textures/Models] Some ally NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data012.kom",
+    "Description": "[Textures/Models] Event monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data013.kom",
+    "Description": "[Textures/Models] NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data014.kom",
+    "Description": "[UI] NPCs dialogues",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data015.kom",
+    "Description": "[Textures/Models] Aisha's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data016.kom",
+    "Description": "[Textures/Models] General accessories",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data017.kom",
+    "Description": "[Textures/Models] Elsword's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data018.kom",
+    "Description": "[Textures/Models] Eve's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data019.kom",
+    "Description": "[Textures/Models] Rena's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data020.kom",
+    "Description": "[Textures/Models] Raven's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data021.kom",
+    "Description": "[Textures/Models] Chibi/SD Mode",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data022.kom",
+    "Description": "[UI] Titles",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data023.kom",
+    "Description": "[Textures/Models] Event fields, towns's boards, etc",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data024.kom",
+    "Description": "[Backgrounds] Ruben and Feita (old); Altera fields",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data025.kom",
+    "Description": "[Backgrounds] Ruben",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data026.kom",
+    "Description": "[Backgrounds] Elder",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data027.kom",
+    "Description": "[Backgrounds] Elder",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data028.kom",
+    "Description": "[Backgrounds] Altera",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data029.kom",
+    "Description": "[Backgrounds] Bethma",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data030.kom",
+    "Description": "[Backgrounds] Feita (new)",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data031.kom",
+    "Description": "[Textures/Models] General Altera stuff",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data032.kom",
+    "Description": "[Backgrounds] Altera",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data033.kom",
+    "Description": "[Movements] Emoticons (hi, bye, etc.)",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data034.kom",
+    "Description": "[Data] Interface",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data035.kom",
+    "Description": "[Data] Dungeons and fields",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data036.kom",
+    "Description": "[Data] Game core",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data037.kom",
+    "Description": "[Data] Artificial intelligence",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data038.kom",
+    "Description": "[Data] Town NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data039.kom",
+    "Description": "[Data] Town NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data040.kom",
+    "Description": "[Data] All areas",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data041.kom",
+    "Description": "[Data] Rendering",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data042.kom",
+    "Description": "[Textures] \"Borders\" (petrified, burning, etc.)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data043.kom",
+    "Description": "[UI] Dungeon bosses names ",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data044.kom",
+    "Description": "[UI] (Old) Characters cut-ins, job change images, etc.",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data045.kom",
+    "Description": "[UI] General sprites",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data046.kom",
+    "Description": "[Textures] Effects of fog, poison, etc.",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data047.kom",
+    "Description": "[UI] Minimaps",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data048.kom",
+    "Description": "[UI/Textures] General textures and sprites",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data049.kom",
+    "Description": "[UI] Score",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data050.kom",
+    "Description": "[UI] Tutorial, characters's story, etc.",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data051.kom",
+    "Description": "[Backgrounds] Results screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data052.kom",
+    "Description": "[UI] Job change images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data053.kom",
+    "Description": "[UI] General interface",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data054.kom",
+    "Description": "[UI] General interface",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data055.kom",
+    "Description": "[UI] General interface",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data056.kom",
+    "Description": "[UI] 2013~2014 revamp",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data057.kom",
+    "Description": "[UI] General interface",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data058.kom",
+    "Description": "[UI] Ruben's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data059.kom",
+    "Description": "[UI] Elder's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data060.kom",
+    "Description": "[UI] Bethma's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data061.kom",
+    "Description": "[UI] Feita's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data062.kom",
+    "Description": "[UI] Altera's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data063.kom",
+    "Description": "[UI] General interface, icons and skill images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data064.kom",
+    "Description": "[UI] Guide Book",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data065.kom",
+    "Description": "[UI] Dungeon selection screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data066.kom",
+    "Description": "[UI] Minimaps (old)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data067.kom",
+    "Description": "[UI] Item icons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data068.kom",
+    "Description": "[UI] General interface",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data069.kom",
+    "Description": "[SFX/Voices] SFXs from all playable characters & emoticon voices (F5~F8)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data070.kom",
+    "Description": "[SFX] General sound effects",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data071.kom",
+    "Description": "[SFX] Altera's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data072.kom",
+    "Description": "[SFX] Altera Core",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data073.kom",
+    "Description": "[SFX] Bethma's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data074.kom",
+    "Description": "[SFX] Bethma's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data075.kom",
+    "Description": "[SFX] Elder's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data076.kom",
+    "Description": "[SFX] Feita's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data077.kom",
+    "Description": "[SFX] Ruben and Elder's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data078.kom",
+    "Description": "[SFX] Gate of Darkness and Field Boss Raid",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data079.kom",
+    "Description": "[Tutorial voices] Aisha",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data080.kom",
+    "Description": "[Tutorial voices] Elsword",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data081.kom",
+    "Description": "[SFX] Tutorial",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data082.kom",
+    "Description": "[Tutorial voices] Eve",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data083.kom",
+    "Description": "[Tutorial voices] Rena",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data084.kom",
+    "Description": "[Tutorial voices] Raven",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data085.kom",
+    "Description": "[SFX] General sound effects",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data086.kom",
+    "Description": "[SFX] Altera's background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data087.kom",
+    "Description": "[SFX] Bethma's background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data088.kom",
+    "Description": "[SFX] General background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data089.kom",
+    "Description": "[SFX] General background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data090.kom",
+    "Description": "[SFX] Elder's background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data091.kom",
+    "Description": "[SFX] Ruben's background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data092.kom",
+    "Description": "[Voices] Aisha",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data093.kom",
+    "Description": "[Voices] Elsword",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data094.kom",
+    "Description": "[Voices] Eve",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data095.kom",
+    "Description": "[Voices] Rena",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data096.kom",
+    "Description": "[Voices] NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data097.kom",
+    "Description": "[Voices] Raven",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data098.kom",
+    "Description": "[SFX] Feita's background sounds and some dungeon bosses attacks",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data099.kom",
+    "Description": "[Textures/Models] Henir's Time and Space",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data100.kom",
+    "Description": "[Textures/Models] Velder's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data101.kom",
+    "Description": "[Textures/Models] Velder's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data102.kom",
+    "Description": "[SFX/Voices] Monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data103.kom",
+    "Description": "[UI] Velder's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data104.kom",
+    "Description": "[SFX/Voices] Monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data105.kom",
+    "Description": "[SFX] Velder dungeon's bosses",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data106.kom",
+    "Description": "[Textures/Models] Pets",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data107.kom",
+    "Description": "[Textures/Models] Chung's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data108.kom",
+    "Description": "[Tutorial voices] Chung",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data109.kom",
+    "Description": "[Voices] Chung",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data110.kom",
+    "Description": "[Textures/Models/Backgrounds] Hamel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data111.kom",
+    "Description": "[Textures/Models] Hamel's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data112.kom",
+    "Description": "[SFX] Velder's background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data113.kom",
+    "Description": "[SFX] Hamel's background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data114.kom",
+    "Description": "[SFX] Hamel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data115.kom",
+    "Description": "[UI] Hamel's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data116.kom",
+    "Description": "[Textures/Models] Aisha's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data117.kom",
+    "Description": "[Textures/Models] Chung's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data118.kom",
+    "Description": "[Textures/Models] Elsword's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data119.kom",
+    "Description": "[Textures/Models] Eve's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data120.kom",
+    "Description": "[Textures/Models] Raven's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data121.kom",
+    "Description": "[Textures/Models] Rena's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data122.kom",
+    "Description": "[Textures/Models] Alterasia Type-H's skills",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data123.kom",
+    "Description": "[Textures/Models] Altar of Dedication and Berthe's attacks",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data124.kom",
+    "Description": "[Textures/Models] Velder monsters and bosses's attacks",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data125.kom",
+    "Description": "[Textures/Models] Hamel monsters and bosses's attacks",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data126.kom",
+    "Description": "[UI] General loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data127.kom",
+    "Description": "[SFX] Hamel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data128.kom",
+    "Description": "[Textures/Models] PvP NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data129.kom",
+    "Description": "[SFX] Pets",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data130.kom",
+    "Description": "[UI] Item icons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data131.kom",
+    "Description": "[Textures/Models] Ara's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, IN, IT, JP, KR, NA, PH, PL, TW, UK/EN"
+  },
+  {
+    "FileName": "data132.kom",
+    "Description": "[Textures/Models] Ara's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, IN, IT, JP, KR, NA, PH, PL, TW, UK/EN"
+  },
+  {
+    "FileName": "data133.kom",
+    "Description": "[Tutorial voices] Ara",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data134.kom",
+    "Description": "[Voices] Ara",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data135.kom",
+    "Description": "[Textures/Models/Backgrounds] Sander",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data136.kom",
+    "Description": "[Textures/Models] Sander's monsters and dungeons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data137.kom",
+    "Description": "[SFX] Sander's background sounds",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data138.kom",
+    "Description": "[SFX] Sander's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data139.kom",
+    "Description": "[UI] Sander's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data140.kom",
+    "Description": "[Textures/Models] Mounts",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data141.kom",
+    "Description": "[SFX] Mounts",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data142.kom",
+    "Description": "[Textures/Models] Elesis's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data143.kom",
+    "Description": "[Textures/Models] Elesis's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, KR, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data144.kom",
+    "Description": "[Tutorial voices] Elesis",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data145.kom",
+    "Description": "[Voices] Elesis",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data146.kom",
+    "Description": "[SFX] Field Boss Raid - Eltrion",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data147.kom",
+    "Description": "[Textures/Models] Add's skills",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data148.kom",
+    "Description": "[Textures/Models] Add's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "data149.kom",
+    "Description": "[Tutorial voices] Add",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data150.kom",
+    "Description": "[Voices] Add",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data151.kom",
+    "Description": "[UI] Erda Island's icons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data152.kom",
+    "Description": "[Data/UI] Rendering data & new cut-ins system (2015)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data153.kom",
+    "Description": "[Textures/Models] Lanox Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data154.kom",
+    "Description": "[Textures/Models] Ashen Land",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data155.kom",
+    "Description": "[SFX] Lanox's monsters",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data156.kom",
+    "Description": "[UI] Lanox's loading images",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data157.kom",
+    "Description": "[Textures/Models] Lu/Ciel's skills",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data158.kom",
+    "Description": "[Textures/Models] Lu's skills",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data159.kom",
+    "Description": "[Textures/Models] Ciel's skills",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data160.kom",
+    "Description": "[Tutorial voices] Lu",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data161.kom",
+    "Description": "[Tutorial voices] Ciel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data162.kom",
+    "Description": "[Voices] Lu",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data163.kom",
+    "Description": "[Voices] Ciel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai001.kom",
+    "Description": "[Textures/Models] Lots of stuff",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai002.kom",
+    "Description": "[Textures/Models] Event monsters, drops and NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai003.kom",
+    "Description": "[Textures/Models] Pets",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai004.kom",
+    "Description": "[Textures/Models] Aisha's special costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai005.kom",
+    "Description": "[Textures/Models] Ara's special costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai006.kom",
+    "Description": "[Textures/Models] Chung's special costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai007.kom",
+    "Description": "[Textures/Models] Common, Elsword's, Ara's, Rena's, Raven's, Eve's items",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai008.kom",
+    "Description": "[Textures/Models] Winter costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai009.kom",
+    "Description": "[Textures/Models] Elsword's special costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai010.kom",
+    "Description": "[Textures/Models] Eve's special costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai011.kom",
+    "Description": "[Textures/Models] Raven's special costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai012.kom",
+    "Description": "[Textures/Models] Rena's special costumes",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai013.kom",
+    "Description": "[UI] Titles",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai014.kom",
+    "Description": "[Data] Interface",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai015.kom",
+    "Description": "[Data] Game core",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai016.kom",
+    "Description": "[Data] Artificial intelligence",
+    "Blocked": false,
+    "BlockedServers": "BR, CH, DE, ES, FR, HK, ID, IN, IT, JP, NA, PH, PL, TH, TW, UK/EN"
+  },
+  {
+    "FileName": "datai017.kom",
+    "Description": "[SFX/BGM] Halloween Dungeon (2013) and pets",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai018.kom",
+    "Description": "[SFX] Pets",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai019.kom",
+    "Description": "[Textures] Lots of stuff",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai020.kom",
+    "Description": "[UI] 2013~2014 revamp, event dungeons icons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai021.kom",
+    "Description": "[UI] 2013~2014 revamp",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai022.kom",
+    "Description": "[UI] NPCs, event dungeons and special screens",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai023.kom",
+    "Description": "[UI] Item icons",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai024.kom",
+    "Description": "[Textures/Models] Halloween Event (2014)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai025.kom",
+    "Description": "[Textures/Models] Event NPCs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai026.kom",
+    "Description": "[Textures/Models] Add's items",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai027.kom",
+    "Description": "[Textures/Models] Halloween Event (2014) Ariel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai028.kom",
+    "Description": "[Textures/Models] Lu's special costumes",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "datai029.kom",
+    "Description": "[Textures/Models] Ciel's special costumes",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "dungeongate01.ogg",
+    "Description": "[BGM] (Old) Suburbs of Ruben and Elder",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "dungeongate02.ogg",
+    "Description": "[BGM] (Old) Altera Island, Feita",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "dungeongate03.ogg",
+    "Description": "[BGM] (Old) Bethma Mountains",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "dungeongate04.ogg",
+    "Description": "[BGM] (Old) Hamel Outskirts",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "event_halloweendungeon.ogg",
+    "Description": "[BGM] Halloween Banquet Room",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_altera001.ogg",
+    "Description": "[BGM] Graveyard of Purification",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_altera002.ogg",
+    "Description": "[BGM] Nasod Dumpsite, Garrison in the Sky",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_altera003.ogg",
+    "Description": "[BGM] ???",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_besma001.ogg",
+    "Description": "[BGM] Bethagara Falls",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_besma002.ogg",
+    "Description": "[BGM] Leikiki Lake",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_besma003.ogg",
+    "Description": "[BGM] Toretugera Canyon",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_elder001.ogg",
+    "Description": "[BGM] Wally's Memorial Bridge",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_elder002.ogg",
+    "Description": "[BGM] Twin Watchtower",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_elder003.ogg",
+    "Description": "[BGM] ???",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_hamel001.ogg",
+    "Description": "[BGM] Elime's Wave",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_hamel002.ogg",
+    "Description": "[BGM] Stricken City",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_hamel003.ogg",
+    "Description": "[BGM] Circular Waterway, Noah's Grave",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_peita001.ogg",
+    "Description": "[BGM] Pilgrim's Site",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_peita002.ogg",
+    "Description": "[BGM] Pilgrim's Gateway",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_peita003.ogg",
+    "Description": "[BGM] Dead Man's Hill",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_raid001.ogg",
+    "Description": "[BGM] City in the Sky",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_raid002.ogg",
+    "Description": "[BGM] Fahrmann’s Peak",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_raid003.ogg",
+    "Description": "[BGM] Luriel's Nightmare",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_raid003_clear.ogg",
+    "Description": "[BGM] Luriel's Nightmare (Cleared)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_ranox001.ogg",
+    "Description": "[BGM] Ashen Land, Volcanic Blade Canyon",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_ranox002.ogg",
+    "Description": "[BGM] Geyser Plains, Remote Ruins",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_altera001.ogg",
+    "Description": "[BGM] Ponggo's Hideout",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_besma001.ogg",
+    "Description": "[BGM] Dicey Sky Road",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_elder001.ogg",
+    "Description": "[BGM] Wally's Castle Gateway",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_hamel001.ogg",
+    "Description": "[BGM] Fountain of Healing",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_peita001.ogg",
+    "Description": "[BGM] Feita Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_ranox001.ogg",
+    "Description": "[BGM] Silent Night Shelter",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_sander001.ogg",
+    "Description": "[BGM] Wind Stone Ruins",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_rest_velder001.ogg",
+    "Description": "[BGM] Clock Tower Square",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_ruben001.ogg",
+    "Description": "[BGM] Lake Noahs",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_ruben002.ogg",
+    "Description": "[BGM] ???",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_sander001.ogg",
+    "Description": "[BGM] Temple of the Wind, Caluso Tribe Territory",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_sander002.ogg",
+    "Description": "[BGM] Sandtilus Grave",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_sander003.ogg",
+    "Description": "[BGM] Behemoth Crater",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_tutorial001.ogg",
+    "Description": "[BGM] Ruben Village Entrance (excluding Chung)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_velder001.ogg",
+    "Description": "[BGM] The Prosperity Road",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_velder002.ogg",
+    "Description": "[BGM] The Peace Road",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_velder003.ogg",
+    "Description": "[BGM] Harmony Road",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "field_velder004.ogg",
+    "Description": "[BGM] Port Lurensia",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "fishinghole01.ogg",
+    "Description": "[BGM] Pet Training Camp, Fishing Hole",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "general.ess",
+    "Description": "[Texts] (Old) General text",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "halloween.ogg",
+    "Description": "[BGM] Phoru Witch's Lair",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "halloween_event_monster.ogg",
+    "Description": "[BGM] Halloween monster: The Specter",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "jinglebell_square.ogg",
+    "Description": "[BGM] Halloween character selection screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "lobby.ogg",
+    "Description": "[BGM] Sparring Room",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "lobby2.ogg",
+    "Description": "[BGM] (Old) Character selection screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "logo_carol.ogg",
+    "Description": "[BGM] Christmas character selection screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "main.ogg",
+    "Description": "[BGM] A Pink character selection screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "minigame001.ogg",
+    "Description": "[BGM] ???",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "minigame002.ogg",
+    "Description": "[BGM] Wally's Present Factory, Operation Valentine's Chocolate Delivery",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_altera_clear.avi",
+    "Description": "[Video] Completion of Altera",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_besma_clear.avi",
+    "Description": "[Video] Completion of Bethma",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_add_base.avi",
+    "Description": "[Video] Add - Tracer",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_add_de.avi",
+    "Description": "[Video] Add - Diabolic Esper",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_add_lp.avi",
+    "Description": "[Video] Add - Lunatic Psyker",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_add_mm.avi",
+    "Description": "[Video] Add - Mastermind",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_aisha_base.avi",
+    "Description": "[Video] Aisha - Magician",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_aisha_dw.avi",
+    "Description": "[Video] Aisha - Dimension Witch",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_aisha_em.avi",
+    "Description": "[Video] Aisha - Elemental Master",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_aisha_vp.avi",
+    "Description": "[Video] Aisha - Void Princess",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_ara_aa.avi",
+    "Description": "[Video] Ara - Asura",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_ara_base.avi",
+    "Description": "[Video] Ara - Little Xia",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_ara_sd.avi",
+    "Description": "[Video] Ara - Sakra Devanam",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_ara_yr.avi",
+    "Description": "[Video] Ara - Yama Raja",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_chung_base.avi",
+    "Description": "[Video] Chung - Guardian",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_chung_dc.avi",
+    "Description": "[Video] Chung - Deadly Chaser",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_chung_ip.avi",
+    "Description": "[Video] Chung - Iron Paladin",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_chung_tt.avi",
+    "Description": "[Video] Chung - Tactical Trooper",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_elesis_base.avi",
+    "Description": "[Video] Elesis - Knight",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_elesis_bh.avi",
+    "Description": "[Video] Elesis - Blazing Heart",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_elesis_ca.avi",
+    "Description": "[Video] Elesis - Crimson Avenger",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_elesis_gm.avi",
+    "Description": "[Video] Elesis - Grand Master",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_es_base.avi",
+    "Description": "[Video] Elsword - Knight",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_es_is.avi",
+    "Description": "[Video] Elsword - Infinity Sword",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_es_lk.avi",
+    "Description": "[Video] Elsword - Lord Knight",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_es_rs.avi",
+    "Description": "[Video] Elsword - Rune Slayer",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_eve_base.avi",
+    "Description": "[Video] Eve - Another Code",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_eve_bs.avi",
+    "Description": "[Video] Eve - Code: Battle Seraph",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_eve_ce.avi",
+    "Description": "[Video] Eve - Code: Empress",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_eve_cn.avi",
+    "Description": "[Video] Eve - Code: Nemesis",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_luciel_base.avi",
+    "Description": "[Video] Lu/Ciel - Duo",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_luciel_cn.avi",
+    "Description": "[Video] Lu/Ciel - Noblesse",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_luciel_ld.avi",
+    "Description": "[Video] Lu/Ciel - Dreadlord",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_raven_base.avi",
+    "Description": "[Video] Raven - Taker",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_raven_bm.avi",
+    "Description": "[Video] Raven - Blade Master",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_raven_rf.avi",
+    "Description": "[Video] Raven - Reckless Fist",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_raven_vc.avi",
+    "Description": "[Video] Raven - Veteran Commander",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_rena_base.avi",
+    "Description": "[Video] Rena - Ranger",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_rena_ga.avi",
+    "Description": "[Video] Rena - Grand Archer",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_rena_nw.avi",
+    "Description": "[Video] Rena - Night Watcher",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_create_rena_ws.avi",
+    "Description": "[Video] Rena - Wind Sneaker",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_elder_clear.avi",
+    "Description": "[Video] Completion of Elder",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_hamel_clear.avi",
+    "Description": "[Video] Completion of Hamel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_peita_clear.avi",
+    "Description": "[Video] Completion of Feita",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_ruben_clear.avi",
+    "Description": "[Video] Completion of Ruben",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_sander_clear.avi",
+    "Description": "[Video] Completion of Sander",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_title.avi",
+    "Description": "[Video] Intro",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_velder_clear.avi",
+    "Description": "[Video] Completion of Velder",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "movie_ranox_clear.avi",
+    "Description": "[Video] Completion of Ranox",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music001_tutorial.ogg",
+    "Description": "[BGM] Free Training Room",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music003_square.ogg",
+    "Description": "[BGM] (Old) Market Trade Plaza, Tutorial (excluding Eve and Chung)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music005_stage.ogg",
+    "Description": "[BGM] Tree of El - Bottom (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music006_boss.ogg",
+    "Description": "[BGM] Tree of El's boss, Tree of El - Top (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music007_boss.ogg",
+    "Description": "[BGM] Wintery Velder (PvP), Elrios Bay (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music008_stage.ogg",
+    "Description": "[BGM] (Old) Beginner's Forest, Monkey Forest, North of the Tree of El, Tree of El: Secret Dungeon",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music009_boss.ogg",
+    "Description": "[BGM] Bosses of: White Mist Swamp, Suburbs of Wally's Castle, Dragon Road, Bethma Lake, Black Crow, North of the Tree of El, Matthew Bass Canyons; Wally's Castle Rooftop (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music010_stage.ogg",
+    "Description": "[BGM] Banthus Cave",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music011_boss.ogg",
+    "Description": "[BGM] Bosses of: Banthus Cave, Richie Mine, Cargo Airship, Dragon Nest: Abyss, Altera Plains, Nasod Foundry, Shine of Dedication Entrance, Heart of Spire, Trock's Lair; Banthus Room (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music012_stage.ogg",
+    "Description": "[BGM] Shadow Forest (old), Bethma Lake (Night), Altera Core, Bethma Lake (PvP), King Nasod's Lair, Mission Impossible (D)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music013_boss.ogg",
+    "Description": "[BGM] Bosses of: Forest Ruins, Shadow Forest, Return Plains, Halloween Dungeon",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music014_stage.ogg",
+    "Description": "[BGM] Underground Waterway, Suburbs of Wally's Castle, Wally's Castle, Wally's Underground Laboratory, Transporting Tunnel: Contaminated Area",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music015_boss.ogg",
+    "Description": "[BGM] Bosses of: Underground Waterway, Wally's Underground Laboratory, Bethma Lake (Night), Dragon Nest, Transport Tunnel B4-1, Transporting Tunnel: Contaminated Area, Burning Hope Bridge, Sandtilus",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music016_stage.ogg",
+    "Description": "[BGM] Suburbs of Wally's Castle, Wally's Castle, Wally's Underground Laboratory, Magician Training Dungeon",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music017_boss.ogg",
+    "Description": "[BGM] Bosses of: Wally's Castle, Magician Training Room; Wally's Castle Centre (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music018_stage.ogg",
+    "Description": "[BGM] Dragon Nest: Abyss, Return Plains, Mission Impossible (C)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music019_stage.ogg",
+    "Description": "[BGM] Bethma Lake, Dragon Nest: Abyss",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music020_stage.ogg",
+    "Description": "[BGM] Richie Mine, Cargo Airship, Black Crow, Nasod Foundry, Cargo Airship (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music021_stage.ogg",
+    "Description": "[BGM] Cargo Airship, Black Crow",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music022_stage.ogg",
+    "Description": "[BGM] Dragon Nest, Dragon Nest: Abyss, Mission Impossible (A)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music023_stage.ogg",
+    "Description": "[BGM] Transporting Tunnel B4-1, Transporting Tunnel: Contaminated Area, Residential Area 3",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music024_stage.ogg",
+    "Description": "[BGM] Altera Plains, Mission Impossible (F)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music025_boss.ogg",
+    "Description": "[BGM] Bosses of: Wally's Underground Laboratory, Altera Core, Underground Chapel, Hope Bridge, Palace Entrance, Heart of the Ancient Waterway, Caluso Tribal Village, King Nasod's Lair, Gate of Darkness (old)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music026_stage.ogg",
+    "Description": "[BGM] Shrine of Dedication Entrance, Spiral Corridor, Heart of Spire, Durahan Coliseum (PvP), Tyrant's Arena (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music027_boss.ogg",
+    "Description": "[BGM] Bosses of: Spiral Corridor, Underground Garden, Residential Area 3, Commercial Area 1, Temple of the Trials",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music028_stage.ogg",
+    "Description": "[BGM] Underground Chapel",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music029_stage.ogg",
+    "Description": "[BGM] Underground Garden, Mission Impossible (E)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music030_stage.ogg",
+    "Description": "[BGM] Alter of Dedication",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music031_boss.ogg",
+    "Description": "[BGM] Alter of Dedication's boss",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music032_stage.ogg",
+    "Description": "[BGM] Residential Area 3, Hope Bridge, Hope Bridge (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music033_stage.ogg",
+    "Description": "[BGM] Dragon Nest: Abyss (Luto)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music034_stage.ogg",
+    "Description": "[BGM] Tree of El, Tears of Ruben",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music035_stage.ogg",
+    "Description": "[BGM] Forest Fuins, Ruben Village Entrance (Chung), Tears of Ruben",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music036_stage.ogg",
+    "Description": "[BGM] White Mist Swamp",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music037_stage.ogg",
+    "Description": "[BGM] Palace Entrance, Burning Hope Bridge",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music038_stage.ogg",
+    "Description": "[BGM] Commercial Area 1, Southern Gate",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music039_stage.ogg",
+    "Description": "[BGM] Dragon Road",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music040_boss.ogg",
+    "Description": "[BGM] Southern Gate boss",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music041_stage.ogg",
+    "Description": "[BGM] Resiam Outskirts",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music042_stage.ogg",
+    "Description": "[BGM] Sunken Resiam and Heart of the Ancient Waterway",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music043_stage.ogg",
+    "Description": "[BGM] Ancient Waterway and Heart of the Ancient Waterway",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music044_boss.ogg",
+    "Description": "[BGM] Bosses of: Resiam Outskirts, Sunken Resiam, Ancient Waterway, Heart of the Ancient Waterway, Dry Sander",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music045_stage.ogg",
+    "Description": "[BGM] Magmanta's Cave",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music046_stage.ogg",
+    "Description": "[BGM] Magmanta's Cave, Temple of the Trials",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music047_boss.ogg",
+    "Description": "[BGM] Magmanta's Cave's boss",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music048_stage.ogg",
+    "Description": "[BGM] Temple of Frozen Water, Mission Impossible (B)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music049_boss.ogg",
+    "Description": "[BGM] Temple of Frozen Water's boss",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music050_stage.ogg",
+    "Description": "[BGM] Hall of Water",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music051_stage.ogg",
+    "Description": "[BGM] Hall of Water",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music052_boss.ogg",
+    "Description": "[BGM] Bosses of: Hall of Water, Garpai Rock",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music053_stage.ogg",
+    "Description": "[BGM] Velder's Hallucination",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music054_boss.ogg",
+    "Description": "[BGM] Velder's Hallucination's boss",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music055_stage.ogg",
+    "Description": "[BGM] Dry Sander, Garpai Sandstorm (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music056_stage.ogg",
+    "Description": "[BGM] Garpai Rock, Sander Oasis (PvP)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music057_stage.ogg",
+    "Description": "[BGM] Trock's Lair",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music058_stage.ogg",
+    "Description": "[BGM] Caluso Tribal Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music059_stage.ogg",
+    "Description": "[BGM] Gate of Darkness",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music060_stage.ogg",
+    "Description": "[BGM] Sandtilus",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music061_stage.ogg",
+    "Description": "[BGM] Heart of Behemoth",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music062_boss.ogg",
+    "Description": "[BGM] Heart of Behemoth's boss",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music063_stage.ogg",
+    "Description": "[BGM] Shadow Forest",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music064_stage.ogg",
+    "Description": "[BGM] Burnt Forest",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music065_stage.ogg",
+    "Description": "[BGM] Ash Covered Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music066_stage.ogg",
+    "Description": "[BGM] Ash Covered Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music067_stage.ogg",
+    "Description": "[BGM] Phantasmal Geyser",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music068_stage.ogg",
+    "Description": "[BGM] Volcanic Flames Entrance",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music069_boss.ogg",
+    "Description": "[BGM] Bosses of: Volcanic Flames Entrance; Great Hollow: Gap in the Earth",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music070_stage.ogg",
+    "Description": "[BGM] Collapsing Temple of Fire",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "music071_stage.ogg",
+    "Description": "[BGM] Great Hollow: Gap in the Earth",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "musicwin.ogg",
+    "Description": "[BGM] Results screen",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "pve_stage01.ogg",
+    "Description": "[BGM] Erda Island",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "ship01.ogg",
+    "Description": "[BGM] Hamel/Velder-Destined Battleship",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "shop.ogg",
+    "Description": "[BGM] (Old) Market",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "space_henir.ogg",
+    "Description": "[BGM] Henir's Time and Space Lobby",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_add01.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Add)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_add02.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Add)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_aisha.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Aisha)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_ara.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Ara)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_chung.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Chung)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_ciel_lu.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Lu/Ciel)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_elesis01.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Elesis)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_elesis02.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Elesis)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_elsword.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Elsword)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_eve01.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Eve)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_eve02.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Eve)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_lena.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Rena)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "tutorial_raven.ogg",
+    "Description": "[BGM] Ruben Village Entrance (Raven)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_altera.ogg",
+    "Description": "[BGM] Altera Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_besma.ogg",
+    "Description": "[BGM] Bethma Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_elder.ogg",
+    "Description": "[BGM] Elder Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_hamel.ogg",
+    "Description": "[BGM] Hamel Capital",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_ranox.ogg",
+    "Description": "[BGM] Lanox Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_ruben.ogg",
+    "Description": "[BGM] Ruben Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_sander.ogg",
+    "Description": "[BGM] Sander Village",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "village_velder.ogg",
+    "Description": "[BGM] Suburbs of Velder",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "wedding_ruben.ogg",
+    "Description": "[BGM] Ruben Wedding Hall",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "wedding_sander.ogg",
+    "Description": "[BGM] Sander Wedding Hall",
+    "Blocked": false,
+    "BlockedServers": ""
+  }
+]
