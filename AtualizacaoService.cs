@@ -92,7 +92,16 @@ namespace ElsEvo
                 if (info == null || string.IsNullOrWhiteSpace(info.Versao) || string.IsNullOrWhiteSpace(info.Url))
                     return null;
 
-                if (!VersaoEhMaisNova(info.Versao, AppVersion.VersaoParaAtualizacao))
+                // A comparação numérica de versão só faz sentido DENTRO do mesmo canal —
+                // os dois canais numeram suas rodadas de forma independente (ex.: beta
+                // pode estar em "1.0.450" enquanto o estável está em "1.0.4"), então "maior
+                // que" não tem significado nenhum entre eles. Quando o usuário desmarca
+                // "Beta apenas" e o app passa a consultar o canal ESTÁVEL, é sempre uma
+                // TROCA DE CANAL (instalar a build estável por cima da beta), não uma
+                // sequência — por isso sempre oferece, mesmo que o número pareça "menor".
+                // Só dentro do próprio canal (buscarBeta == true) a comparação numérica
+                // continua valendo, pra não ficar oferecendo a mesma versão repetidamente.
+                if (buscarBeta && !VersaoEhMaisNova(info.Versao, AppVersion.VersaoParaAtualizacao))
                     return null;
 
                 return new AtualizacaoDisponivel

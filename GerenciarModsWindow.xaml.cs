@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 
-namespace ElsEVO
+namespace ElsEvo
 {
     public partial class GerenciarModsWindow : Window
     {

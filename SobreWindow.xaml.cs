@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace ElsEVO
+namespace ElsEvo
 {
     public partial class SobreWindow : Window
     {
@@ -24,7 +24,7 @@ namespace ElsEVO
 
             if (isBeta)
             {
-                TxtVersaoBeta.Text = $"Versão Beta: {AppVersion.VersaoParaAtualizacao}";
+                TxtVersaoBeta.Text = string.Format(Idiomas.T("SobreVersaoBeta"), AppVersion.VersaoParaAtualizacao);
                 TxtVersaoBeta.Visibility = Visibility.Visible;
             }
 

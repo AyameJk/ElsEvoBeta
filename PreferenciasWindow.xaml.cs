@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 
-namespace ElsEVO
+namespace ElsEvo
 {
     public partial class PreferenciasWindow : Window
     {
@@ -77,6 +77,9 @@ namespace ElsEVO
             TxtAvisoLogs.Text = Idiomas.T("TxtAvisoLogs");
 
             GrpIdiomas.Header = Idiomas.T("GrpIdiomas");
+            ItemIdiomaPortugues.Content = Idiomas.T("IdiomaPortugues");
+            ItemIdiomaIngles.Content = Idiomas.T("IdiomaIngles");
+            ItemIdiomaChines.Content = Idiomas.T("IdiomaChines");
             GrpTema.Header = Idiomas.T("GrpTema");
             RadioTemaClaro.Content = Idiomas.T("RadioClaro");
             RadioTemaEscuro.Content = Idiomas.T("RadioEscuro");
