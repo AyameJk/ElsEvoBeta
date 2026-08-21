@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ElsEvo Beta"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.450"
 #define MyAppPublisher "AyameJk"
 #define MyAppURL "https://www.example.com/"
 #define MyAppExeName "ElsEvo.exe"
@@ -15,7 +15,7 @@
 ; Pasta real onde "dotnet publish -c Release -r win-x64 --self-contained true
 ; -p:PublishSingleFile=true -o <PublishDir>" grava os arquivos. Ajuste aqui se você
 ; publicar em outro lugar — usada em [Files] abaixo, só precisa mudar num lugar só.
-#define PublishDir "..\bin\Release\net8.0-windows\win-x64\publish"
+#define PublishDir "C:\Users\Victorr\OneDrive\ProjetoElsEvo\ElsEvoBeta\bin\Release\net8.0-windows\win-x64"
 
 [Setup]
 ; IMPORTANTE: esse AppId precisa ser IDÊNTICO ao AppId do .iss da versão ESTÁVEL — é o
