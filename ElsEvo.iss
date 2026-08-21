@@ -34,7 +34,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-OutputDir=.\Output
+OutputDir=C:\Users\Victorr\Downloads\OutputBeta
 
 ; IMPORTANTE: esse nome precisa bater EXATAMENTE (maiúsculas/minúsculas incluso) com o
 ; que o atualizar-versao.yml monta na URL do version.json
