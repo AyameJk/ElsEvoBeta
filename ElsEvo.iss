@@ -44,7 +44,7 @@ OutputDir=C:\Users\Victorr\Downloads\OutputBeta
 OutputBaseFilename=ElsEvo-Setup
 
 ; Ícone dentro de Assets\, não solto na raiz do repo (evita duplicar o .ico em dois lugares).
-SetupIconFile=Assets\icone_app.ico
+SetupIconFile=C:\Users\Victorr\OneDrive\ProjetoElsEvo\ElsEvoBeta\Assets\icone_app.ico
 SolidCompression=yes
 WizardStyle=modern dynamic
 
