@@ -1,259 +1,113 @@
-using System;
-using System.IO;
-using System.Net.Http;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
+<Window x:Class="ElsEvo.AtualizacaoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Atualização disponível"
+        Width="420"
+        SizeToContent="Height"
+        MaxHeight="600"
+        Background="{DynamicResource CorFundoPrincipal}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True">
 
-namespace ElsEvo
-{
-    /// <summary>
-    /// Substitui o MessageBox nativo do fluxo "uma atualização está disponível" por uma
-    /// janela que segue o tema Claro/Escuro do app (mesmos DynamicResource usados no
-    /// resto da interface — CorFundoPrincipal, CorBotaoFlat, etc., ver ThemeManager.cs).
-    /// DialogResult == true significa "o usuário quer atualizar agora".
-    ///
-    /// As notas de lançamento vêm em Markdown/HTML puro do GitHub Releases (podem ter uma
-    /// tag &lt;img&gt; de capa e uma linha de citação em "&gt; texto"), em QUALQUER ordem
-    /// dentro do texto. Como o TextBlock não renderiza Markdown/HTML, essa janela monta o
-    /// conteúdo dinamicamente em PainelNotas, elemento por elemento, respeitando a MESMA
-    /// ORDEM em que cada trecho aparece no texto original — texto vira TextBlock normal,
-    /// &lt;img&gt; vira uma imagem de verdade baixada da URL, e "&gt; texto" vira um bloco
-    /// de citação destacado. Qualquer coisa que não seja reconhecida simplesmente não
-    /// aparece destacada — nunca quebra a janela.
-    /// </summary>
-    public partial class AtualizacaoWindow : Window
-    {
-        // Casa <img ... src="URL" ...>, uma linha "> texto" (citação), OU uma linha
-        // "#"/"##"/"###" de título Markdown — o que vier primeiro no texto processa
-        // primeiro, preservando a ordem original.
-        private static readonly Regex RegexElementoEspecial = new(
-            @"<img[^>]*\ssrc=[""'](?<urlImagem>[^""']+)[""'][^>]*/?>" +
-            @"|^\s*>\s*(?<citacao>.+)$" +
-            @"|^\s*#{1,6}\s*(?<titulo>.+?)\s*#*$",
-            RegexOptions.IgnoreCase | RegexOptions.Multiline);
+    <Window.Resources>
+        <Style x:Key="BotaoFlat" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource CorBotaoFlat}"/>
+            <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="fundo" Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="fundo" Property="Background" Value="{DynamicResource CorBotaoFlatHover}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        private static readonly HttpClient _http = new() { Timeout = TimeSpan.FromSeconds(15) };
+        <Style x:Key="BotaoPrimario" TargetType="Button" BasedOn="{StaticResource BotaoFlat}">
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1387E8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
 
-        public AtualizacaoWindow(AtualizacaoDisponivel atualizacao)
-        {
-            InitializeComponent();
-            ThemeManager.AplicarTemaSalvo(); // reforço de segurança, igual as outras janelas
+    <Grid Margin="18">
 
-            SourceInitialized += (_, _) =>
-                BarraTituloNativa.AplicarTema(this, !Properties.Settings.Default.TemaClaro);
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            TxtVersaoNova.Text = string.Format(Idiomas.T("AtualizacaoVersaoDisponivel"), atualizacao.VersaoNova);
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock x:Name="TxtTitulo"
+                       Text="Atualização disponível"
+                       Foreground="{DynamicResource CorTextoPrimario}"
+                       FontSize="17"
+                       FontWeight="Bold"/>
+            <TextBlock x:Name="TxtVersaoNova"
+                       Foreground="{DynamicResource CorTextoSecundario}"
+                       FontSize="12"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
 
-            ContainerAvisoBeta.Visibility = atualizacao.EhCanalBeta ? Visibility.Visible : Visibility.Collapsed;
+        <Border x:Name="ContainerAvisoBeta"
+                Grid.Row="1"
+                Background="#3D2F1E"
+                BorderBrush="#B8860B"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="10"
+                Margin="0,0,0,10"
+                Visibility="Collapsed">
+            <TextBlock x:Name="TxtAvisoBeta"
+                       Foreground="#E0B060"
+                       FontSize="11"
+                       TextWrapping="Wrap"/>
+        </Border>
 
-            AplicarIdioma();
-            PrepararNotas(atualizacao.Notas);
-        }
+        <ScrollViewer Grid.Row="2" MaxHeight="280" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10">
+            <StackPanel x:Name="PainelNotas"/>
+        </ScrollViewer>
 
-        /// <summary>Aplica as strings traduzidas nos elementos fixos da janela (não nas notas
-        /// da release, que vêm do GitHub no idioma que foi escrito e não são traduzidas).</summary>
-        private void AplicarIdioma()
-        {
-            Title = Idiomas.T("AtualizacaoTitulo");
-            TxtTitulo.Text = Idiomas.T("AtualizacaoTitulo");
-            TxtAvisoBeta.Text = Idiomas.T("AtualizacaoAvisoBeta");
-            TxtAvisoFechamento.Text = Idiomas.T("AtualizacaoAvisoFechamento");
-            BtnAgoraNao.Content = Idiomas.T("AtualizacaoBtnAgoraNao");
-            BtnAtualizar.Content = Idiomas.T("AtualizacaoBtnAtualizar");
-        }
+        <TextBlock x:Name="TxtAvisoFechamento"
+                   Grid.Row="3"
+                   Foreground="{DynamicResource CorTextoSecundario}"
+                   FontSize="11"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,14"/>
 
-        /// <summary>
-        /// Percorre as notas em ordem, transformando cada trecho de texto normal, cada
-        /// &lt;img&gt; e cada linha de citação num elemento visual, na mesma sequência em
-        /// que aparecem no Markdown original — sem reordenar nada.
-        /// </summary>
-        private void PrepararNotas(string notasBrutas)
-        {
-            string texto = notasBrutas ?? string.Empty;
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="BtnAgoraNao"
+                    Content="Agora não"
+                    Width="110"
+                    Style="{StaticResource BotaoFlat}"
+                    Margin="0,0,8,0"
+                    Click="BtnAgoraNao_Click"/>
+            <Button x:Name="BtnAtualizar"
+                    Content="Atualizar agora"
+                    Width="130"
+                    Style="{StaticResource BotaoPrimario}"
+                    Click="BtnAtualizar_Click"/>
+        </StackPanel>
 
-            var matches = RegexElementoEspecial.Matches(texto);
+    </Grid>
 
-            if (matches.Count == 0)
-            {
-                AdicionarTexto(texto);
-                return;
-            }
-
-            int posicaoAtual = 0;
-            bool adicionouAlgumElemento = false;
-
-            foreach (Match match in matches)
-            {
-                // Texto normal ANTES desse elemento especial, na ordem em que aparece.
-                if (match.Index > posicaoAtual)
-                {
-                    string trecho = texto.Substring(posicaoAtual, match.Index - posicaoAtual);
-                    if (AdicionarTexto(trecho))
-                        adicionouAlgumElemento = true;
-                }
-
-                if (match.Groups["urlImagem"].Success)
-                {
-                    AdicionarImagem(match.Groups["urlImagem"].Value);
-                    adicionouAlgumElemento = true;
-                }
-                else if (match.Groups["citacao"].Success)
-                {
-                    string citacao = match.Groups["citacao"].Value.Trim().Trim('"', '“', '”');
-                    AdicionarCitacao(citacao);
-                    adicionouAlgumElemento = true;
-                }
-                else if (match.Groups["titulo"].Success)
-                {
-                    AdicionarTitulo(match.Groups["titulo"].Value.Trim());
-                    adicionouAlgumElemento = true;
-                }
-
-                posicaoAtual = match.Index + match.Length;
-            }
-
-            // Texto normal depois do último elemento especial encontrado.
-            if (posicaoAtual < texto.Length)
-            {
-                string trechoFinal = texto.Substring(posicaoAtual);
-                if (AdicionarTexto(trechoFinal))
-                    adicionouAlgumElemento = true;
-            }
-
-            if (!adicionouAlgumElemento)
-                AdicionarTexto(Idiomas.T("AtualizacaoSemNotas"));
-        }
-
-        /// <summary>Adiciona um trecho de texto normal (se não for só espaço em branco).</summary>
-        private bool AdicionarTexto(string trecho)
-        {
-            string limpo = Regex.Replace(trecho, @"(\r?\n){3,}", "\n\n").Trim();
-            if (string.IsNullOrWhiteSpace(limpo))
-                return false;
-
-            PainelNotas.Children.Add(new TextBlock
-            {
-                Text = limpo,
-                Foreground = (System.Windows.Media.Brush)FindResource("CorTextoSecundario"),
-                FontSize = 12,
-                TextWrapping = TextWrapping.Wrap,
-                LineHeight = 17,
-                Margin = new Thickness(0, 0, 0, 10)
-            });
-            return true;
-        }
-
-        /// <summary>Adiciona o espaço reservado da imagem e dispara o download em segundo plano.</summary>
-        private void AdicionarImagem(string url)
-        {
-            var imagem = new Image
-            {
-                Stretch = System.Windows.Media.Stretch.Uniform,
-                MaxHeight = 220
-            };
-            System.Windows.Media.RenderOptions.SetBitmapScalingMode(imagem, System.Windows.Media.BitmapScalingMode.HighQuality);
-
-            var container = new Border
-            {
-                CornerRadius = new CornerRadius(6),
-                ClipToBounds = true,
-                Margin = new Thickness(0, 0, 0, 10),
-                Visibility = Visibility.Collapsed,
-                Child = imagem
-            };
-
-            PainelNotas.Children.Add(container);
-
-            if (!string.IsNullOrWhiteSpace(url))
-                _ = CarregarImagemAsync(url, imagem, container);
-        }
-
-        /// <summary>Adiciona um título Markdown (#, ##, ### — todos tratados igual, sem
-        /// distinguir hierarquia) como texto em destaque, negrito e maior que o corpo.</summary>
-        private void AdicionarTitulo(string titulo)
-        {
-            if (string.IsNullOrWhiteSpace(titulo))
-                return;
-
-            PainelNotas.Children.Add(new TextBlock
-            {
-                Text = titulo,
-                Foreground = (System.Windows.Media.Brush)FindResource("CorTextoPrimario"),
-                FontSize = 15,
-                FontWeight = System.Windows.FontWeights.Bold,
-                TextWrapping = TextWrapping.Wrap,
-                Margin = new Thickness(0, 4, 0, 6)
-            });
-        }
-
-        /// <summary>Adiciona a citação já destacada (barrinha lateral + itálico), sem o "&gt;" cru.</summary>
-        private void AdicionarCitacao(string citacao)
-        {
-            if (string.IsNullOrWhiteSpace(citacao))
-                return;
-
-            var container = new Border
-            {
-                BorderBrush = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFrom("#0078D4")!,
-                BorderThickness = new Thickness(3, 0, 0, 0),
-                Padding = new Thickness(10, 4, 10, 4),
-                Margin = new Thickness(0, 0, 0, 10),
-                Child = new TextBlock
-                {
-                    Text = $"“{citacao}”",
-                    Foreground = (System.Windows.Media.Brush)FindResource("CorTextoPrimario"),
-                    FontSize = 12,
-                    FontStyle = System.Windows.FontStyles.Italic,
-                    TextWrapping = TextWrapping.Wrap
-                }
-            };
-
-            PainelNotas.Children.Add(container);
-        }
-
-        /// <summary>
-        /// Baixa a imagem em segundo plano e mostra ela de verdade no lugar reservado.
-        /// Se falhar por qualquer motivo (sem internet, URL inválida, etc.), o espaço
-        /// reservado simplesmente continua invisível — nunca trava nem quebra a janela.
-        /// </summary>
-        private async Task CarregarImagemAsync(string url, Image imagem, Border container)
-        {
-            try
-            {
-                byte[] dados = await _http.GetByteArrayAsync(url);
-
-                var bitmap = new BitmapImage();
-                using (var stream = new MemoryStream(dados))
-                {
-                    bitmap.BeginInit();
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.StreamSource = stream;
-                    bitmap.EndInit();
-                }
-                bitmap.Freeze();
-
-                imagem.Source = bitmap;
-                container.Visibility = Visibility.Visible;
-            }
-            catch
-            {
-                // Sem imagem — a janela continua funcionando normalmente sem ela.
-            }
-        }
-
-        private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
-            Close();
-        }
-
-        private void BtnAgoraNao_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-            Close();
-        }
-    }
-}
+</Window>
