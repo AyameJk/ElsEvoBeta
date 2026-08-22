@@ -274,33 +274,135 @@ namespace ElsEvo
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Limpa SÓ o cache temporário de patch (Paths.Main.Cache — pasta "gPatcher cache"
+        /// na raiz do disco, usada durante o fluxo de aplicar mods). NÃO mexe em nenhuma
+        /// configuração do app (isso é responsabilidade exclusiva de
+        /// MenuLimparConfiguracoes_Click, ver comentário lá).
+        ///
+        /// Tenta apagar a pasta inteira de uma vez (mais rápido e evita deixar restos de
+        /// subpastas). Se isso falhar (ex.: algum arquivo dentro está em uso — comum
+        /// durante desenvolvimento, com o VS Code/dotnet ainda segurando um handle de uma
+        /// execução anterior), cai pro modo tolerante: apaga arquivo por arquivo e pasta
+        /// por pasta individualmente, ignorando silenciosamente qualquer item que esteja
+        /// bloqueado, em vez de abortar tudo com um único arquivo preso.
+        /// </summary>
         private void MenuLimparCache_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 string pastaCache = Paths.Main.Cache;
-                foreach (var arquivo in Directory.GetFiles(pastaCache))
-                    File.Delete(arquivo);
 
-                MessageBox.Show("Cache de arquivos limpo com sucesso.", "ElsEvo",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                bool limpezaCompleta = TentarApagarPastaInteira(pastaCache);
+
+                if (!limpezaCompleta)
+                    limpezaCompleta = ApagarConteudoTolerandoArquivosTravados(pastaCache);
+
+                Directory.CreateDirectory(pastaCache);
+
+                if (limpezaCompleta)
+                {
+                    JanelaConfirmacao.Mostrar(this,
+                        "Cache limpo",
+                        "O cache de arquivos temporários foi limpo com sucesso.",
+                        TipoMensagem.Sucesso);
+                }
+                else
+                {
+                    JanelaConfirmacao.Mostrar(this,
+                        "Cache parcialmente limpo",
+                        "A maior parte do cache foi limpa, mas alguns arquivos estavam em uso " +
+                        "por outro programa (ex.: o jogo ou uma execução em andamento) e não " +
+                        "puderam ser removidos agora. Feche esses programas e tente novamente " +
+                        "se quiser limpar tudo.",
+                        TipoMensagem.Aviso);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Não foi possível limpar o cache:\n{ex.Message}", "ElsEvo",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                JanelaConfirmacao.Mostrar(this,
+                    "Erro ao limpar cache",
+                    $"Não foi possível limpar o cache:\n{ex.Message}",
+                    TipoMensagem.Erro);
             }
         }
 
+        /// <summary>Tenta apagar a pasta de cache inteira de uma vez. Retorna false (sem
+        /// lançar exceção) se falhar por permissão/arquivo em uso, pra quem chamou decidir
+        /// cair pro modo tolerante em vez de travar o app inteiro.</summary>
+        private static bool TentarApagarPastaInteira(string pastaCache)
+        {
+            try
+            {
+                if (Directory.Exists(pastaCache))
+                    Directory.Delete(pastaCache, recursive: true);
+                return true;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            catch (IOException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>Apaga o conteúdo da pasta item por item (arquivos e subpastas),
+        /// ignorando qualquer item que esteja travado por outro processo. Retorna true
+        /// somente se TUDO foi removido com sucesso.</summary>
+        private static bool ApagarConteudoTolerandoArquivosTravados(string pastaCache)
+        {
+            if (!Directory.Exists(pastaCache))
+                return true;
+
+            bool tudoRemovido = true;
+
+            foreach (var arquivo in Directory.GetFiles(pastaCache, "*", SearchOption.AllDirectories))
+            {
+                try { File.Delete(arquivo); }
+                catch { tudoRemovido = false; }
+            }
+
+            // Depois de apagar os arquivos, tenta remover as subpastas que ficaram vazias
+            // (de trás pra frente, pra remover as mais profundas primeiro).
+            var subpastas = Directory.GetDirectories(pastaCache, "*", SearchOption.AllDirectories)
+                .OrderByDescending(p => p.Length);
+
+            foreach (var subpasta in subpastas)
+            {
+                try
+                {
+                    if (!Directory.EnumerateFileSystemEntries(subpasta).Any())
+                        Directory.Delete(subpasta);
+                    else
+                        tudoRemovido = false;
+                }
+                catch { tudoRemovido = false; }
+            }
+
+            return tudoRemovido;
+        }
+
+        /// <summary>
+        /// Restaura SÓ as configurações do app (Properties.Settings.Default.Reset()) —
+        /// NÃO apaga nem mexe em nenhum arquivo em disco (nem cache, nem packs de mod).
+        /// Antes esse reset também deixava Paths.Main.Cache "órfão" (porque zera
+        /// ElswordDirectory, e a pasta de cache é calculada a partir dele) — dando a
+        /// falsa impressão de que "limpar configurações" também limpava o cache. Isso
+        /// continua reiniciando ElswordDirectory (é o comportamento esperado de um
+        /// reset de configurações), mas agora o cache tem seu próprio botão dedicado e
+        /// robusto (ver MenuLimparCache_Click), então não há mais ambiguidade sobre qual
+        /// botão faz o quê.
+        /// </summary>
         private void MenuLimparConfiguracoes_Click(object sender, RoutedEventArgs e)
         {
-            var resposta = MessageBox.Show(
-                "Isso vai restaurar todas as configurações do ElsEvo para o padrão. Continuar?",
+            bool confirmou = JanelaConfirmacao.Confirmar(this,
                 "Limpar configurações",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning);
+                "Isso vai restaurar todas as configurações do ElsEvo para o padrão. Continuar?",
+                TipoMensagem.Aviso);
 
-            if (resposta != MessageBoxResult.Yes)
+            if (!confirmou)
                 return;
 
             Properties.Settings.Default.Reset();
@@ -310,38 +412,60 @@ namespace ElsEvo
             InicializacaoComWindows.Aplicar(Properties.Settings.Default.IniciarComWindows);
             AplicarIdioma();
 
-            MessageBox.Show("Configurações restauradas para o padrão.", "ElsEvo",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            JanelaConfirmacao.Mostrar(this,
+                "Configurações restauradas",
+                "Todas as configurações do ElsEvo foram restauradas para o padrão.",
+                TipoMensagem.Sucesso);
         }
 
         private void MenuExcluirMods_Click(object sender, RoutedEventArgs e)
         {
-            var resposta = MessageBox.Show(
-                "Isso vai excluir TODOS os packs de mods importados. Essa ação não pode ser desfeita. Continuar?",
+            bool confirmou = JanelaConfirmacao.Confirmar(this,
                 "Excluir todos os mods",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning);
+                "Isso vai excluir TODOS os packs de mods importados. Essa ação não pode ser desfeita. Continuar?",
+                TipoMensagem.Aviso);
 
-            if (resposta != MessageBoxResult.Yes)
+            if (!confirmou)
                 return;
 
             try
             {
                 string pastaPacks = Paths.Main.Packs;
-                if (Directory.Exists(pastaPacks))
-                    Directory.Delete(pastaPacks, recursive: true);
+
+                bool exclusaoCompleta = TentarApagarPastaInteira(pastaPacks);
+
+                if (!exclusaoCompleta)
+                    exclusaoCompleta = ApagarConteudoTolerandoArquivosTravados(pastaPacks);
+
                 Directory.CreateDirectory(pastaPacks);
 
                 GerenciadorDeMods.Salvar(new List<ModAtivo>());
                 AtualizarListaDeModsAtivos();
 
-                MessageBox.Show("Todos os mods foram excluídos.", "ElsEvo",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                if (exclusaoCompleta)
+                {
+                    JanelaConfirmacao.Mostrar(this,
+                        "Mods excluídos",
+                        "Todos os mods foram excluídos.",
+                        TipoMensagem.Sucesso);
+                }
+                else
+                {
+                    JanelaConfirmacao.Mostrar(this,
+                        "Mods parcialmente excluídos",
+                        "A maior parte dos mods foi excluída, mas alguns arquivos estavam em uso " +
+                        "por outro programa (ex.: o jogo ou uma execução em andamento) e não " +
+                        "puderam ser removidos agora. Feche esses programas e tente novamente " +
+                        "se quiser excluir tudo.",
+                        TipoMensagem.Aviso);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Não foi possível excluir os mods:\n{ex.Message}", "ElsEvo",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                JanelaConfirmacao.Mostrar(this,
+                    "Erro ao excluir mods",
+                    $"Não foi possível excluir os mods:\n{ex.Message}",
+                    TipoMensagem.Erro);
             }
         }
 
@@ -377,10 +501,11 @@ namespace ElsEvo
         {
             if (!Paths.Elsword.IsValidElswordDir(Properties.Settings.Default.ElswordDirectory))
             {
-                MessageBox.Show(
+                JanelaConfirmacao.Mostrar(this,
+                    "Pasta do jogo inválida",
                     "A pasta do Elsword configurada não é válida (precisa ter \"elsword.exe\" e a pasta \"data\").\n" +
                     "Configure em Configurações → Elsword → Localização do jogo.",
-                    "ElsEvo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    TipoMensagem.Aviso);
                 return;
             }
 
@@ -434,8 +559,10 @@ namespace ElsEvo
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro durante o patch:\n{ex.Message}",
-                    "ElsEvo", MessageBoxButton.OK, MessageBoxImage.Error);
+                JanelaConfirmacao.Mostrar(this,
+                    "Erro durante o patch",
+                    $"Ocorreu um erro durante o patch:\n{ex.Message}",
+                    TipoMensagem.Erro);
             }
             finally
             {
@@ -538,11 +665,12 @@ namespace ElsEvo
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(
+                    JanelaConfirmacao.Mostrar(this,
+                        "Falha ao atualizar",
                         $"Não foi possível baixar a atualização automaticamente:\n{ex.Message}\n\n" +
                         "O ElsEvo vai continuar funcionando normalmente na versão atual. Você pode " +
                         "tentar de novo mais tarde, ou baixar manualmente pela página de Releases no GitHub.",
-                        "Falha ao atualizar", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        TipoMensagem.Aviso);
                 }
 
                 if (!baixouComSucesso)
@@ -602,10 +730,11 @@ namespace ElsEvo
                 catch (Exception ex)
                 {
                     timerPontinhos.Stop();
-                    MessageBox.Show(
+                    JanelaConfirmacao.Mostrar(this,
+                        "Falha ao iniciar instalador",
                         $"O instalador foi baixado, mas não foi possível executá-lo automaticamente:\n{ex.Message}\n\n" +
                         $"Você pode rodar ele manualmente em:\n{caminhoInstalador}",
-                        "Falha ao iniciar instalador", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        TipoMensagem.Aviso);
                     return;
                 }
 
@@ -617,12 +746,13 @@ namespace ElsEvo
                 // então mostramos um aviso explícito em vez de simplesmente reabrir o app.
                 if (codigoSaida != 0)
                 {
-                    MessageBox.Show(
+                    JanelaConfirmacao.Mostrar(this,
+                        "Atenção — instalação da atualização",
                         $"O instalador terminou com um erro (código {codigoSaida}) e a atualização pode não " +
                         "ter sido concluída corretamente.\n\n" +
                         "O ElsEvo vai continuar/reabrir normalmente. Se algo parecer errado, tente " +
                         "baixar e instalar manualmente pela página de Releases no GitHub.",
-                        "Atenção — instalação da atualização", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        TipoMensagem.Aviso);
                 }
 
                 // A partir daqui o app vai fechar de propósito (ReabrirAppAtualizadoEFechar
@@ -648,9 +778,18 @@ namespace ElsEvo
         /// do .exe pós-instalação é lido do registro do Windows (chave de desinstalação
         /// criada pelo Inno Setup, identificada pelo AppId fixo do ElsEvo.iss — o MESMO
         /// AppId nos dois canais, estável e beta), porque é a forma confiável de saber
-        /// onde ficou instalado — não assume que é a mesma pasta do processo atual (o
-        /// usuário pode ter mudado o destino da instalação). Se não achar no registro por
-        /// qualquer motivo, cai pro caminho do processo atual como último recurso.
+        /// onde ficou instalado. Se não achar no registro por qualquer motivo, cai pro
+        /// caminho do processo atual como último recurso.
+        ///
+        /// NOTA sobre o bug "não reabre sozinho": o ElsEvo.iss tinha
+        /// "RestartApplications=yes" além de "CloseApplications=yes". Isso fazia o
+        /// próprio Windows/Inno Setup (via Restart Manager) tentar reabrir o app
+        /// automaticamente DEPOIS da instalação — competindo com esse método, que também
+        /// reabre manualmente. Os dois mecanismos disputando (um pelo caminho certo via
+        /// registro, o outro pelo registro do Restart Manager, que pode referenciar um
+        /// processo/caminho zumbi) explica o comportamento observado: às vezes reabre,
+        /// às vezes fica em silêncio sem erro nenhum. "RestartApplications" foi removido
+        /// do .iss — esse método aqui é o ÚNICO responsável por reabrir o app agora.
         /// </summary>
         private void ReabrirAppAtualizadoEFechar()
         {

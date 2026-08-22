@@ -1,7 +1,7 @@
 namespace ElsEvo
 {
     /// <summary>
-    /// Versão do app. Dois campos com propósitos DIFERENTES de propósito:
+    /// Versão do app. Dois campos com propósitos DIFERENTES:
     ///   - Numero: versão "bonita" exibida na janela Sobre (ex.: "1.0").
     ///   - VersaoParaAtualizacao: versão usada pelo AtualizacaoService pra comparar com o
     ///     version.json remoto. SEMPRE com 3 dígitos (Major.Minor.Build), nunca 1 ou 2 —
@@ -12,6 +12,6 @@ namespace ElsEvo
     public static class AppVersion
     {
         public const string Numero = "1.0";
-        public const string VersaoParaAtualizacao = "1.0.450";
+        public const string VersaoParaAtualizacao = "1.0.502";
     }
 }

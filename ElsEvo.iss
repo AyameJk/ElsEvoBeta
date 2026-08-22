@@ -63,9 +63,18 @@ VersionInfoProductVersion={#MyAppVersion}
 ; Reforço/rede de segurança pra quando alguém rodar o instalador manualmente com o app
 ; ainda aberto — o app já se fecha sozinho antes de chamar o instalador no fluxo normal
 ; (ver MainWindow.BaixarEInstalarAtualizacaoAsync).
+;
+; IMPORTANTE: "RestartApplications=yes" foi REMOVIDO de propósito. Esse recurso fazia o
+; próprio Windows/Inno Setup (via Restart Manager) tentar reabrir o app sozinho DEPOIS
+; da instalação — só que o app JÁ se reabre sozinho manualmente por código, em
+; MainWindow.ReabrirAppAtualizadoEFechar (que lê o caminho certo do registro e passa
+; "--atualizado"). Os dois mecanismos competindo explicava o bug de "às vezes não abre
+; sozinho depois de atualizar, sem erro nenhum" — o Restart Manager pode tentar reabrir
+; usando uma referência de processo/caminho desatualizada, brigando com a nossa própria
+; reabertura. Mantém só CloseApplications=yes (fecha o app se estiver aberto, reforço de
+; segurança) — a reabertura em si é 100% responsabilidade do código do app agora.
 AppMutex=ElsEvo_MutexPrincipal
 CloseApplications=yes
-RestartApplications=yes
 
 [Languages]
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"

@@ -176,7 +176,11 @@
                     </ProgressBar>
                     <TextBlock x:Name="TxtProgressoImportacao" Text="Importando arquivos... 0%"
                                Foreground="White" FontSize="11" FontWeight="Bold"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="0" Opacity="0.85"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
                 </Grid>
             </Border>
         </Grid>

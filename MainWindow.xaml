@@ -38,6 +38,12 @@
             </Setter>
         </Style>
 
+        <!-- Estado desabilitado (durante atualização): em vez de trocar pra uma cor cinza
+             fixa e sem relação com o botão original (o que ficava feio e "morto" tanto no
+             tema claro quanto no escuro), mantém a cor original do botão e só reduz a
+             opacidade do conjunto inteiro. Isso preserva a identidade visual (o botão azul
+             continua parecendo o botão azul, só "apagado") e funciona igual nos dois temas
+             sem precisar de cores hardcoded específicas por tema. -->
         <Style x:Key="BotaoJogar" TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -50,14 +56,16 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background" Value="#1387E8"/>
                             </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="border" Property="Background" Value="#3A3A3D"/>
-                                <Setter Property="Foreground" Value="#9A9A9A"/>
-                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.45"/>
+                    <Setter Property="Cursor" Value="Arrow"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="BotaoToggle" TargetType="Button">
@@ -319,7 +327,15 @@
                                     </ProgressBar.Template>
                                 </ProgressBar>
                                 <TextBlock x:Name="TxtProgresso" Text="0%" Foreground="White" FontSize="10" FontWeight="Bold"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                           HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <!-- Sombra/contorno escuro: sem isso o texto branco ficava invisível na
+                                         parte cinza/não preenchida da barra (só ficava legível onde o azul
+                                         já tinha coberto). O glow preto ao redor garante contraste nos dois
+                                         fundos, em qualquer tema. -->
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="0" Opacity="0.85"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>
                             </Grid>
                         </Border>
                     </Grid>
