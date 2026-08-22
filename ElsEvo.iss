@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ElsEvo Beta"
-#define MyAppVersion "1.0.450"
+#define MyAppVersion "1.0.502"
 #define MyAppPublisher "AyameJk"
 #define MyAppURL "https://www.example.com/"
 #define MyAppExeName "ElsEvo.exe"
