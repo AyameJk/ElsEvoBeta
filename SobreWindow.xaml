@@ -47,6 +47,9 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0"
+                    Background="{DynamicResource CorFundoCartao}"
+                    BorderBrush="{DynamicResource CorBorda}"
+                    BorderThickness="1"
                     CornerRadius="8"
                     ClipToBounds="True"
                     Margin="0,0,14,0">

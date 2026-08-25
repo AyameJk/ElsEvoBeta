@@ -11,6 +11,7 @@ namespace ElsEvo
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            RegistroLog.Registrar("Aplicativo iniciado");
 
             _mutexPrincipal = new Mutex(initiallyOwned: true, name: "ElsEvo_MutexPrincipal");
 
@@ -34,6 +35,7 @@ namespace ElsEvo
 
         protected override void OnExit(ExitEventArgs e)
         {
+            RegistroLog.Registrar("Aplicativo encerrado");
             _mutexPrincipal?.ReleaseMutex();
             _mutexPrincipal?.Dispose();
             base.OnExit(e);

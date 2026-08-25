@@ -1,6 +1,6 @@
 
 #define MyAppName "ElsEvo Beta"
-#define MyAppVersion "1.0.502"
+#define MyAppVersion "1.0.567"
 #define MyAppPublisher "AyameJk"
 #define MyAppURL "https://www.example.com/"
 #define MyAppExeName "ElsEvo.exe"

@@ -11,7 +11,14 @@ namespace ElsEvo.Properties
 
         private static string CaminhoArquivo =>
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "ElsEvo", "ElsEvo_config.json");
+            NomePastaDados, "ElsEvo_config.json");
+
+        private static string NomePastaDados =>
+    #if ELSEVO_BETA
+            "ElsEvoBeta";
+    #else
+            "ElsEvo";
+    #endif
 
         public bool TrayIconEnabled { get; set; } = true;
         public bool WebLoginNeeded { get; set; } = false;

@@ -18,6 +18,7 @@ namespace ElsEvo
     {
         private bool _modsLigados;
         private CancellationTokenSource? _cancelamentoAtual;
+        private bool _podeCancelar;
         private GerenciadorBandeja? _bandeja;
 
         private double _larguraAntesDeMaximizar;
@@ -93,6 +94,7 @@ namespace ElsEvo
             BtnGerenciarMods.Content = Idiomas.T("BtnGerenciarMods");
             TxtModsAtivos.Text = Idiomas.T("ModsAtivos");
             TxtListaVazia.Text = Idiomas.T("ListaVazia");
+            BtnCancelar.Content = Idiomas.T("Cancelar");
             StatusBadge.Text = _modsLigados ? Idiomas.T("Ligado") : Idiomas.T("Desligado");
             AtualizarTextoBotaoJogar();
         }
@@ -106,11 +108,18 @@ namespace ElsEvo
             foreach (var grupo in porPack)
             {
                 int quantidade = grupo.Count();
+                int ausentes = grupo.Count(m => !File.Exists(m.CaminhoCompleto));
+                string nome = quantidade == 1 ? grupo.Key : $"{grupo.Key}  ({quantidade} arquivos)";
+                if (ausentes > 0)
+                    nome += $"  -  {string.Format(Idiomas.T("ArquivosAusentes"), ausentes)}";
+
                 var item = new ListBoxItem
                 {
                     Padding = new Thickness(6),
-                    Content = quantidade == 1 ? grupo.Key : $"{grupo.Key}  ({quantidade} arquivos)"
+                    Content = nome,
                 };
+                if (ausentes > 0)
+                    item.Foreground = Brushes.Orange;
                 ListaModsAtivos.Items.Add(item);
             }
 
@@ -172,6 +181,7 @@ namespace ElsEvo
         private void BtnToggleLigado_Click(object sender, RoutedEventArgs e)
         {
             _modsLigados = !_modsLigados;
+            RegistroLog.Registrar("Mods alternados", _modsLigados ? "Ligados" : "Desligados");
             AtualizarVisualToggle();
 
             var cfg = Properties.Settings.Default;
@@ -223,11 +233,6 @@ namespace ElsEvo
             AtualizarTextoBotaoJogar();
         }
 
-        private void AtualizarTextoBotaoJogar()
-        {
-            BtnJogar.Content = _modsLigados ? Idiomas.T("BtnAplicarJogar") : Idiomas.T("BtnExecutarLauncher");
-        }
-
         private void AtualizarCorBadgeBeta()
         {
             var bc = new BrushConverter();
@@ -248,8 +253,14 @@ namespace ElsEvo
             }
         }
 
+        private void AtualizarTextoBotaoJogar()
+        {
+            TxtStatusJogar.Text = _modsLigados ? Idiomas.T("BtnAplicarJogar") : Idiomas.T("BtnExecutarLauncher");
+        }
+
         private void MenuReiniciar_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Reinício solicitado");
             string caminhoExeAtual = Process.GetCurrentProcess().MainModule?.FileName
                                       ?? Environment.ProcessPath
                                       ?? string.Empty;
@@ -262,6 +273,7 @@ namespace ElsEvo
 
         private void MenuLimparCache_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Limpeza de cache solicitada");
             try
             {
                 string pastaCache = Paths.Main.Cache;
@@ -351,6 +363,7 @@ namespace ElsEvo
 
         private void MenuLimparConfiguracoes_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Limpeza de configurações solicitada");
             bool confirmou = JanelaConfirmacao.Confirmar(this,
                 "Limpar configurações",
                 "Isso vai restaurar todas as configurações do ElsEvo para o padrão. Continuar?",
@@ -374,6 +387,7 @@ namespace ElsEvo
 
         private void MenuExcluirMods_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Exclusão de todos os mods solicitada");
             bool confirmou = JanelaConfirmacao.Confirmar(this,
                 "Excluir todos os mods",
                 "Isso vai excluir TODOS os packs de mods importados. Essa ação não pode ser desfeita. Continuar?",
@@ -425,6 +439,7 @@ namespace ElsEvo
 
         private void MenuConfiguracoes_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Janela de configurações aberta");
             var janela = new PreferenciasWindow { Owner = this };
             janela.ShowDialog();
 
@@ -435,12 +450,14 @@ namespace ElsEvo
 
         private void MenuSobre_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Janela Sobre aberta");
             var janela = new SobreWindow { Owner = this };
             janela.ShowDialog();
         }
 
         private void BtnGerenciarMods_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Janela Gerenciar Mods aberta");
             var janela = new GerenciarModsWindow { Owner = this };
             janela.ShowDialog();
 
@@ -449,6 +466,7 @@ namespace ElsEvo
 
         private async void BtnJogar_Click(object sender, RoutedEventArgs e)
         {
+            RegistroLog.Registrar("Aplicar e Jogar solicitado", _modsLigados ? "Mods ligados" : "Mods desligados");
             if (!Paths.Elsword.IsValidElswordDir(Properties.Settings.Default.ElswordDirectory))
             {
                 JanelaConfirmacao.Mostrar(this,
@@ -464,6 +482,19 @@ namespace ElsEvo
             if (_modsLigados)
             {
                 var ativos = GerenciadorDeMods.Carregar();
+                var modsAusentes = ativos
+                    .Where(m => !File.Exists(m.CaminhoCompleto))
+                    .ToList();
+
+                if (modsAusentes.Count > 0)
+                {
+                    string nomesAusentes = string.Join("\n", modsAusentes.Select(m => $"• {m.NomeDoPack}: {m.Arquivo}"));
+                    JanelaConfirmacao.Mostrar(this,
+                        Idiomas.T("ModsAusentesTitulo"),
+                        string.Format(Idiomas.T("ModsAusentesMensagem"), nomesAusentes),
+                        TipoMensagem.Aviso);
+                }
+
                 listaDePatches = ativos
                     .Where(m => File.Exists(m.CaminhoCompleto))
                     .Select(m => new PatchInfo(m))
@@ -471,7 +502,7 @@ namespace ElsEvo
             }
 
             BtnJogar.IsEnabled = false;
-            BtnJogar.Content = "Aguardando o launcher...";
+            TxtStatusJogar.Text = "Aguardando o launcher...";
 
             ProgressoContainer.Visibility = Visibility.Visible;
             BarraProgresso.Value = 0;
@@ -485,7 +516,7 @@ namespace ElsEvo
 
             var statusProgresso = new Progress<EstadoPatch>(estado =>
             {
-                BtnJogar.Content = estado switch
+                TxtStatusJogar.Text = estado switch
                 {
                     EstadoPatch.PreparandoArquivos => "Preparando arquivos...",
                     EstadoPatch.AguardandoElswordAbrir => "Aguardando o launcher fechar...",
@@ -495,9 +526,16 @@ namespace ElsEvo
                     EstadoPatch.RestaurandoBackup => "Restaurando backup...",
                     _ => "Concluído"
                 };
+                _podeCancelar = estado is EstadoPatch.PreparandoArquivos
+                    or EstadoPatch.AguardandoElswordAbrir
+                    or EstadoPatch.FazendoBackup
+                    or EstadoPatch.Aplicando;
+                if (!_podeCancelar)
+                    BtnCancelar.Visibility = Visibility.Collapsed;
             });
 
             _cancelamentoAtual = new CancellationTokenSource();
+            _podeCancelar = true;
 
             try
             {
@@ -506,6 +544,11 @@ namespace ElsEvo
             }
             catch (OperationCanceledException)
             {
+                RegistroLog.Registrar("Patch cancelado");
+                JanelaConfirmacao.Mostrar(this,
+                    Idiomas.T("Cancelar"),
+                    Idiomas.T("OperacaoCancelada"),
+                    TipoMensagem.Informacao);
             }
             catch (Exception ex)
             {
@@ -519,8 +562,34 @@ namespace ElsEvo
                 BtnJogar.IsEnabled = true;
                 AtualizarTextoBotaoJogar();
                 ProgressoContainer.Visibility = Visibility.Collapsed;
+                BtnCancelar.IsEnabled = true;
+                BtnCancelar.Visibility = Visibility.Collapsed;
+                _podeCancelar = false;
                 _cancelamentoAtual = null;
             }
+        }
+
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            if (_cancelamentoAtual == null)
+                return;
+
+            BtnCancelar.IsEnabled = false;
+            RegistroLog.Registrar("Cancelamento do patch solicitado");
+            TxtStatusJogar.Text = "Cancelando...";
+            _cancelamentoAtual.Cancel();
+        }
+
+        private void StatusPatchContainer_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (_cancelamentoAtual != null && _podeCancelar)
+                BtnCancelar.Visibility = Visibility.Visible;
+        }
+
+        private void StatusPatchContainer_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (_cancelamentoAtual == null || !_podeCancelar)
+                BtnCancelar.Visibility = Visibility.Collapsed;
         }
 
         private async Task VerificarAtualizacaoAsync()

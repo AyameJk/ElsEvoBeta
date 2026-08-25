@@ -203,6 +203,7 @@ namespace ElsEvo
         private void SalvarConfiguracoes()
         {
             var cfg = Properties.Settings.Default;
+            RegistroLog.Registrar("Configurações salvas");
 
             string caminhoExe = TxtLocalizacaoJogo.Text;
             cfg.ElswordDirectory = File.Exists(caminhoExe)

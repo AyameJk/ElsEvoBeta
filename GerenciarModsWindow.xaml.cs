@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -186,6 +187,7 @@ namespace ElsEvo
         private void MenuNovo_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu.IsOpen = false;
+            RegistroLog.Registrar("Criação de pack solicitada");
 
             string? nomeEscolhido = PromptSimples.PedirTexto(this, "Novo pack", "Nome do novo pack de mod:", "MeuMod");
             if (string.IsNullOrWhiteSpace(nomeEscolhido))
@@ -202,6 +204,7 @@ namespace ElsEvo
         private void MenuImportarPasta_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu.IsOpen = false;
+            RegistroLog.Registrar("Importação de pasta solicitada");
 
             var dialogo = new OpenFolderDialog { Title = "Selecione a pasta do mod para importar" };
             if (dialogo.ShowDialog() != true)
@@ -274,6 +277,7 @@ namespace ElsEvo
         private void MenuImportarZip_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu.IsOpen = false;
+            RegistroLog.Registrar("Importação de ZIP solicitada");
 
             var dialogo = new OpenFileDialog
             {
@@ -351,17 +355,9 @@ namespace ElsEvo
         private void MenuExcluirPackSelecionado_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu.IsOpen = false;
+            RegistroLog.Registrar("Exclusão de pack solicitada");
 
-            string? nomePack = null;
-
-            if (CmbAcaoGlobal.SelectedItem is string selecionadoGlobal && selecionadoGlobal != OpcaoDesabilitarTodos)
-            {
-                nomePack = selecionadoGlobal;
-            }
-            else if (GridMods.SelectedItem is ModItem itemSelecionado && itemSelecionado.ModSelecionado != "Nenhum")
-            {
-                nomePack = itemSelecionado.ModSelecionado;
-            }
+            string? nomePack = ObterPackSelecionado();
 
             if (nomePack == null)
             {
@@ -401,11 +397,101 @@ namespace ElsEvo
             }
         }
 
+        private string? ObterPackSelecionado()
+        {
+            if (CmbAcaoGlobal.SelectedItem is string selecionadoGlobal && selecionadoGlobal != OpcaoDesabilitarTodos)
+                return selecionadoGlobal;
+
+            if (GridMods.SelectedItem is ModItem itemSelecionado && itemSelecionado.ModSelecionado != "Nenhum")
+                return itemSelecionado.ModSelecionado;
+
+            return null;
+        }
+
+        private string? ObterPastaPackSelecionado()
+        {
+            string? nomePack = ObterPackSelecionado();
+            if (string.IsNullOrWhiteSpace(nomePack))
+                return null;
+
+            string pastaPack = Path.Combine(Paths.Main.Packs, nomePack);
+            return Directory.Exists(pastaPack) ? pastaPack : null;
+        }
+
+        private void MenuAbrirNoExplorer_Click(object sender, RoutedEventArgs e)
+        {
+            PopupMenu.IsOpen = false;
+            RegistroLog.Registrar("Local do arquivo solicitado");
+
+            string? caminho = null;
+            if (GridMods.SelectedItem is ModItem itemSelecionado && File.Exists(itemSelecionado.CaminhoCompleto))
+                caminho = itemSelecionado.CaminhoCompleto;
+            else if (ObterPastaPackSelecionado() is string pastaPack)
+                caminho = pastaPack;
+
+            if (caminho == null)
+            {
+                MessageBox.Show("Selecione um pack ou arquivo antes de abrir no Windows Explorer.",
+                    "Abrir no Windows Explorer", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = File.Exists(caminho) ? $"/select,\"{caminho}\"" : $"\"{caminho}\"",
+                UseShellExecute = true
+            });
+        }
+
+        private void MenuExportarZip_Click(object sender, RoutedEventArgs e)
+        {
+            PopupMenu.IsOpen = false;
+            RegistroLog.Registrar("Exportação de ZIP solicitada");
+
+            string? pastaPack = ObterPastaPackSelecionado();
+            string? nomePack = ObterPackSelecionado();
+            if (pastaPack == null || nomePack == null)
+            {
+                MessageBox.Show("Selecione um pack específico antes de exportar para .zip.",
+                    "Exportar para .zip", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var dialogo = new SaveFileDialog
+            {
+                Title = "Exportar pack para .zip",
+                Filter = "Arquivo ZIP (*.zip)|*.zip",
+                FileName = nomePack + ".zip",
+                AddExtension = true,
+                OverwritePrompt = true
+            };
+
+            if (dialogo.ShowDialog() != true)
+                return;
+
+            try
+            {
+                System.IO.Compression.ZipFile.CreateFromDirectory(
+                    pastaPack, dialogo.FileName, System.IO.Compression.CompressionLevel.Optimal, includeBaseDirectory: false);
+
+                MessageBox.Show($"Pack exportado com sucesso para:\n{dialogo.FileName}",
+                    "Exportar para .zip", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Não foi possível exportar o pack:\n{ex.Message}",
+                    "Exportar para .zip", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void BtnAplicarAcaoGlobal_Click(object sender, RoutedEventArgs e)
         {
             string? selecionado = CmbAcaoGlobal.SelectedItem as string;
             if (selecionado == null)
                 return;
+
+            RegistroLog.Registrar("Ação global de mods aplicada", selecionado);
 
             if (selecionado == OpcaoDesabilitarTodos)
             {
@@ -438,6 +524,7 @@ namespace ElsEvo
 
         private void SalvarConfiguracaoDeMods()
         {
+            RegistroLog.Registrar("Configuração de mods salva");
             var ativos = _todosOsMods
                 .Where(m => m.ModSelecionado != "Nenhum")
                 .Select(m => new ModAtivo

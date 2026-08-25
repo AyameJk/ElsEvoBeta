@@ -9,6 +9,7 @@
     <RootNamespace>ElsEvo</RootNamespace>
     <AssemblyName>ElsEvo</AssemblyName>
     <ApplicationIcon>Assets\icone_app.ico</ApplicationIcon>
+    <DefineConstants>$(DefineConstants);ELSEVO_BETA</DefineConstants>
 
     <SatelliteResourceLanguages>pt-BR</SatelliteResourceLanguages>
 

@@ -54,13 +54,13 @@
                                 </ToggleButton.Template>
                             </ToggleButton>
 
-                            <ContentPresenter x:Name="conteudo"
-                                               IsHitTestVisible="False"
-                                               Content="{TemplateBinding SelectionBoxItem}"
-                                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                               Margin="{TemplateBinding Padding}"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Left"/>
+                            <TextBlock x:Name="conteudo"
+                                       IsHitTestVisible="False"
+                                       Text="{TemplateBinding SelectionBoxItem}"
+                                       Foreground="{DynamicResource CorTextoPrimario}"
+                                       Margin="{TemplateBinding Padding}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"/>
 
                             <Popup x:Name="PART_Popup"
                                    IsOpen="{TemplateBinding IsDropDownOpen}"

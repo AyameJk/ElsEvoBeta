@@ -433,7 +433,7 @@
   },
   {
     "FileName": "data069.kom",
-    "Description": "[SFX/Voices] SFXs from all playable characters & emoticon voices (F5~F8)",
+    "Description": "Efeitos sonoros e vozes de personagens (F5-F8)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -493,13 +493,13 @@
   },
   {
     "FileName": "data079.kom",
-    "Description": "[Tutorial voices] Aisha",
+    "Description": "Aisha (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data080.kom",
-    "Description": "[Tutorial voices] Elsword",
+    "Description": "Elsword (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -511,19 +511,19 @@
   },
   {
     "FileName": "data082.kom",
-    "Description": "[Tutorial voices] Eve",
+    "Description": "Eve (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data083.kom",
-    "Description": "[Tutorial voices] Rena",
+    "Description": "Rena (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data084.kom",
-    "Description": "[Tutorial voices] Raven",
+    "Description": "Raven (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -571,37 +571,61 @@
   },
   {
     "FileName": "data092.kom",
-    "Description": "[Voices] Aisha",
+    "Description": "Aisha (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data093.kom",
-    "Description": "[Voices] Elsword",
+    "Description": "Elsword (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data094.kom",
-    "Description": "[Voices] Eve",
+    "Description": "Eve (Vozes)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data186.kom",
+    "Description": "Rose (Vozes de Tutorial)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data187.kom",
+    "Description": "Rose (Vozes)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data210.kom",
+    "Description": "Ain (Vozes)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data213.kom",
+    "Description": "Ain (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data095.kom",
-    "Description": "[Voices] Rena",
+    "Description": "Rena (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data096.kom",
-    "Description": "[Voices] NPCs",
+    "Description": "NPCs (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data097.kom",
-    "Description": "[Voices] Raven",
+    "Description": "Raven (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -631,7 +655,7 @@
   },
   {
     "FileName": "data102.kom",
-    "Description": "[SFX/Voices] Monsters",
+    "Description": "Monstros (SFX/Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -643,7 +667,7 @@
   },
   {
     "FileName": "data104.kom",
-    "Description": "[SFX/Voices] Monsters",
+    "Description": "Monstros (SFX/Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -667,13 +691,13 @@
   },
   {
     "FileName": "data108.kom",
-    "Description": "[Tutorial voices] Chung",
+    "Description": "Chung (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data109.kom",
-    "Description": "[Voices] Chung",
+    "Description": "Chung (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -817,13 +841,13 @@
   },
   {
     "FileName": "data133.kom",
-    "Description": "[Tutorial voices] Ara",
+    "Description": "Ara (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data134.kom",
-    "Description": "[Voices] Ara",
+    "Description": "Ara (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -883,13 +907,13 @@
   },
   {
     "FileName": "data144.kom",
-    "Description": "[Tutorial voices] Elesis",
+    "Description": "Elesis (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data145.kom",
-    "Description": "[Voices] Elesis",
+    "Description": "Elesis (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -913,13 +937,13 @@
   },
   {
     "FileName": "data149.kom",
-    "Description": "[Tutorial voices] Add",
+    "Description": "Add (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data150.kom",
-    "Description": "[Voices] Add",
+    "Description": "Add (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
@@ -979,25 +1003,25 @@
   },
   {
     "FileName": "data160.kom",
-    "Description": "[Tutorial voices] Lu",
+    "Description": "Lu (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data161.kom",
-    "Description": "[Tutorial voices] Ciel",
+    "Description": "Ciel (Vozes de Tutorial)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data162.kom",
-    "Description": "[Voices] Lu",
+    "Description": "Lu (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },
   {
     "FileName": "data163.kom",
-    "Description": "[Voices] Ciel",
+    "Description": "Ciel (Vozes)",
     "Blocked": false,
     "BlockedServers": ""
   },

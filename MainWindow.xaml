@@ -17,7 +17,7 @@
             <Setter Property="Width" Value="32"/>
             <Setter Property="Height" Value="28"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#CCCCCC"/>
+            <Setter Property="Foreground" Value="{DynamicResource CorTextoBarraTitulo}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
@@ -30,12 +30,35 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#3A3A3D"/>
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource CorBotaoJanelaHover}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style x:Key="BotaoFechar" TargetType="Button" BasedOn="{StaticResource BotaoJanela}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource CorBotaoFecharHover}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource CorBotaoFecharHover}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="BotaoJogar" TargetType="Button">
@@ -73,6 +96,10 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
         </Style>
 
         <Style TargetType="MenuItem">
@@ -176,7 +203,7 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,4,4,0">
                     <Button Style="{StaticResource BotaoJanela}" Click="BtnMinimizar_Click" ToolTip="Minimizar" Content="&#xE921;"/>
                     <Button x:Name="BtnMaximizar" Style="{StaticResource BotaoJanela}" Click="BtnMaximizar_Click" ToolTip="Maximizar" Content="&#xE922;"/>
-                    <Button Style="{StaticResource BotaoJanela}" Click="BtnFechar_Click" ToolTip="Fechar" Content="&#xE8BB;"/>
+                    <Button Style="{StaticResource BotaoFechar}" Click="BtnFechar_Click" ToolTip="Fechar" Content="&#xE8BB;"/>
                 </StackPanel>
 
             </Grid>
@@ -292,17 +319,41 @@
                             Style="{StaticResource BotaoJogar}"
                             Click="BtnGerenciarMods_Click"/>
 
-                    <Button x:Name="BtnJogar"
-                            Content="Aplicar e Jogar"
-                            Height="44"
-                            Background="#0078D4"
-                            Foreground="White"
-                            FontSize="14"
-                            FontWeight="Bold"
-                            Style="{StaticResource BotaoJogar}"
-                            Click="BtnJogar_Click"/>
+                    <Grid x:Name="StatusPatchContainer"
+                          Height="44"
+                          MouseEnter="StatusPatchContainer_MouseEnter"
+                          MouseLeave="StatusPatchContainer_MouseLeave">
+                        <Button x:Name="BtnJogar"
+                                Height="44"
+                                Background="#0078D4"
+                                Foreground="White"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Style="{StaticResource BotaoJogar}"
+                                Click="BtnJogar_Click">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock x:Name="TxtStatusJogar" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/menu-jogar.png"
+                                        Width="22"
+                                        Height="22"
+                                        Stretch="Uniform"
+                                        Margin="7,0,0,0"
+                                        VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="BtnCancelar"
+                                Content="Cancelar"
+                                Height="44"
+                                Visibility="Collapsed"
+                                Background="#C42B1C"
+                                Foreground="White"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                BorderThickness="0"
+                                Click="BtnCancelar_Click"/>
+                    </Grid>
 
-                    <Grid Margin="0,8,0,0" x:Name="ProgressoContainer" Visibility="Collapsed">
+                    <StackPanel Margin="0,8,0,0" x:Name="ProgressoContainer" Visibility="Collapsed">
                         <Border Height="18" CornerRadius="9" Background="{DynamicResource CorFundoPrincipal}" BorderBrush="{DynamicResource CorBorda}" BorderThickness="1">
                             <Grid>
                                 <ProgressBar x:Name="BarraProgresso" Minimum="0" Maximum="100" Value="0" Height="16" Margin="1">
@@ -329,7 +380,7 @@
                                 </TextBlock>
                             </Grid>
                         </Border>
-                    </Grid>
+                    </StackPanel>
 
                 </StackPanel>
 

@@ -160,7 +160,7 @@ namespace ElsEvo
                     if (string.IsNullOrEmpty(raizDisco))
                         raizDisco = AppDomain.CurrentDomain.BaseDirectory;
 
-                    string caminho = Path.Combine(raizDisco, "gPatcher cache");
+                    string caminho = Path.Combine(raizDisco, "ElsEvo Beta cache");
                     Directory.CreateDirectory(caminho);
                     return caminho;
                 }
@@ -172,11 +172,13 @@ namespace ElsEvo
                 {
                     string raiz = Elsword.Root;
                     string caminho = !string.IsNullOrWhiteSpace(raiz) && Directory.Exists(raiz)
-                        ? Path.Combine(raiz, "cacheElsEvo")
-                        : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cacheElsEvo");
+                        ? Path.Combine(raiz, "cacheElsEvoBeta")
+                        : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cacheElsEvoBeta");
 
                     Directory.CreateDirectory(caminho);
+#if !ELSEVO_BETA
                     MigrarPacksAntigosSeNecessario(caminho);
+#endif
                     return caminho;
                 }
             }
@@ -221,7 +223,7 @@ namespace ElsEvo
         }
 
         public static string LocalApplicationData { get; } =
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ElsEvo");
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ElsEvoBeta");
 
         public static string UserMods { get; } =
             Path.Combine(LocalApplicationData, "usrmods.json");

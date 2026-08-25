@@ -22,6 +22,9 @@ namespace ElsEvo
                 recursos["CorTextoSecundario"] = Cor("#5A5A5A");
                 recursos["CorBotaoFlat"] = Cor("#E4E4E4");
                 recursos["CorBotaoFlatHover"] = Cor("#D6D6D6");
+                recursos["CorTextoBarraTitulo"] = Cor("#1F1F1F");
+                recursos["CorBotaoJanelaHover"] = Cor("#E5E5E5");
+                recursos["CorBotaoFecharHover"] = Cor("#C42B1C");
             }
             else
             {
@@ -33,6 +36,9 @@ namespace ElsEvo
                 recursos["CorTextoSecundario"] = Cor("#858585");
                 recursos["CorBotaoFlat"] = Cor("#2D2D30");
                 recursos["CorBotaoFlatHover"] = Cor("#3A3A3D");
+                recursos["CorTextoBarraTitulo"] = Cor("#CCCCCC");
+                recursos["CorBotaoJanelaHover"] = Cor("#3A3A3D");
+                recursos["CorBotaoFecharHover"] = Cor("#3A3A3D");
             }
 
             TemaMudou?.Invoke(temaClaro);
