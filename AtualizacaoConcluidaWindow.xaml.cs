@@ -2,12 +2,6 @@ using System.Windows;
 
 namespace ElsEvo
 {
-    /// <summary>
-    /// Janela pequena mostrada quando o ElsEvo detecta que acabou de reabrir sozinho
-    /// depois de um update (ver argumento "--atualizado" passado pelo
-    /// MainWindow.ReabrirAppAtualizadoEFechar). Segue o mesmo padrão visual das outras
-    /// janelas temáticas (AtualizacaoWindow, SobreWindow) — ThemeManager + BarraTituloNativa.
-    /// </summary>
     public partial class AtualizacaoConcluidaWindow : Window
     {
         public AtualizacaoConcluidaWindow()

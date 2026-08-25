@@ -4,10 +4,6 @@
              ShutdownMode="OnMainWindowClose">
     <Application.Resources>
 
-        <!-- ===== Cores padrão de FALLBACK (tema Escuro) — garante que DynamicResource
-             sempre tenha um valor, mesmo antes do ThemeManager rodar. Sem isso, se por
-             qualquer motivo AplicarTemaSalvo() não rodar a tempo, os elementos ficam sem
-             cor nenhuma (o que na prática aparece como fundo branco/transparente). ===== -->
         <SolidColorBrush x:Key="CorFundoPrincipal" Color="#1E1E1E"/>
         <SolidColorBrush x:Key="CorFundoCartao" Color="#252526"/>
         <SolidColorBrush x:Key="CorFundoCampo" Color="#1E1E1E"/>
@@ -17,7 +13,6 @@
         <SolidColorBrush x:Key="CorBotaoFlat" Color="#2D2D30"/>
         <SolidColorBrush x:Key="CorBotaoFlatHover" Color="#3A3A3D"/>
 
-        <!-- ===== ComboBox escuro (aplica em TODAS as janelas automaticamente) ===== -->
         <Style TargetType="ComboBox">
             <Setter Property="Background" Value="{DynamicResource CorFundoCampo}"/>
             <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
@@ -110,7 +105,6 @@
             </Setter>
         </Style>
 
-        <!-- ===== TabControl / TabItem escuros ===== -->
         <Style TargetType="TabItem">
             <Setter Property="Foreground" Value="{DynamicResource CorTextoSecundario}"/>
             <Setter Property="FontWeight" Value="SemiBold"/>

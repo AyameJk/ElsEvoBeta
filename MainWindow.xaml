@@ -38,12 +38,6 @@
             </Setter>
         </Style>
 
-        <!-- Estado desabilitado (durante atualização): em vez de trocar pra uma cor cinza
-             fixa e sem relação com o botão original (o que ficava feio e "morto" tanto no
-             tema claro quanto no escuro), mantém a cor original do botão e só reduz a
-             opacidade do conjunto inteiro. Isso preserva a identidade visual (o botão azul
-             continua parecendo o botão azul, só "apagado") e funciona igual nos dois temas
-             sem precisar de cores hardcoded específicas por tema. -->
         <Style x:Key="BotaoJogar" TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -328,10 +322,7 @@
                                 </ProgressBar>
                                 <TextBlock x:Name="TxtProgresso" Text="0%" Foreground="White" FontSize="10" FontWeight="Bold"
                                            HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <!-- Sombra/contorno escuro: sem isso o texto branco ficava invisível na
-                                         parte cinza/não preenchida da barra (só ficava legível onde o azul
-                                         já tinha coberto). O glow preto ao redor garante contraste nos dois
-                                         fundos, em qualquer tema. -->
+
                                     <TextBlock.Effect>
                                         <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="0" Opacity="0.85"/>
                                     </TextBlock.Effect>

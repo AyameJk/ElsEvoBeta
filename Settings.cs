@@ -4,23 +4,15 @@ using System.Text.Json;
 
 namespace ElsEvo.Properties
 {
-    /// <summary>
-    /// Substitui o "Settings.settings" do Visual Studio. Campos e defaults copiados
-    /// fielmente do Settings.cs real do gPatcher (decompilado), pra manter compatibilidade
-    /// de comportamento com o app original.
-    /// </summary>
     public sealed class Settings
     {
         private static readonly Lazy<Settings> _instancia = new(Carregar);
         public static Settings Default => _instancia.Value;
 
-        // Fica em %LocalAppData%\ElsEvo\ (não mais dentro da pasta de build!) — assim
-        // sobrevive a "dotnet clean" e rebuilds, que apagam bin\/obj\ mas nunca essa pasta.
         private static string CaminhoArquivo =>
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "ElsEvo", "ElsEvo_config.json");
 
-        // ===== Idênticos ao Settings.cs original do gPatcher =====
         public bool TrayIconEnabled { get; set; } = true;
         public bool WebLoginNeeded { get; set; } = false;
         public bool CheckForProgramUpdates { get; set; } = true;
@@ -36,17 +28,12 @@ namespace ElsEvo.Properties
         public string X2Args { get; set; } = string.Empty;
         public bool SkipLauncher { get; set; } = false;
 
-        // BUILD BETA: "Beta apenas" MARCADO por padrão — por padrão consulta o próprio
-        // canal (repositório ElsEvoBeta) no AtualizacaoService.
         public bool IgnoreBetaReleases { get; set; } = false;
 
-        // BUILD BETA: mostra o badge "BETA" no menu principal e na janela Sobre.
         public bool IsBetaRelease { get; set; } = true;
 
         public bool BetaFirstLaunch { get; set; } = true;
 
-        // ===== Campos extras do ElsEvo (não existiam no gPatcher original) =====
-        /// <summary>true = tema Claro, false = tema Escuro. Padrão de fábrica: Claro.</summary>
         public bool TemaClaro { get; set; } = true;
         public bool IniciarComWindows { get; set; } = true;
         public bool MinimizarParaBandeja { get; set; } = true;
@@ -66,13 +53,11 @@ namespace ElsEvo.Properties
             }
             catch
             {
-                // JSON corrompido -> cai pro padrão silenciosamente.
             }
 
             return new Settings();
         }
 
-        /// <summary>Restaura todos os valores para o padrão de fábrica ("Limpar configurações").</summary>
         public void Reset()
         {
             var padrao = new Settings();

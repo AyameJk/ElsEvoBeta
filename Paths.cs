@@ -152,7 +152,14 @@ namespace ElsEvo
             {
                 get
                 {
-                    string raizDisco = Path.GetPathRoot(Elsword.Root) ?? AppDomain.CurrentDomain.BaseDirectory;
+                    string raizElsword = Elsword.Root;
+                    string raizDisco = !string.IsNullOrEmpty(raizElsword)
+                        ? Path.GetPathRoot(raizElsword)!
+                        : AppDomain.CurrentDomain.BaseDirectory;
+
+                    if (string.IsNullOrEmpty(raizDisco))
+                        raizDisco = AppDomain.CurrentDomain.BaseDirectory;
+
                     string caminho = Path.Combine(raizDisco, "gPatcher cache");
                     Directory.CreateDirectory(caminho);
                     return caminho;

@@ -9,16 +9,18 @@
     <RootNamespace>ElsEvo</RootNamespace>
     <AssemblyName>ElsEvo</AssemblyName>
     <ApplicationIcon>Assets\icone_app.ico</ApplicationIcon>
+
+    <SatelliteResourceLanguages>pt-BR</SatelliteResourceLanguages>
+
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Build Action "Resource": é o que comprovadamente funcionou. As imagens ficam
-         embutidas no assembly e são referenciadas no XAML como caminho relativo simples
-         (Image Source="Assets/nome.png"), sem pack://, sem busca por nome. -->
+
     <Resource Include="Assets\*.png" />
 
-    <!-- O banco de descrições (JSON) continua como arquivo solto, copiado pra saída,
-         porque BancoDeArquivos.cs lê ele direto do disco com File.ReadAllText. -->
     <None Include="Assets\*.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

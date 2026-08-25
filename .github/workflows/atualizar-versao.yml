@@ -1,17 +1,9 @@
 name: Atualizar version.json
 
-# Roda toda vez que uma Release é publicada no GitHub (Draft não conta, só quando você
-# clica "Publish release" de fato).
-#
-# IMPORTANTE: esse arquivo é IDÊNTICO nos dois repositórios (ElsEvo e ElsEvoBeta) — não
-# tem mais lógica de canal aqui dentro, porque agora cada repositório JÁ É um canal
-# (a variável ${{ github.repository }} se ajusta sozinha pro repositório onde ele está
-# rodando). Se copiar esse arquivo pro ElsEvoBeta, não precisa mudar nada nele.
 on:
   release:
     types: [published]
 
-# Necessário pra esse job conseguir dar "git push" de volta pro repositório.
 permissions:
   contents: write
 
@@ -37,8 +29,6 @@ jobs:
           tag = os.environ["TAG_NAME"]
           versao = tag[1:] if tag.startswith("v") else tag
 
-          # IMPORTANTE: assume que todo Release sempre tem um asset chamado exatamente
-          # "ElsEvo-Setup.exe" anexado (é o que o OutputBaseFilename do .iss gera).
           url_instalador = f'https://github.com/{os.environ["REPO"]}/releases/download/{tag}/ElsEvo-Setup.exe'
 
           dados = {

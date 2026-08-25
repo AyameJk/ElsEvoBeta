@@ -10,27 +10,13 @@ using System.Windows.Media.Imaging;
 
 namespace ElsEvo
 {
-    /// <summary>
-    /// Substitui o MessageBox nativo do fluxo "uma atualização está disponível" por uma
-    /// janela que segue o tema Claro/Escuro do app (mesmos DynamicResource usados no
-    /// resto da interface — CorFundoPrincipal, CorBotaoFlat, etc., ver ThemeManager.cs).
-    /// DialogResult == true significa "o usuário quer atualizar agora".
-    ///
-    /// As notas de lançamento vêm em Markdown/HTML puro do GitHub Releases (podem ter uma
-    /// tag &lt;img&gt; de capa, uma linha de citação em "&gt; texto", e títulos "#"/"##"/"###"),
-    /// em QUALQUER ordem dentro do texto. Como o TextBlock não renderiza Markdown/HTML, essa
-    /// janela monta o conteúdo dinamicamente em PainelNotas, elemento por elemento,
-    /// respeitando a MESMA ORDEM em que cada trecho aparece no texto original.
-    /// </summary>
     public partial class AtualizacaoWindow : Window
     {
-        // Casa <img ... src="URL" ...>, uma linha "> texto" (citação), OU uma linha
-        // "#"/"##"/"###" de título Markdown — o que vier primeiro no texto processa
-        // primeiro, preservando a ordem original.
         private static readonly Regex RegexElementoEspecial = new(
             @"<img[^>]*\ssrc=[""'](?<urlImagem>[^""']+)[""'][^>]*/?>" +
             @"|^\s*>\s*(?<citacao>.+)$" +
-            @"|^\s*#{1,6}\s*(?<titulo>.+?)\s*#*$",
+            @"|^\s*#{1,6}\s*(?<titulo>.+?)\s*#*$" +
+            @"|(?<tagIgnorada></?(?:p|div|span|br|hr|center)(?:\s[^>]*)?/?>)",
             RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         private static readonly HttpClient _http = new() { Timeout = TimeSpan.FromSeconds(15) };
@@ -52,8 +38,6 @@ namespace ElsEvo
             PrepararNotas(atualizacao.Notas);
         }
 
-        /// <summary>Aplica as strings traduzidas nos elementos fixos da janela (não nas notas
-        /// da release, que vêm do GitHub no idioma que foi escrito e não são traduzidas).</summary>
         private void AplicarIdioma()
         {
             Title = Idiomas.T("AtualizacaoTitulo");
@@ -64,13 +48,6 @@ namespace ElsEvo
             BtnAtualizar.Content = Idiomas.T("AtualizacaoBtnAtualizar");
         }
 
-        /// <summary>
-        /// Ajusta as cores do aviso de canal beta conforme o tema atual. No tema Escuro
-        /// mantém o aviso âmbar/amarelado de sempre (mistura bem com o fundo escuro). No
-        /// tema Claro, muda pra vermelho — mesma linguagem visual do badge "DESLIGADO" —
-        /// porque o âmbar clarinho ficava com contraste ruim e sem aparência de "aviso"
-        /// de verdade em cima de um fundo claro.
-        /// </summary>
         private void AtualizarCorAvisoBeta()
         {
             var bc = new BrushConverter();
@@ -92,11 +69,6 @@ namespace ElsEvo
             }
         }
 
-        /// <summary>
-        /// Percorre as notas em ordem, transformando cada trecho de texto normal, cada
-        /// &lt;img&gt;, cada linha de citação e cada título Markdown num elemento visual,
-        /// na mesma sequência em que aparecem no Markdown original — sem reordenar nada.
-        /// </summary>
         private void PrepararNotas(string notasBrutas)
         {
             string texto = notasBrutas ?? string.Empty;
@@ -114,7 +86,6 @@ namespace ElsEvo
 
             foreach (Match match in matches)
             {
-                // Texto normal ANTES desse elemento especial, na ordem em que aparece.
                 if (match.Index > posicaoAtual)
                 {
                     string trecho = texto.Substring(posicaoAtual, match.Index - posicaoAtual);
@@ -142,7 +113,6 @@ namespace ElsEvo
                 posicaoAtual = match.Index + match.Length;
             }
 
-            // Texto normal depois do último elemento especial encontrado.
             if (posicaoAtual < texto.Length)
             {
                 string trechoFinal = texto.Substring(posicaoAtual);
@@ -154,12 +124,15 @@ namespace ElsEvo
                 AdicionarTexto(Idiomas.T("AtualizacaoSemNotas"));
         }
 
-        /// <summary>Adiciona um trecho de texto normal (se não for só espaço em branco).</summary>
+        private static readonly Regex RegexItemDeLista = new(@"^[ \t]*[-*][ \t]+", RegexOptions.Multiline);
+
         private bool AdicionarTexto(string trecho)
         {
             string limpo = Regex.Replace(trecho, @"(\r?\n){3,}", "\n\n").Trim();
             if (string.IsNullOrWhiteSpace(limpo))
                 return false;
+
+            limpo = RegexItemDeLista.Replace(limpo, "• ");
 
             PainelNotas.Children.Add(new TextBlock
             {
@@ -173,7 +146,6 @@ namespace ElsEvo
             return true;
         }
 
-        /// <summary>Adiciona o espaço reservado da imagem e dispara o download em segundo plano.</summary>
         private void AdicionarImagem(string url)
         {
             var imagem = new Image
@@ -198,8 +170,6 @@ namespace ElsEvo
                 _ = CarregarImagemAsync(url, imagem, container);
         }
 
-        /// <summary>Adiciona um título Markdown (#, ##, ### — todos tratados igual, sem
-        /// distinguir hierarquia) como texto em destaque, negrito e maior que o corpo.</summary>
         private void AdicionarTitulo(string titulo)
         {
             if (string.IsNullOrWhiteSpace(titulo))
@@ -216,7 +186,6 @@ namespace ElsEvo
             });
         }
 
-        /// <summary>Adiciona a citação já destacada (barrinha lateral + itálico), sem o "&gt;" cru.</summary>
         private void AdicionarCitacao(string citacao)
         {
             if (string.IsNullOrWhiteSpace(citacao))
@@ -241,11 +210,6 @@ namespace ElsEvo
             PainelNotas.Children.Add(container);
         }
 
-        /// <summary>
-        /// Baixa a imagem em segundo plano e mostra ela de verdade no lugar reservado.
-        /// Se falhar por qualquer motivo, o espaço reservado simplesmente continua
-        /// invisível — nunca trava nem quebra a janela.
-        /// </summary>
         private async Task CarregarImagemAsync(string url, Image imagem, Border container)
         {
             try
@@ -267,7 +231,6 @@ namespace ElsEvo
             }
             catch
             {
-                // Sem imagem — a janela continua funcionando normalmente sem ela.
             }
         }
 

@@ -1,5 +1,3 @@
-; Script gerado a partir do Inno Setup Script Wizard.
-; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ElsEvo Beta"
 #define MyAppVersion "1.0.502"
@@ -12,15 +10,9 @@
 #define DoubleAmp(Value) StringChange(Value, "&", "&&")
 #define EscapeConstArgument(Value) StringChange(StringChange(StringChange(Value, "%", "%25"), ",", "%2c"), "}", "%7d")
 
-; Pasta real onde "dotnet publish -c Release -r win-x64 --self-contained true
-; -p:PublishSingleFile=true -o <PublishDir>" grava os arquivos. Ajuste aqui se você
-; publicar em outro lugar — usada em [Files] abaixo, só precisa mudar num lugar só.
-#define PublishDir "C:\Users\Victorr\OneDrive\ProjetoElsEvo\ElsEvoBeta\bin\Release\net8.0-windows\win-x64"
+#define PublishDir "C:\Users\Victorr\OneDrive\ProjetoElsEvo\ElsEvoBeta\bin\Release\net8.0-windows\win-x64\publish"
 
 [Setup]
-; IMPORTANTE: esse AppId precisa ser IDÊNTICO ao AppId do .iss da versão ESTÁVEL — é o
-; que permite instalar a build beta "por cima" da estável (e vice-versa) no mesmo lugar,
-; em vez do Inno Setup tratar como dois programas diferentes instalados lado a lado.
 AppId={{8910440C-BF7A-494D-B5AD-7F0A4DA85D60}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -36,45 +28,21 @@ ChangesAssociations=yes
 DisableProgramGroupPage=yes
 OutputDir=C:\Users\Victorr\Downloads\OutputBeta
 
-; IMPORTANTE: esse nome precisa bater EXATAMENTE (maiúsculas/minúsculas incluso) com o
-; que o atualizar-versao.yml monta na URL do version.json
-; (.../releases/download/{tag}/ElsEvo-Setup.exe). Nome de repositório no GitHub é
-; case-insensitive, mas nome de asset anexado numa Release é case-sensitive de verdade —
-; já quase deu 404 silencioso por causa disso, não mude só de um lado.
 OutputBaseFilename=ElsEvo-Setup
 
-; Ícone dentro de Assets\, não solto na raiz do repo (evita duplicar o .ico em dois lugares).
 SetupIconFile=C:\Users\Victorr\OneDrive\ProjetoElsEvo\ElsEvoBeta\Assets\icone_app.ico
 SolidCompression=yes
 WizardStyle=modern dynamic
 
-; ===== Metadados do arquivo — sem isso a aba "Detalhes" do .exe no Windows mostra
-; "Versão do arquivo 0.0.0.0" e campos de empresa/copyright vazios. =====
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoCopyright=© {#MyAppPublisher}
 VersionInfoDescription=Instalador do ElsEvo (Beta)
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
-; Nota: VersionInfoLanguage não existe no Inno Setup 7.1.0 (dá erro de compilação se
-; tentar usar) — o idioma dos metadados fica como "Neutro" mesmo, é só cosmético.
 
-; ===== Fechamento automático do ElsEvo durante a atualização =====
-; Reforço/rede de segurança pra quando alguém rodar o instalador manualmente com o app
-; ainda aberto — o app já se fecha sozinho antes de chamar o instalador no fluxo normal
-; (ver MainWindow.BaixarEInstalarAtualizacaoAsync).
-;
-; IMPORTANTE: "RestartApplications=yes" foi REMOVIDO de propósito. Esse recurso fazia o
-; próprio Windows/Inno Setup (via Restart Manager) tentar reabrir o app sozinho DEPOIS
-; da instalação — só que o app JÁ se reabre sozinho manualmente por código, em
-; MainWindow.ReabrirAppAtualizadoEFechar (que lê o caminho certo do registro e passa
-; "--atualizado"). Os dois mecanismos competindo explicava o bug de "às vezes não abre
-; sozinho depois de atualizar, sem erro nenhum" — o Restart Manager pode tentar reabrir
-; usando uma referência de processo/caminho desatualizada, brigando com a nossa própria
-; reabertura. Mantém só CloseApplications=yes (fecha o app se estiver aberto, reforço de
-; segurança) — a reabertura em si é 100% responsabilidade do código do app agora.
 AppMutex=ElsEvo_MutexPrincipal
-CloseApplications=yes
+CloseApplications=force
 
 [Languages]
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
@@ -88,7 +56,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{#PublishDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#PublishDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files.
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue

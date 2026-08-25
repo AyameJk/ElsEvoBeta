@@ -12,25 +12,13 @@ namespace ElsEvo
         Erro
     }
 
-    /// <summary>
-    /// Substituto moderno e temático (segue Claro/Escuro, DynamicResource, cantos
-    /// arredondados) pro MessageBox nativo do Windows, usado em confirmações e avisos
-    /// simples do app (ex.: "Limpar Cache", "Limpar Configurações"). Segue o mesmo padrão
-    /// visual das outras janelas do app (AtualizacaoConcluidaWindow, SobreWindow).
-    ///
-    /// Uso:
-    ///   JanelaConfirmacao.Confirmar(this, "Limpar cache", "Isso vai...", TipoMensagem.Aviso);
-    ///   JanelaConfirmacao.Mostrar(this, "Cache limpo", "O cache foi limpo com sucesso.", TipoMensagem.Sucesso);
-    /// </summary>
     public static class JanelaConfirmacao
     {
-        /// <summary>Mostra uma janela só com "OK" — pra avisos/confirmações de sucesso.</summary>
         public static void Mostrar(Window owner, string titulo, string mensagem, TipoMensagem tipo = TipoMensagem.Informacao)
         {
             Construir(owner, titulo, mensagem, tipo, comBotaoCancelar: false).ShowDialog();
         }
 
-        /// <summary>Mostra uma janela com "Sim"/"Não". Retorna true se o usuário confirmou.</summary>
         public static bool Confirmar(Window owner, string titulo, string mensagem, TipoMensagem tipo = TipoMensagem.Aviso)
         {
             var janela = Construir(owner, titulo, mensagem, tipo, comBotaoCancelar: true);
