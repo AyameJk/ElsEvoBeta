@@ -309,15 +309,33 @@
 
                 <StackPanel Grid.Row="3">
 
-                    <Button x:Name="BtnGerenciarMods"
-                            Content="Gerenciar Mods"
-                            Height="36"
-                            Margin="0,0,0,10"
-                            Background="{DynamicResource CorBotaoFlat}"
-                            Foreground="{DynamicResource CorTextoPrimario}"
-                            FontWeight="SemiBold"
-                            Style="{StaticResource BotaoJogar}"
-                            Click="BtnGerenciarMods_Click"/>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="BtnGerenciarMods"
+                                Content="Gerenciar Mods"
+                                Height="36"
+                                Background="{DynamicResource CorBotaoFlat}"
+                                Foreground="{DynamicResource CorTextoPrimario}"
+                                FontWeight="SemiBold"
+                                Style="{StaticResource BotaoJogar}"
+                                Click="BtnGerenciarMods_Click"/>
+                        <Button x:Name="BtnBaixarDublagens"
+                                Grid.Column="1"
+                                Width="42"
+                                Height="36"
+                                Margin="8,0,0,0"
+                                Padding="0"
+                                Background="{DynamicResource CorBotaoFlat}"
+                                Foreground="{DynamicResource CorTextoPrimario}"
+                                Style="{StaticResource BotaoJogar}"
+                                ToolTip="Baixar dublagens"
+                                Click="BtnBaixarDublagens_Click">
+                            <Image Source="Assets/menu-exportar.png" Width="20" Height="20" Stretch="Uniform"/>
+                        </Button>
+                    </Grid>
 
                     <Grid x:Name="StatusPatchContainer"
                           Height="44"

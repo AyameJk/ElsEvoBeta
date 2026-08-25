@@ -464,6 +464,14 @@ namespace ElsEvo
             AtualizarListaDeModsAtivos();
         }
 
+        private void BtnBaixarDublagens_Click(object sender, RoutedEventArgs e)
+        {
+            RegistroLog.Registrar("Janela de download de dublagens aberta");
+            var janela = new DublagensWindow { Owner = this };
+            janela.ShowDialog();
+            AtualizarListaDeModsAtivos();
+        }
+
         private async void BtnJogar_Click(object sender, RoutedEventArgs e)
         {
             RegistroLog.Registrar("Aplicar e Jogar solicitado", _modsLigados ? "Mods ligados" : "Mods desligados");
@@ -527,9 +535,7 @@ namespace ElsEvo
                     _ => "Concluído"
                 };
                 _podeCancelar = estado is EstadoPatch.PreparandoArquivos
-                    or EstadoPatch.AguardandoElswordAbrir
-                    or EstadoPatch.FazendoBackup
-                    or EstadoPatch.Aplicando;
+                    or EstadoPatch.AguardandoElswordAbrir;
                 if (!_podeCancelar)
                     BtnCancelar.Visibility = Visibility.Collapsed;
             });
@@ -616,6 +622,7 @@ namespace ElsEvo
 
             BtnJogar.IsEnabled = false;
             BtnGerenciarMods.IsEnabled = false;
+            BtnBaixarDublagens.IsEnabled = false;
             bool appVaiFecharComSucesso = false;
 
             try
@@ -733,6 +740,7 @@ namespace ElsEvo
                     ProgressoContainer.Visibility = Visibility.Collapsed;
                     BtnJogar.IsEnabled = true;
                     BtnGerenciarMods.IsEnabled = true;
+                    BtnBaixarDublagens.IsEnabled = true;
                 }
             }
         }
