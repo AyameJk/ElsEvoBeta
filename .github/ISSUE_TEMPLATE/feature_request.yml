@@ -1,0 +1,29 @@
+name: ✨ Sugerir uma funcionalidade
+description: Tem uma ideia pra melhorar o ElsEvo?
+title: "[Sugestão] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qual problema isso resolveria?
+      description: Descreva a situação atual que te incomoda ou a necessidade que você tem.
+      placeholder: Ex. Não tem como saber se um mod pack está desatualizado sem abrir a pasta manualmente.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sugestao
+    attributes:
+      label: O que você sugere?
+      description: Descreva a funcionalidade ou mudança que você gostaria de ver.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas consideradas
+      description: Existe alguma outra forma de resolver isso que você já tentou ou pensou?
+    validations:
+      required: false

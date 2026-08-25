@@ -1,0 +1,81 @@
+name: 🐛 Relatar um bug
+description: Encontrou algo quebrado ou funcionando errado no ElsEvo?
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar! Preencha o máximo de campos possível — quanto mais
+        detalhe, mais rápido eu consigo reproduzir e corrigir.
+
+  - type: dropdown
+    id: canal
+    attributes:
+      label: Canal
+      description: Qual versão do ElsEvo você está usando?
+      options:
+        - Beta
+        - Estável
+    validations:
+      required: true
+
+  - type: input
+    id: versao
+    attributes:
+      label: Versão
+      description: Veja em "Sobre" dentro do app (ex. 1.0.502)
+      placeholder: "1.0.502"
+    validations:
+      required: true
+
+  - type: textarea
+    id: descricao
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o bug com o máximo de detalhes possível.
+      placeholder: Ex. Ao clicar em "Limpar Cache", nada acontece e a pasta continua com os arquivos antigos.
+    validations:
+      required: true
+
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      description: Como eu faço pra ver o mesmo bug acontecendo?
+      placeholder: |
+        1. Abra o ElsEvo
+        2. Vá em Ações > Limpar Cache
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: O que deveria acontecer?
+      description: Qual era o comportamento esperado?
+    validations:
+      required: false
+
+  - type: textarea
+    id: prints
+    attributes:
+      label: Prints ou logs
+      description: |
+        Se possível, anexe um print da tela e/ou o arquivo `update-log.txt`
+        (fica em `%LocalAppData%\ElsEvo\update-log.txt`, se o bug for relacionado
+        a atualização automática).
+    validations:
+      required: false
+
+  - type: dropdown
+    id: sistema
+    attributes:
+      label: Sistema operacional
+      options:
+        - Windows 11
+        - Windows 10
+        - Outro (descreva acima)
+    validations:
+      required: false
