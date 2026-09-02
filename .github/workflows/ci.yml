@@ -47,10 +47,14 @@ jobs:
       - name: Verificar vulnerabilidades NuGet
         shell: pwsh
         run: |
-          dotnet list ElsEvo.csproj package --vulnerable --include-transitive --format json > nuget-audit.json
-          $audit = Get-Content nuget-audit.json -Raw | ConvertFrom-Json
-          $vulnerabilities = @($audit.projects.frameworks.topLevelPackages.vulnerabilities)
-          if ($vulnerabilities.Count -gt 0) {
+          $auditOutput = dotnet list ElsEvo.csproj package --vulnerable --include-transitive 2>&1 | Out-String
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output $auditOutput
+            throw 'A auditoria de dependências NuGet falhou.'
+          }
+
+          Write-Output $auditOutput
+          if ($auditOutput -match 'has the following vulnerable packages') {
             Write-Error 'Foram encontradas vulnerabilidades nas dependências NuGet.'
           }
 
