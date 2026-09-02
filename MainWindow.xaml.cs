@@ -531,7 +531,7 @@ namespace ElsEvo
                     EstadoPatch.AguardandoElswordAbrir => "Aguardando o launcher fechar...",
                     EstadoPatch.FazendoBackup => "Fazendo backup...",
                     EstadoPatch.Aplicando => "Aplicando mods...",
-                    EstadoPatch.AguardandoElswordFechar => "Mods ativos — divirta-se! 🎮",
+                    EstadoPatch.AguardandoElswordFechar => "Mods ativos — divirta-se!",
                     EstadoPatch.RestaurandoBackup => "Restaurando backup...",
                     _ => "Concluído"
                 };
