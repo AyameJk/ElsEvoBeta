@@ -2404,5 +2404,113 @@
     "Description": "[BGM] Sander Wedding Hall",
     "Blocked": false,
     "BlockedServers": ""
+  },
+  {
+    "FileName": "data251.kom",
+    "Description": "Laby (Vozes de Tutorial)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data253.kom",
+    "Description": "Laby (Vozes)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data264.kom",
+    "Description": "Noah (Vozes de Tutorial)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data266.kom",
+    "Description": "Noah (Vozes)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data285.kom",
+    "Description": "Lithia (Vozes de Tutorial)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data287.kom",
+    "Description": "Lithia (Vozes)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data164.kom",
+    "Description": "[Vozes] Classe Mestra - Pacote principal",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data257.kom",
+    "Description": "[Vozes] Classe Mestra - Laby",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data267.kom",
+    "Description": "[Vozes] Classe Mestra - Noah",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data165.kom",
+    "Description": "Ara (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data171.kom",
+    "Description": "Elesis (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data175.kom",
+    "Description": "Add (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data180.kom",
+    "Description": "Lu/Ciel (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data188.kom",
+    "Description": "Rose (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data214.kom",
+    "Description": "Ain (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data254.kom",
+    "Description": "Laby (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data268.kom",
+    "Description": "Noah (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
+  },
+  {
+    "FileName": "data288.kom",
+    "Description": "Lithia (Voz da 4ª linhagem)",
+    "Blocked": false,
+    "BlockedServers": ""
   }
 ]
