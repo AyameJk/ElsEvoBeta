@@ -33,7 +33,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restaurar dependências
-        run: dotnet restore ${{ env.PROJECT_FILE }}
+        run: dotnet restore ${{ env.PROJECT_FILE }} --runtime win-x64
 
       - name: Compilar com avisos como erro
         run: dotnet build ${{ env.PROJECT_FILE }} --configuration Release --no-restore --warnaserror
