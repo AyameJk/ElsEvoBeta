@@ -35,11 +35,6 @@ namespace ElsEvo
         private const string UrlVersionJsonBeta =
             "https://raw.githubusercontent.com/AyameJk/ElsEvoBeta/main/version.json";
 
-        private static readonly HttpClient _http = new()
-        {
-            Timeout = TimeSpan.FromSeconds(10)
-        };
-
         public static async Task<AtualizacaoDisponivel?> VerificarAsync()
         {
             try
@@ -49,7 +44,10 @@ namespace ElsEvo
 
                 string url = $"{urlManifesto}?t={DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
 
-                string json = await _http.GetStringAsync(url);
+                var timeout = TimeSpan.FromSeconds(Properties.Settings.Default.TimeoutVerificacaoAtualizacaoSegundos);
+                using var http = RedeService.CriarHttpClient(timeout);
+
+                string json = await http.GetStringAsync(url);
                 var info = JsonSerializer.Deserialize<InfoVersao>(json);
 
                 if (info == null || string.IsNullOrWhiteSpace(info.Versao) || string.IsNullOrWhiteSpace(info.Url))
