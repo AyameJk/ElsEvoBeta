@@ -333,7 +333,7 @@
                                 Style="{StaticResource BotaoJogar}"
                                 ToolTip="Baixar dublagens"
                                 Click="BtnBaixarDublagens_Click">
-                            <Image Source="Assets/menu-exportar.png" Width="20" Height="20" Stretch="Uniform"/>
+                            <Image Source="Assets/menu-download.png" Width="16" Height="16" Stretch="Uniform"/>
                         </Button>
                     </Grid>
 
