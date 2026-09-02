@@ -35,6 +35,16 @@ jobs:
       - name: Restaurar dependências
         run: dotnet restore ${{ env.PROJECT_FILE }} --runtime win-x64
 
+      - name: Sincronizar versão do aplicativo
+        if: github.event_name == 'release'
+        shell: pwsh
+        run: |
+          $version = "${{ github.event.release.tag_name }}" -replace '^v', ''
+          $content = Get-Content AppVersion.cs -Raw
+          $content = [regex]::Replace($content, 'VersaoParaAtualizacao = "[^"]+"', "VersaoParaAtualizacao = `"$version`"")
+          Set-Content -Path AppVersion.cs -Value $content -Encoding UTF8
+          Write-Host "Versão do aplicativo sincronizada: $version"
+
       - name: Compilar com avisos como erro
         run: dotnet build ${{ env.PROJECT_FILE }} --configuration Release --no-restore --warnaserror
 
