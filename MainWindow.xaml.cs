@@ -374,6 +374,7 @@ namespace ElsEvo
 
             Properties.Settings.Default.Reset();
             Properties.Settings.Default.Save();
+            Paths.InvalidarCache();
 
             ThemeManager.AplicarTemaSalvo();
             InicializacaoComWindows.Aplicar(Properties.Settings.Default.IniciarComWindows);
