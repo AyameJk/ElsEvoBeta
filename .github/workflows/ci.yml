@@ -80,4 +80,5 @@ jobs:
             "$DISCORD_WEBHOOK_URL"
 
       - name: Registrar notificação padrão
-        run: echo "Resultado da CI: ${{ needs.build-test-quality.result }}. O GitHub também notificará os participantes conforme as preferências do repositório."
+        run: |
+          echo "Resultado da CI: ${{ needs.build-test-quality.result }}. O GitHub também notificará os participantes conforme as preferências do repositório."
