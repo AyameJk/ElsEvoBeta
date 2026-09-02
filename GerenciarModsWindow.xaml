@@ -57,6 +57,34 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="CheckBoxImagem" TargetType="CheckBox">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Width="20" Height="20" VerticalAlignment="Top" Margin="0,1,8,0">
+                                <Image x:Name="IconeDesmarcado" Source="Assets/download-desmarcado.png" Stretch="Uniform"/>
+                                <Image x:Name="IconeMarcado" Source="Assets/download-marcado.png" Stretch="Uniform" Visibility="Collapsed"/>
+                            </Grid>
+                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="IconeDesmarcado" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="IconeMarcado" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid Margin="14">
@@ -69,7 +97,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0,0,0,10">
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -166,6 +195,17 @@
                 </Popup>
             </Grid>
         </Grid>
+
+        <CheckBox x:Name="ChkAplicarSomenteSemMod"
+                  Style="{StaticResource CheckBoxImagem}"
+                  IsChecked="True"
+                  Margin="0,8,0,0">
+            <TextBlock Text="Aplicar somente aos ainda sem mod (não sobrescreve escolhas manuais)"
+                       Foreground="{DynamicResource CorTextoPrimario}"
+                       FontSize="11"
+                       TextWrapping="Wrap"/>
+        </CheckBox>
+        </StackPanel>
 
         <Grid Grid.Row="1" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
