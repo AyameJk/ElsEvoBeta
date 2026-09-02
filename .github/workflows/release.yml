@@ -1,0 +1,84 @@
+name: Gerar e publicar Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag da Release a ser gerada
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publicar instalador Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restaurar dependências
+        run: dotnet restore ElsEvo.csproj
+
+      - name: Publicar executável
+        run: dotnet publish ElsEvo.csproj --configuration Release --runtime win-x64 --self-contained true --no-restore -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
+
+      - name: Instalar Inno Setup
+        shell: pwsh
+        run: choco install innosetup --no-progress --yes
+
+      - name: Compilar instalador
+        shell: pwsh
+        run: |
+          $script = Get-Content ElsEvo.iss -Raw
+          $script = $script -replace '#define PublishDir "[^"]*"', '#define PublishDir "' + (Join-Path $env:GITHUB_WORKSPACE 'publish') + '"'
+          $script = $script -replace 'SetupIconFile=.*', 'SetupIconFile=' + (Join-Path $env:GITHUB_WORKSPACE 'Assets\icone_app.ico')
+          $script = $script -replace 'OutputDir=.*', 'OutputDir=' + (Join-Path $env:RUNNER_TEMP 'installer-output')
+          $temporaryScript = Join-Path $env:RUNNER_TEMP 'ElsEvo.iss'
+          New-Item -ItemType Directory -Force (Join-Path $env:RUNNER_TEMP 'installer-output') | Out-Null
+          Set-Content -Path $temporaryScript -Value $script -Encoding UTF8
+          & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' $temporaryScript
+          Copy-Item (Join-Path $env:RUNNER_TEMP 'installer-output\ElsEvo-Setup.exe') (Join-Path $env:GITHUB_WORKSPACE 'ElsEvo-Setup.exe')
+
+      - name: Anexar instalador à Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name || inputs.tag }}
+          files: ElsEvo-Setup.exe
+
+      - name: Sincronizar dados com outro repositório (opcional)
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          SYNC_REPOSITORY: ${{ secrets.SYNC_REPOSITORY }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        if: ${{ env.SYNC_REPOSITORY != '' && env.GH_TOKEN != '' }}
+        shell: bash
+        run: |
+          gh api "repos/${SYNC_REPOSITORY}/dispatches" \
+            --method POST \
+            -f event_type=elsevo-release \
+            -f "client_payload[tag]=${RELEASE_TAG}" \
+            -f "client_payload[source_repository]=${GITHUB_REPOSITORY}"
+
+      - name: Notificar publicação (opcional)
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        if: ${{ env.DISCORD_WEBHOOK_URL != '' }}
+        shell: bash
+        run: |
+          curl --fail-with-body -H 'Content-Type: application/json' \
+            -d "{\"content\":\"Release ElsEvo ${RELEASE_TAG} publicada: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${RELEASE_TAG}\"}" \
+            "$DISCORD_WEBHOOK_URL"
