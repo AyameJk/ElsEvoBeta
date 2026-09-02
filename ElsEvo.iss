@@ -1,8 +1,8 @@
 
 #define MyAppName "ElsEvo Beta"
-#define MyAppVersion "1.0.567"
+#define MyAppVersion "1.1.047"
 #define MyAppPublisher "AyameJk"
-#define MyAppURL "https://www.example.com/"
+#define MyAppURL "https://ayamejk.github.io/ElsEvo/"
 #define MyAppExeName "ElsEvo.exe"
 #define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".myp"
@@ -42,11 +42,11 @@ VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
 
 AppMutex=ElsEvo_MutexPrincipal
-CloseApplications=force
+CloseApplications=yes
+RestartApplications=yes
 
 [Languages]
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
-Name: "chinesesimplified"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
 Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
