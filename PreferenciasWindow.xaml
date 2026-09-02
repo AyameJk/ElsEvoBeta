@@ -5,6 +5,7 @@
         Height="560"
         Width="420"
         MinHeight="420"
+        MinWidth="420"
         Background="{DynamicResource CorFundoPrincipal}"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize">
@@ -99,6 +100,42 @@
             <Setter Property="Background" Value="{DynamicResource CorFundoCampo}"/>
             <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource CorBorda}"/>
+        </Style>
+
+        <Style x:Key="PolegarScrollbarModerno" TargetType="Thumb">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Border Background="{DynamicResource CorBorda}"
+                                CornerRadius="3"
+                                Opacity="0.7"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ScrollBar">
+            <Setter Property="Width" Value="6"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Background="Transparent">
+                            <Track x:Name="PART_Track" IsDirectionReversed="True" Margin="0,4">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource PolegarScrollbarModerno}" Width="6"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Window.Resources>
@@ -256,6 +293,182 @@
                                 <TextBlock x:Name="TxtAvisoBetaApenas" Text="Desmarcado: o programa busca apenas versões estáveis"
                                            Style="{StaticResource TextoSecundario}"
                                            Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem x:Name="AbaRede" Header="Rede">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
+                <StackPanel>
+
+                    <GroupBox x:Name="GrpVelocidadeDownload" Header="VELOCIDADE DE DOWNLOAD">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="&#xEC4A;" Style="{StaticResource IconeMdl2}"/>
+
+                            <StackPanel Grid.Column="1">
+                                <CheckBox x:Name="ChkLimitarVelocidade"
+                                          Content="Limitar velocidade de download"
+                                          Checked="ChkLimitarVelocidade_CheckedChanged"
+                                          Unchecked="ChkLimitarVelocidade_CheckedChanged"/>
+
+                                <Grid Margin="20,6,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="TxtLimiteVelocidade"
+                                             Grid.Column="0"
+                                             Height="26"
+                                             Padding="6,0"
+                                             VerticalContentAlignment="Center"
+                                             IsEnabled="False"/>
+                                    <TextBlock Grid.Column="1" Text="KB/s" Foreground="{DynamicResource CorTextoSecundario}"
+                                               FontSize="11" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                                </Grid>
+                                <TextBlock Text="Ex.: 1000 KB/s ≈ 1 MB/s."
+                                           Style="{StaticResource TextoSecundario}"
+                                           Margin="20,4,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox x:Name="GrpConexao" Header="CONEXÃO">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="&#xE968;" Style="{StaticResource IconeMdl2}"/>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Tempo limite ao verificar atualizações" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <ComboBox x:Name="CmbTimeoutAtualizacao" Height="26" Margin="0,4,0,10" SelectedIndex="1">
+                                    <ComboBoxItem Content="5 segundos" Tag="5"/>
+                                    <ComboBoxItem Content="10 segundos" Tag="10"/>
+                                    <ComboBoxItem Content="15 segundos" Tag="15"/>
+                                    <ComboBoxItem Content="30 segundos" Tag="30"/>
+                                </ComboBox>
+
+                                <TextBlock Text="Tempo limite ao baixar dublagens" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <ComboBox x:Name="CmbTimeoutDownload" Height="26" Margin="0,4,0,10" SelectedIndex="2">
+                                    <ComboBoxItem Content="10 minutos" Tag="10"/>
+                                    <ComboBoxItem Content="30 minutos" Tag="30"/>
+                                    <ComboBoxItem Content="60 minutos" Tag="60"/>
+                                    <ComboBoxItem Content="120 minutos" Tag="120"/>
+                                </ComboBox>
+
+                                <TextBlock Text="Tentativas automáticas em caso de falha" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <ComboBox x:Name="CmbTentativas" Height="26" Margin="0,4,0,10" SelectedIndex="2">
+                                    <ComboBoxItem Content="1 (sem repetir)" Tag="1"/>
+                                    <ComboBoxItem Content="2 tentativas" Tag="2"/>
+                                    <ComboBoxItem Content="3 tentativas" Tag="3"/>
+                                    <ComboBoxItem Content="5 tentativas" Tag="5"/>
+                                </ComboBox>
+
+                                <TextBlock Text="Downloads simultâneos na fila" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <ComboBox x:Name="CmbDownloadsSimultaneos" Height="26" Margin="0,4,0,0" SelectedIndex="0">
+                                    <ComboBoxItem Content="1 (um de cada vez)" Tag="1"/>
+                                    <ComboBoxItem Content="2 ao mesmo tempo" Tag="2"/>
+                                    <ComboBoxItem Content="3 ao mesmo tempo" Tag="3"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox x:Name="GrpRedeLimitada" Header="REDE LIMITADA">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="&#xE7BA;" Style="{StaticResource IconeMdl2}"/>
+
+                            <StackPanel Grid.Column="1">
+                                <CheckBox x:Name="ChkAvisarRedeLimitada" Content="Avisar antes de baixar em rede limitada (medida)" IsChecked="True"/>
+                                <TextBlock Text="Ex.: hotspot do celular ou plano de dados com limite."
+                                           Style="{StaticResource TextoSecundario}"
+                                           Margin="20,4,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox x:Name="GrpProxy" Header="PROXY">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="&#xE774;" Style="{StaticResource IconeMdl2}"/>
+
+                            <StackPanel Grid.Column="1">
+                            <CheckBox x:Name="ChkProxyHabilitado"
+                                      Content="Usar proxy manual"
+                                      Checked="ChkProxyHabilitado_CheckedChanged"
+                                      Unchecked="ChkProxyHabilitado_CheckedChanged"/>
+
+                            <Grid Margin="20,8,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Endereço" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Porta" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+
+                                <TextBox x:Name="TxtProxyEndereco"
+                                         Grid.Row="1" Grid.Column="0"
+                                         Height="26" Padding="6,0"
+                                         VerticalContentAlignment="Center"
+                                         IsEnabled="False"
+                                         Margin="0,0,6,8"/>
+
+                                <TextBox x:Name="TxtProxyPorta"
+                                         Grid.Row="1" Grid.Column="1"
+                                         Height="26" Padding="6,0"
+                                         VerticalContentAlignment="Center"
+                                         IsEnabled="False"
+                                         Margin="0,0,0,8"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Usuário (opcional)" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Senha" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+
+                                <TextBox x:Name="TxtProxyUsuario"
+                                         Grid.Row="3" Grid.Column="0"
+                                         Height="26" Padding="6,0"
+                                         VerticalContentAlignment="Center"
+                                         IsEnabled="False"
+                                         Margin="0,0,6,0"/>
+
+                                <PasswordBox x:Name="TxtProxySenha"
+                                             Grid.Row="3" Grid.Column="1"
+                                             Height="26" Padding="6,0"
+                                             VerticalContentAlignment="Center"
+                                             IsEnabled="False"
+                                             Background="{DynamicResource CorFundoCampo}"
+                                             Foreground="{DynamicResource CorTextoPrimario}"
+                                             BorderBrush="{DynamicResource CorBorda}"/>
+                            </Grid>
+                            <TextBlock Text="Usuário e senha são opcionais -- só necessários se o proxy exigir autenticação."
+                                       Style="{StaticResource TextoSecundario}"
+                                       Margin="20,6,0,0"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
