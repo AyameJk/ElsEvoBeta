@@ -66,6 +66,9 @@ namespace ElsEvo
                     {
                         string nomeArquivo = Path.GetFileName(caminhoArquivo);
 
+                        if (!EhArquivoDeModValido(nomeArquivo))
+                            continue;
+
                         if (!porArquivo.TryGetValue(nomeArquivo, out var lista))
                         {
                             lista = new List<string>();
@@ -84,11 +87,11 @@ namespace ElsEvo
                     ? packAtivo
                     : "Nenhum";
 
-                var conhecido = BancoDeArquivos.BuscarPorNome(nomeArquivo);
                 string nomePackParaDescricao = modSelecionado != "Nenhum" ? modSelecionado : packsComEsseArquivo.First();
-                string descricao = conhecido != null
-                    ? conhecido.Description
-                    : $"[{nomePackParaDescricao}] {Path.GetFileNameWithoutExtension(nomeArquivo)}";
+                string pastaDoPackParaDescricao = Path.Combine(Paths.Main.Packs, nomePackParaDescricao);
+                string? descricaoComOverride = BancoDeArquivos.DescricaoComOverridePack(pastaDoPackParaDescricao, nomeArquivo);
+                string descricao = descricaoComOverride
+                    ?? $"[{nomePackParaDescricao}] {Path.GetFileNameWithoutExtension(nomeArquivo)}";
 
                 var opcoes = new List<string> { "Nenhum" };
                 opcoes.AddRange(packsComEsseArquivo.Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(p => p));
@@ -157,6 +160,17 @@ namespace ElsEvo
             return "Geral";
         }
 
+        private static bool EhArquivoDeModValido(string nomeArquivo)
+        {
+            if (nomeArquivo.Equals(DublagensService.NomeArquivoDescricoesPack, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            return nomeArquivo.EndsWith(".kom", StringComparison.OrdinalIgnoreCase)
+                || nomeArquivo.EndsWith(".ogg", StringComparison.OrdinalIgnoreCase)
+                || nomeArquivo.EndsWith(".avi", StringComparison.OrdinalIgnoreCase)
+                || nomeArquivo.Equals("general.ess", StringComparison.OrdinalIgnoreCase);
+        }
+
         private void AplicarFiltro()
         {
             string categoria = TabCategorias.SelectedIndex switch
@@ -196,9 +210,10 @@ namespace ElsEvo
             string pastaPack = Path.Combine(Paths.Main.Packs, nomeEscolhido);
             Directory.CreateDirectory(pastaPack);
 
-            MessageBox.Show(
+            JanelaConfirmacao.Mostrar(this,
+                "Novo pack",
                 $"Pack \"{nomeEscolhido}\" criado em:\n{pastaPack}\n\nAdicione arquivos .kom/.ogg/.avi dentro dessa pasta e importe-a com \"Importar pasta\".",
-                "Novo pack", MessageBoxButton.OK, MessageBoxImage.Information);
+                TipoMensagem.Informacao);
         }
 
         private void MenuImportarPasta_Click(object sender, RoutedEventArgs e)
@@ -223,14 +238,15 @@ namespace ElsEvo
             Directory.CreateDirectory(pastaDestino);
 
             var arquivos = Directory.GetFiles(pastaOrigem, "*.*", SearchOption.AllDirectories)
-                .Where(f => f.EndsWith(".kom") || f.EndsWith(".ogg") || f.EndsWith(".avi")
-                            || Path.GetFileName(f).Equals("general.ess", StringComparison.OrdinalIgnoreCase))
+                .Where(f => EhArquivoDeModValido(Path.GetFileName(f)))
                 .ToArray();
 
             if (arquivos.Length == 0)
             {
-                MessageBox.Show("Nenhum arquivo .kom, .ogg, .avi ou general.ess encontrado nessa pasta.",
-                    "Importar pasta", MessageBoxButton.OK, MessageBoxImage.Warning);
+                JanelaConfirmacao.Mostrar(this,
+                    "Importar pasta",
+                    "Nenhum arquivo .kom, .ogg, .avi ou general.ess encontrado nessa pasta.",
+                    TipoMensagem.Aviso);
                 return;
             }
 
@@ -245,10 +261,9 @@ namespace ElsEvo
 
                 await Task.Run(() => File.Copy(caminhoOrigem, caminhoNoPack, overwrite: true));
 
-                var conhecido = BancoDeArquivos.BuscarPorNome(nomeArquivo);
-                string descricao = conhecido != null
-                    ? conhecido.Description
-                    : $"[{nomePack}] {Path.GetFileNameWithoutExtension(nomeArquivo)}";
+                string? descricaoComOverride = BancoDeArquivos.DescricaoComOverridePack(pastaDestino, nomeArquivo);
+                string descricao = descricaoComOverride
+                    ?? $"[{nomePack}] {Path.GetFileNameWithoutExtension(nomeArquivo)}";
 
                 novosItens.Add(new ModItem
                 {
@@ -309,24 +324,23 @@ namespace ElsEvo
             catch (Exception ex)
             {
                 ProgressoImportacaoContainer.Visibility = Visibility.Collapsed;
-                MessageBox.Show($"Não foi possível extrair o zip:\n{ex.Message}\n\n" +
-                    "Se o zip tiver senha, ainda não é suportado.",
-                    "Importar .zip", MessageBoxButton.OK, MessageBoxImage.Error);
+                JanelaConfirmacao.Mostrar(this,
+                    "Importar .zip",
+                    $"Não foi possível extrair o zip:\n{ex.Message}\n\nSe o zip tiver senha, ainda não é suportado.",
+                    TipoMensagem.Erro);
                 return;
             }
 
             var arquivos = Directory.GetFiles(pastaDestino, "*.*", SearchOption.AllDirectories)
-                .Where(f => f.EndsWith(".kom") || f.EndsWith(".ogg") || f.EndsWith(".avi")
-                            || Path.GetFileName(f).Equals("general.ess", StringComparison.OrdinalIgnoreCase))
+                .Where(f => EhArquivoDeModValido(Path.GetFileName(f)))
                 .ToArray();
 
             for (int i = 0; i < arquivos.Length; i++)
             {
                 string nomeArquivo = Path.GetFileName(arquivos[i]);
-                var conhecido = BancoDeArquivos.BuscarPorNome(nomeArquivo);
-                string descricao = conhecido != null
-                    ? conhecido.Description
-                    : $"[{nomePack}] {Path.GetFileNameWithoutExtension(nomeArquivo)}";
+                string? descricaoComOverride = BancoDeArquivos.DescricaoComOverridePack(pastaDestino, nomeArquivo);
+                string descricao = descricaoComOverride
+                    ?? $"[{nomePack}] {Path.GetFileNameWithoutExtension(nomeArquivo)}";
 
                 var novoItem = new ModItem
                 {
@@ -361,17 +375,19 @@ namespace ElsEvo
 
             if (nomePack == null)
             {
-                MessageBox.Show(
+                JanelaConfirmacao.Mostrar(this,
+                    "Excluir pack",
                     "Selecione um pack específico no combo do topo, ou uma linha com um pack definido, antes de excluir.",
-                    "Excluir pack", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    TipoMensagem.Aviso);
                 return;
             }
 
-            var resposta = MessageBox.Show(
+            bool confirmou = JanelaConfirmacao.Confirmar(this,
+                "Excluir pack",
                 $"Isso vai excluir o pack \"{nomePack}\" (e todos os arquivos dele) permanentemente. Continuar?",
-                "Excluir pack", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                TipoMensagem.Aviso);
 
-            if (resposta != MessageBoxResult.Yes)
+            if (!confirmou)
                 return;
 
             try
@@ -387,13 +403,17 @@ namespace ElsEvo
                 AplicarFiltro();
                 MarcarAlteracaoPendente();
 
-                MessageBox.Show($"Pack \"{nomePack}\" excluído.", "Excluir pack",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                JanelaConfirmacao.Mostrar(this,
+                    "Excluir pack",
+                    $"Pack \"{nomePack}\" excluído.",
+                    TipoMensagem.Sucesso);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Não foi possível excluir o pack:\n{ex.Message}",
-                    "Excluir pack", MessageBoxButton.OK, MessageBoxImage.Error);
+                JanelaConfirmacao.Mostrar(this,
+                    "Excluir pack",
+                    $"Não foi possível excluir o pack:\n{ex.Message}",
+                    TipoMensagem.Erro);
             }
         }
 
@@ -428,13 +448,10 @@ namespace ElsEvo
                 caminho = itemSelecionado.CaminhoCompleto;
             else if (ObterPastaPackSelecionado() is string pastaPack)
                 caminho = pastaPack;
+            else
+                caminho = Paths.Main.Packs;
 
-            if (caminho == null)
-            {
-                MessageBox.Show("Selecione um pack ou arquivo antes de abrir no Windows Explorer.",
-                    "Abrir no Windows Explorer", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            Directory.CreateDirectory(caminho);
 
             Process.Start(new ProcessStartInfo
             {
@@ -453,8 +470,10 @@ namespace ElsEvo
             string? nomePack = ObterPackSelecionado();
             if (pastaPack == null || nomePack == null)
             {
-                MessageBox.Show("Selecione um pack específico antes de exportar para .zip.",
-                    "Exportar para .zip", MessageBoxButton.OK, MessageBoxImage.Warning);
+                JanelaConfirmacao.Mostrar(this,
+                    "Exportar para .zip",
+                    "Selecione um pack específico antes de exportar para .zip.",
+                    TipoMensagem.Aviso);
                 return;
             }
 
@@ -475,13 +494,17 @@ namespace ElsEvo
                 System.IO.Compression.ZipFile.CreateFromDirectory(
                     pastaPack, dialogo.FileName, System.IO.Compression.CompressionLevel.Optimal, includeBaseDirectory: false);
 
-                MessageBox.Show($"Pack exportado com sucesso para:\n{dialogo.FileName}",
-                    "Exportar para .zip", MessageBoxButton.OK, MessageBoxImage.Information);
+                JanelaConfirmacao.Mostrar(this,
+                    "Exportar para .zip",
+                    $"Pack exportado com sucesso para:\n{dialogo.FileName}",
+                    TipoMensagem.Sucesso);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Não foi possível exportar o pack:\n{ex.Message}",
-                    "Exportar para .zip", MessageBoxButton.OK, MessageBoxImage.Error);
+                JanelaConfirmacao.Mostrar(this,
+                    "Exportar para .zip",
+                    $"Não foi possível exportar o pack:\n{ex.Message}",
+                    TipoMensagem.Erro);
             }
         }
 
@@ -500,7 +523,13 @@ namespace ElsEvo
             }
             else
             {
-                foreach (var mod in _todosOsMods.Where(m => m.OpcoesDisponiveis.Contains(selecionado)))
+                bool somenteSemMod = ChkAplicarSomenteSemMod.IsChecked == true;
+
+                var candidatos = _todosOsMods.Where(m => m.OpcoesDisponiveis.Contains(selecionado));
+                if (somenteSemMod)
+                    candidatos = candidatos.Where(m => m.ModSelecionado == "Nenhum");
+
+                foreach (var mod in candidatos.ToList())
                     mod.ModSelecionado = selecionado;
             }
 
