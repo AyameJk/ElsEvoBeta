@@ -1,0 +1,164 @@
+name: Compilar e publicar Beta
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  DOTNET_VERSION: 10.0.x
+  PROJECT_FILE: ElsEvo.csproj
+
+jobs:
+  build:
+    name: Compilar e validar
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restaurar dependências
+        run: dotnet restore ${{ env.PROJECT_FILE }}
+
+      - name: Compilar com avisos como erro
+        run: dotnet build ${{ env.PROJECT_FILE }} --configuration Release --no-restore --warnaserror
+
+      - name: Rodar testes
+        shell: pwsh
+        run: |
+          $testProjects = Get-ChildItem -Path . -Recurse -Filter '*Tests.csproj' -File
+          if ($testProjects.Count -eq 0) {
+            Write-Host 'Nenhum projeto de testes foi encontrado; etapa mantida pronta para quando os testes forem adicionados.'
+            exit 0
+          }
+
+          foreach ($project in $testProjects) {
+            dotnet test $project.FullName --configuration Release --no-restore
+          }
+
+      - name: Verificar vulnerabilidades NuGet
+        shell: pwsh
+        run: |
+          $auditOutput = dotnet list ${{ env.PROJECT_FILE }} package --vulnerable --include-transitive 2>&1 | Out-String
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output $auditOutput
+            throw 'A auditoria de dependências NuGet falhou.'
+          }
+
+          Write-Output $auditOutput
+          if ($auditOutput -match 'has the following vulnerable packages') {
+            throw 'Foram encontradas vulnerabilidades nas dependências NuGet.'
+          }
+
+      - name: Publicar executável
+        run: dotnet publish ${{ env.PROJECT_FILE }} --configuration Release --runtime win-x64 --self-contained true --no-restore -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
+
+      - name: Salvar artefato do build
+        if: github.event_name != 'release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: elsevo-beta-build-${{ github.sha }}
+          path: publish/
+          retention-days: 7
+
+      - name: Instalar Inno Setup
+        if: github.event_name == 'release'
+        shell: pwsh
+        run: choco install innosetup --no-progress --yes
+
+      - name: Compilar instalador
+        if: github.event_name == 'release'
+        shell: pwsh
+        run: |
+          $script = Get-Content ElsEvo.iss -Raw
+          $script = $script -replace '#define PublishDir "[^"]*"', '#define PublishDir "' + (Join-Path $env:GITHUB_WORKSPACE 'publish') + '"'
+          $script = $script -replace 'SetupIconFile=.*', 'SetupIconFile=' + (Join-Path $env:GITHUB_WORKSPACE 'Assets\icone_app.ico')
+          $script = $script -replace 'OutputDir=.*', 'OutputDir=' + (Join-Path $env:RUNNER_TEMP 'installer-output')
+          $temporaryScript = Join-Path $env:RUNNER_TEMP 'ElsEvo.iss'
+          New-Item -ItemType Directory -Force (Join-Path $env:RUNNER_TEMP 'installer-output') | Out-Null
+          Set-Content -Path $temporaryScript -Value $script -Encoding UTF8
+          & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' $temporaryScript
+          if ($LASTEXITCODE -ne 0) {
+            throw 'A compilação do instalador falhou.'
+          }
+
+          Copy-Item (Join-Path $env:RUNNER_TEMP 'installer-output\ElsEvo-Setup.exe') (Join-Path $env:GITHUB_WORKSPACE 'ElsEvo-Setup.exe')
+
+      - name: Anexar instalador à Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: ElsEvo-Setup.exe
+
+      - name: Atualizar version.json
+        if: github.event_name == 'release'
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+          RELEASE_NOTES: ${{ github.event.release.body }}
+          REPO: ${{ github.repository }}
+        shell: pwsh
+        run: |
+          $tag = $env:TAG_NAME
+          $version = $tag -replace '^v', ''
+          $data = [ordered]@{
+            versao = $version
+            url = "https://github.com/$env:REPO/releases/download/$tag/ElsEvo-Setup.exe"
+            notas = $env:RELEASE_NOTES
+          }
+          $data | ConvertTo-Json -Depth 3 | Set-Content version.json -Encoding UTF8
+
+      - name: Commitar version.json
+        if: github.event_name == 'release'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add version.json
+          git diff --cached --quiet || (git commit -m "Atualiza version.json (${{ github.event.release.tag_name }})" && git push origin HEAD:main)
+
+  notify:
+    name: Notificar resultado
+    needs: build
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notificar no Discord (opcional)
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RESULTADO: ${{ needs.build.result }}
+        if: ${{ env.DISCORD_WEBHOOK_URL != '' }}
+        run: |
+          curl --fail-with-body -H 'Content-Type: application/json' \
+            -d "{\"content\":\"CI ElsEvo Beta: ${RESULTADO} - ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"}" \
+            "$DISCORD_WEBHOOK_URL"
+
+      - name: Sincronizar com outro repositório (opcional)
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          SYNC_REPOSITORY: ${{ secrets.SYNC_REPOSITORY }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        if: ${{ github.event_name == 'release' && env.SYNC_REPOSITORY != '' && env.GH_TOKEN != '' }}
+        shell: bash
+        run: |
+          gh api "repos/${SYNC_REPOSITORY}/dispatches" \
+            --method POST \
+            -f event_type=elsevo-beta-release \
+            -f "client_payload[tag]=${RELEASE_TAG}" \
+            -f "client_payload[source_repository]=${GITHUB_REPOSITORY}"
