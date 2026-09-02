@@ -46,6 +46,20 @@ namespace ElsEvo.Properties
         public bool MinimizarParaBandeja { get; set; } = true;
         public string Idioma { get; set; } = "pt";
 
+        // --- Configurações de rede (aba "Rede" em Preferências) ---
+        public bool LimitarVelocidadeDownload { get; set; } = false;
+        public int LimiteVelocidadeDownloadKBps { get; set; } = 512;
+        public int TimeoutVerificacaoAtualizacaoSegundos { get; set; } = 10;
+        public int TimeoutDownloadMinutos { get; set; } = 30;
+        public int TentativasAutomaticas { get; set; } = 3;
+        public bool AvisarRedeLimitada { get; set; } = true;
+        public int DownloadsSimultaneos { get; set; } = 1;
+        public bool ProxyHabilitado { get; set; } = false;
+        public string ProxyEndereco { get; set; } = string.Empty;
+        public int ProxyPorta { get; set; } = 8080;
+        public string ProxyUsuario { get; set; } = string.Empty;
+        public string ProxySenha { get; set; } = string.Empty;
+
         private static Settings Carregar()
         {
             try
@@ -89,6 +103,19 @@ namespace ElsEvo.Properties
             IsBetaRelease = padrao.IsBetaRelease;
             IgnoreBetaReleases = padrao.IgnoreBetaReleases;
             CheckForProgramUpdates = padrao.CheckForProgramUpdates;
+
+            LimitarVelocidadeDownload = padrao.LimitarVelocidadeDownload;
+            LimiteVelocidadeDownloadKBps = padrao.LimiteVelocidadeDownloadKBps;
+            TimeoutVerificacaoAtualizacaoSegundos = padrao.TimeoutVerificacaoAtualizacaoSegundos;
+            TimeoutDownloadMinutos = padrao.TimeoutDownloadMinutos;
+            TentativasAutomaticas = padrao.TentativasAutomaticas;
+            AvisarRedeLimitada = padrao.AvisarRedeLimitada;
+            DownloadsSimultaneos = padrao.DownloadsSimultaneos;
+            ProxyHabilitado = padrao.ProxyHabilitado;
+            ProxyEndereco = padrao.ProxyEndereco;
+            ProxyPorta = padrao.ProxyPorta;
+            ProxyUsuario = padrao.ProxyUsuario;
+            ProxySenha = padrao.ProxySenha;
         }
 
         public void Save()
