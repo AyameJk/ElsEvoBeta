@@ -31,6 +31,20 @@ namespace ElsEvo
             TxtArgumentos.LostFocus += TxtArgumentos_LostFocus;
         }
 
+        private void ChkLimitarVelocidade_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            TxtLimiteVelocidade.IsEnabled = ChkLimitarVelocidade.IsChecked == true;
+        }
+
+        private void ChkProxyHabilitado_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            bool habilitado = ChkProxyHabilitado.IsChecked == true;
+            TxtProxyEndereco.IsEnabled = habilitado;
+            TxtProxyPorta.IsEnabled = habilitado;
+            TxtProxyUsuario.IsEnabled = habilitado;
+            TxtProxySenha.IsEnabled = habilitado;
+        }
+
         private void ConectarDeteccaoDeAlteracoes()
         {
             void Marcar(object? sender, EventArgs e)
@@ -43,7 +57,8 @@ namespace ElsEvo
                      {
                          ChkNaoExecutarLauncher, ChkPularElsword, ChkBloquearLogs,
                          ChkMinimizarBandeja, ChkIniciarMinimizado, ChkIniciarComWindows,
-                         ChkBuscarAtualizacoes, ChkBetaApenas
+                         ChkBuscarAtualizacoes, ChkBetaApenas,
+                         ChkLimitarVelocidade, ChkAvisarRedeLimitada, ChkProxyHabilitado
                      })
             {
                 chk.Checked += Marcar;
@@ -55,6 +70,16 @@ namespace ElsEvo
             CmbIdioma.SelectionChanged += Marcar;
             TxtArgumentos.TextChanged += Marcar;
 
+            TxtLimiteVelocidade.TextChanged += Marcar;
+            CmbTimeoutAtualizacao.SelectionChanged += Marcar;
+            CmbTimeoutDownload.SelectionChanged += Marcar;
+            CmbTentativas.SelectionChanged += Marcar;
+            CmbDownloadsSimultaneos.SelectionChanged += Marcar;
+            TxtProxyEndereco.TextChanged += Marcar;
+            TxtProxyPorta.TextChanged += Marcar;
+            TxtProxyUsuario.TextChanged += Marcar;
+            TxtProxySenha.PasswordChanged += Marcar;
+
             BtnAplicar.IsEnabled = false;
         }
 
@@ -63,6 +88,7 @@ namespace ElsEvo
             Title = Idiomas.T("TituloConfiguracoes");
             AbaElsword.Header = Idiomas.T("AbaElsword");
             AbaInicializador.Header = Idiomas.T("AbaInicializador");
+            AbaRede.Header = Idiomas.T("AbaRede");
             BtnOk.Content = Idiomas.T("BotaoOk");
             BtnCancelar.Content = Idiomas.T("BotaoCancelar");
             BtnAplicar.Content = Idiomas.T("BotaoAplicar");
@@ -138,6 +164,49 @@ namespace ElsEvo
                 "zh" => 2,
                 _ => 0
             };
+
+            ChkLimitarVelocidade.IsChecked = cfg.LimitarVelocidadeDownload;
+            TxtLimiteVelocidade.Text = cfg.LimiteVelocidadeDownloadKBps.ToString();
+            TxtLimiteVelocidade.IsEnabled = cfg.LimitarVelocidadeDownload;
+
+            SelecionarPorTag(CmbTimeoutAtualizacao, cfg.TimeoutVerificacaoAtualizacaoSegundos);
+            SelecionarPorTag(CmbTimeoutDownload, cfg.TimeoutDownloadMinutos);
+            SelecionarPorTag(CmbTentativas, cfg.TentativasAutomaticas);
+            SelecionarPorTag(CmbDownloadsSimultaneos, cfg.DownloadsSimultaneos);
+
+            ChkAvisarRedeLimitada.IsChecked = cfg.AvisarRedeLimitada;
+
+            ChkProxyHabilitado.IsChecked = cfg.ProxyHabilitado;
+            TxtProxyEndereco.Text = cfg.ProxyEndereco;
+            TxtProxyPorta.Text = cfg.ProxyPorta.ToString();
+            TxtProxyUsuario.Text = cfg.ProxyUsuario;
+            TxtProxySenha.Password = cfg.ProxySenha;
+
+            bool proxyHabilitado = cfg.ProxyHabilitado;
+            TxtProxyEndereco.IsEnabled = proxyHabilitado;
+            TxtProxyPorta.IsEnabled = proxyHabilitado;
+            TxtProxyUsuario.IsEnabled = proxyHabilitado;
+            TxtProxySenha.IsEnabled = proxyHabilitado;
+        }
+
+        private static void SelecionarPorTag(ComboBox combo, int valor)
+        {
+            foreach (ComboBoxItem item in combo.Items)
+            {
+                if (item.Tag is string tag && int.TryParse(tag, out int valorItem) && valorItem == valor)
+                {
+                    combo.SelectedItem = item;
+                    return;
+                }
+            }
+        }
+
+        private static int ObterTagSelecionada(ComboBox combo, int valorPadrao)
+        {
+            if (combo.SelectedItem is ComboBoxItem item && item.Tag is string tag && int.TryParse(tag, out int valor))
+                return valor;
+
+            return valorPadrao;
         }
 
         private void BtnProcurarJogo_Click(object sender, RoutedEventArgs e)
@@ -206,9 +275,13 @@ namespace ElsEvo
             RegistroLog.Registrar("Configurações salvas");
 
             string caminhoExe = TxtLocalizacaoJogo.Text;
+            string pastaAnterior = cfg.ElswordDirectory;
             cfg.ElswordDirectory = File.Exists(caminhoExe)
                 ? Path.GetDirectoryName(caminhoExe) ?? string.Empty
                 : cfg.ElswordDirectory;
+
+            if (!string.Equals(pastaAnterior, cfg.ElswordDirectory, StringComparison.OrdinalIgnoreCase))
+                Paths.InvalidarCache();
 
             cfg.BlockLogs = ChkBloquearLogs.IsChecked == true;
             cfg.WebLoginNeeded = ChkNaoExecutarLauncher.IsChecked == true;
@@ -231,6 +304,24 @@ namespace ElsEvo
                 2 => "zh",
                 _ => "pt"
             };
+
+            cfg.LimitarVelocidadeDownload = ChkLimitarVelocidade.IsChecked == true;
+            cfg.LimiteVelocidadeDownloadKBps = int.TryParse(TxtLimiteVelocidade.Text, out int limiteKBps) && limiteKBps > 0
+                ? limiteKBps
+                : cfg.LimiteVelocidadeDownloadKBps;
+
+            cfg.TimeoutVerificacaoAtualizacaoSegundos = ObterTagSelecionada(CmbTimeoutAtualizacao, cfg.TimeoutVerificacaoAtualizacaoSegundos);
+            cfg.TimeoutDownloadMinutos = ObterTagSelecionada(CmbTimeoutDownload, cfg.TimeoutDownloadMinutos);
+            cfg.TentativasAutomaticas = ObterTagSelecionada(CmbTentativas, cfg.TentativasAutomaticas);
+            cfg.DownloadsSimultaneos = ObterTagSelecionada(CmbDownloadsSimultaneos, cfg.DownloadsSimultaneos);
+
+            cfg.AvisarRedeLimitada = ChkAvisarRedeLimitada.IsChecked == true;
+
+            cfg.ProxyHabilitado = ChkProxyHabilitado.IsChecked == true;
+            cfg.ProxyEndereco = TxtProxyEndereco.Text.Trim();
+            cfg.ProxyPorta = int.TryParse(TxtProxyPorta.Text, out int porta) ? porta : cfg.ProxyPorta;
+            cfg.ProxyUsuario = TxtProxyUsuario.Text.Trim();
+            cfg.ProxySenha = TxtProxySenha.Password;
 
             cfg.Save();
 
