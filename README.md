@@ -107,7 +107,7 @@ Alguns ícones usados na interface do ElsEvo são de terceiros, via [Flaticon](h
 Desenvolvido por **[AyameJk](https://github.com/AyameJk)**
 
 <p align="center">
-  <img width="602" height="422" alt="ElsEvo_logo" src="https://github.com/user-attachments/assets/b67ab653-31fe-4eca-8d01-fe4438565ef9" />
+  <img width="422" height="422" alt="ElsEvo_Beta_logo" src="https://github.com/user-attachments/assets/02239044-35bc-4814-bfd7-ab76e7198eda" />
 </p>
 
 <p align="center">
