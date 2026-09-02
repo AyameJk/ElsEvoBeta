@@ -7,20 +7,41 @@ namespace ElsEvo
 {
     public static class Paths
     {
+        private static string? _dataCache;
+        private static string? _backupCache;
+        private static string? _mediaCache;
+        private static string? _movieCache;
+        private static string? _musicCache;
+        private static string? _cacheCache;
+        private static string? _packsCache;
+        private static bool _migracaoJaExecutada;
+
+        public static void InvalidarCache()
+        {
+            _dataCache = null;
+            _backupCache = null;
+            _mediaCache = null;
+            _movieCache = null;
+            _musicCache = null;
+            _cacheCache = null;
+            _packsCache = null;
+            _migracaoJaExecutada = false;
+        }
+
         public static class Elsword
         {
             public static string Root => Properties.Settings.Default.ElswordDirectory;
 
-            public static string Data => CriarSeValido(Path.Combine(Root, "data"));
+            public static string Data => _dataCache ??= CriarSeValido(Path.Combine(Root, "data"));
 
             public static string ClientExe => Path.Combine(Data, "x2.exe");
 
             public static string LauncherExe => Path.Combine(Root, "elsword.exe");
 
-            public static string Backup => CriarSeValido(Path.Combine(Root, "backup"));
-            public static string Media => CriarSeValido(Path.Combine(Data, "media"));
-            public static string Movie => CriarSeValido(Path.Combine(Data, "movie"));
-            public static string Music => CriarSeValido(Path.Combine(Data, "music"));
+            public static string Backup => _backupCache ??= CriarSeValido(Path.Combine(Root, "backup"));
+            public static string Media => _mediaCache ??= CriarSeValido(Path.Combine(Data, "media"));
+            public static string Movie => _movieCache ??= CriarSeValido(Path.Combine(Data, "movie"));
+            public static string Music => _musicCache ??= CriarSeValido(Path.Combine(Data, "music"));
 
             private static string[] ArquivosDeLog => new[]
             {
@@ -148,39 +169,43 @@ namespace ElsEvo
 
         public static class Main
         {
-            public static string Cache
+            public static string Cache => _cacheCache ??= ComputarCache();
+
+            private static string ComputarCache()
             {
-                get
-                {
-                    string raizElsword = Elsword.Root;
-                    string raizDisco = !string.IsNullOrEmpty(raizElsword)
-                        ? Path.GetPathRoot(raizElsword)!
-                        : AppDomain.CurrentDomain.BaseDirectory;
+                string raizElsword = Elsword.Root;
+                string raizDisco = !string.IsNullOrEmpty(raizElsword)
+                    ? Path.GetPathRoot(raizElsword)!
+                    : AppDomain.CurrentDomain.BaseDirectory;
 
-                    if (string.IsNullOrEmpty(raizDisco))
-                        raizDisco = AppDomain.CurrentDomain.BaseDirectory;
+                if (string.IsNullOrEmpty(raizDisco))
+                    raizDisco = AppDomain.CurrentDomain.BaseDirectory;
 
-                    string caminho = Path.Combine(raizDisco, "ElsEvo Beta cache");
-                    Directory.CreateDirectory(caminho);
-                    return caminho;
-                }
+                string caminho = Path.Combine(raizDisco, "ElsEvo Beta cache");
+                Directory.CreateDirectory(caminho);
+                return caminho;
             }
 
-            public static string Packs
-            {
-                get
-                {
-                    string raiz = Elsword.Root;
-                    string caminho = !string.IsNullOrWhiteSpace(raiz) && Directory.Exists(raiz)
-                        ? Path.Combine(raiz, "cacheElsEvoBeta")
-                        : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cacheElsEvoBeta");
+            public static string Packs => _packsCache ??= ComputarPacks();
 
-                    Directory.CreateDirectory(caminho);
+            private static string ComputarPacks()
+            {
+                string raiz = Elsword.Root;
+                string caminho = !string.IsNullOrWhiteSpace(raiz) && Directory.Exists(raiz)
+                    ? Path.Combine(raiz, "cacheElsEvoBeta")
+                    : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cacheElsEvoBeta");
+
+                Directory.CreateDirectory(caminho);
+
+                if (!_migracaoJaExecutada)
+                {
 #if !ELSEVO_BETA
                     MigrarPacksAntigosSeNecessario(caminho);
 #endif
-                    return caminho;
+                    _migracaoJaExecutada = true;
                 }
+
+                return caminho;
             }
 
             private static void MigrarPacksAntigosSeNecessario(string pastaNova)
