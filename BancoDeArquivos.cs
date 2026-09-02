@@ -26,10 +26,30 @@ namespace ElsEvo
     {
         private static readonly Lazy<Dictionary<string, ArquivoConhecido>> _porNome = new(Carregar);
 
+        private static readonly Dictionary<string, Dictionary<string, string>?> _cacheDescricoesPorPack =
+            new(StringComparer.OrdinalIgnoreCase);
+
         public static ArquivoConhecido? BuscarPorNome(string nomeArquivo)
         {
             return _porNome.Value.TryGetValue(nomeArquivo, out var arquivo) ? arquivo : null;
         }
+
+        public static string? DescricaoComOverridePack(string pastaPack, string nomeArquivo)
+        {
+            if (!_cacheDescricoesPorPack.TryGetValue(pastaPack, out var descricoesDoPack))
+            {
+                descricoesDoPack = DublagensService.LerDescricoesDoPack(pastaPack);
+                _cacheDescricoesPorPack[pastaPack] = descricoesDoPack;
+            }
+
+            if (descricoesDoPack != null && descricoesDoPack.TryGetValue(nomeArquivo, out var descricaoOverride))
+                return descricaoOverride;
+
+            return BuscarPorNome(nomeArquivo)?.Description;
+        }
+
+        public static void LimparCacheDoPack(string pastaPack) =>
+            _cacheDescricoesPorPack.Remove(pastaPack);
 
         public static CategoriaMod CategoriaPorExtensao(string nomeArquivo)
         {
