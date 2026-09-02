@@ -86,9 +86,12 @@ jobs:
         shell: pwsh
         run: |
           $script = Get-Content ElsEvo.iss -Raw
-          $script = $script -replace '#define PublishDir "[^"]*"', '#define PublishDir "' + (Join-Path $env:GITHUB_WORKSPACE 'publish') + '"'
-          $script = $script -replace 'SetupIconFile=.*', 'SetupIconFile=' + (Join-Path $env:GITHUB_WORKSPACE 'Assets\icone_app.ico')
-          $script = $script -replace 'OutputDir=.*', 'OutputDir=' + (Join-Path $env:RUNNER_TEMP 'installer-output')
+          $publishDir = Join-Path $env:GITHUB_WORKSPACE 'publish'
+          $iconPath = Join-Path $env:GITHUB_WORKSPACE 'Assets\icone_app.ico'
+          $outputDir = Join-Path $env:RUNNER_TEMP 'installer-output'
+          $script = [regex]::Replace($script, '#define PublishDir "[^"]*"', "#define PublishDir `"$publishDir`"")
+          $script = [regex]::Replace($script, 'SetupIconFile=.*', "SetupIconFile=$iconPath")
+          $script = [regex]::Replace($script, 'OutputDir=.*', "OutputDir=$outputDir")
           $temporaryScript = Join-Path $env:RUNNER_TEMP 'ElsEvo.iss'
           New-Item -ItemType Directory -Force (Join-Path $env:RUNNER_TEMP 'installer-output') | Out-Null
           Set-Content -Path $temporaryScript -Value $script -Encoding UTF8
