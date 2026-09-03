@@ -334,7 +334,7 @@
                                     <TextBlock Grid.Column="1" Text="KB/s" Foreground="{DynamicResource CorTextoSecundario}"
                                                FontSize="11" VerticalAlignment="Center" Margin="6,0,0,0"/>
                                 </Grid>
-                                <TextBlock Text="Ex.: 1000 KB/s ≈ 1 MB/s."
+                                <TextBlock x:Name="TxtExemploVelocidade" Text="Ex.: 1000 KB/s ≈ 1 MB/s."
                                            Style="{StaticResource TextoSecundario}"
                                            Margin="20,4,0,0"/>
                             </StackPanel>
@@ -351,7 +351,7 @@
                             <TextBlock Grid.Column="0" Text="&#xE968;" Style="{StaticResource IconeMdl2}"/>
 
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="Tempo limite ao verificar atualizações" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <TextBlock x:Name="TxtTimeoutAtualizacao" Text="Tempo limite ao verificar atualizações" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
                                 <ComboBox x:Name="CmbTimeoutAtualizacao" Height="26" Margin="0,4,0,10" SelectedIndex="1">
                                     <ComboBoxItem Content="5 segundos" Tag="5"/>
                                     <ComboBoxItem Content="10 segundos" Tag="10"/>
@@ -359,7 +359,7 @@
                                     <ComboBoxItem Content="30 segundos" Tag="30"/>
                                 </ComboBox>
 
-                                <TextBlock Text="Tempo limite ao baixar dublagens" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <TextBlock x:Name="TxtTimeoutDownload" Text="Tempo limite ao baixar dublagens" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
                                 <ComboBox x:Name="CmbTimeoutDownload" Height="26" Margin="0,4,0,10" SelectedIndex="2">
                                     <ComboBoxItem Content="10 minutos" Tag="10"/>
                                     <ComboBoxItem Content="30 minutos" Tag="30"/>
@@ -367,7 +367,7 @@
                                     <ComboBoxItem Content="120 minutos" Tag="120"/>
                                 </ComboBox>
 
-                                <TextBlock Text="Tentativas automáticas em caso de falha" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <TextBlock x:Name="TxtTentativas" Text="Tentativas automáticas em caso de falha" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
                                 <ComboBox x:Name="CmbTentativas" Height="26" Margin="0,4,0,10" SelectedIndex="2">
                                     <ComboBoxItem Content="1 (sem repetir)" Tag="1"/>
                                     <ComboBoxItem Content="2 tentativas" Tag="2"/>
@@ -375,7 +375,7 @@
                                     <ComboBoxItem Content="5 tentativas" Tag="5"/>
                                 </ComboBox>
 
-                                <TextBlock Text="Downloads simultâneos na fila" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
+                                <TextBlock x:Name="TxtDownloadsSimultaneos" Text="Downloads simultâneos na fila" FontSize="12" Foreground="{DynamicResource CorTextoPrimario}"/>
                                 <ComboBox x:Name="CmbDownloadsSimultaneos" Height="26" Margin="0,4,0,0" SelectedIndex="0">
                                     <ComboBoxItem Content="1 (um de cada vez)" Tag="1"/>
                                     <ComboBoxItem Content="2 ao mesmo tempo" Tag="2"/>
@@ -396,7 +396,7 @@
 
                             <StackPanel Grid.Column="1">
                                 <CheckBox x:Name="ChkAvisarRedeLimitada" Content="Avisar antes de baixar em rede limitada (medida)" IsChecked="True"/>
-                                <TextBlock Text="Ex.: hotspot do celular ou plano de dados com limite."
+                                <TextBlock x:Name="TxtExemploRedeLimitada" Text="Ex.: hotspot do celular ou plano de dados com limite."
                                            Style="{StaticResource TextoSecundario}"
                                            Margin="20,4,0,0"/>
                             </StackPanel>
@@ -430,8 +430,8 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Endereço" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Porta" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+                                <TextBlock x:Name="TxtEndereco" Grid.Row="0" Grid.Column="0" Text="Endereço" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+                                <TextBlock x:Name="TxtPorta" Grid.Row="0" Grid.Column="1" Text="Porta" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
 
                                 <TextBox x:Name="TxtProxyEndereco"
                                          Grid.Row="1" Grid.Column="0"
@@ -447,8 +447,8 @@
                                          IsEnabled="False"
                                          Margin="0,0,0,8"/>
 
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Usuário (opcional)" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
-                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Senha" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+                                <TextBlock x:Name="TxtUsuario" Grid.Row="2" Grid.Column="0" Text="Usuário (opcional)" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
+                                <TextBlock x:Name="TxtSenha" Grid.Row="2" Grid.Column="1" Text="Senha" FontSize="11" Foreground="{DynamicResource CorTextoSecundario}" Margin="0,0,0,2"/>
 
                                 <TextBox x:Name="TxtProxyUsuario"
                                          Grid.Row="3" Grid.Column="0"
@@ -466,7 +466,7 @@
                                              Foreground="{DynamicResource CorTextoPrimario}"
                                              BorderBrush="{DynamicResource CorBorda}"/>
                             </Grid>
-                            <TextBlock Text="Usuário e senha são opcionais -- só necessários se o proxy exigir autenticação."
+                            <TextBlock x:Name="TxtAvisoProxy" Text="Usuário e senha são opcionais -- só necessários se o proxy exigir autenticação."
                                        Style="{StaticResource TextoSecundario}"
                                        Margin="20,6,0,0"/>
                             </StackPanel>

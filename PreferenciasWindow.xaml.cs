@@ -117,6 +117,45 @@ namespace ElsEvo
             ChkBuscarAtualizacoes.Content = Idiomas.T("ChkBuscarAtualizacoes");
             ChkBetaApenas.Content = Idiomas.T("ChkBetaApenas");
             TxtAvisoBetaApenas.Text = Idiomas.T("TxtAvisoBetaApenas");
+
+            GrpVelocidadeDownload.Header = Idiomas.T("RedeVelocidade");
+            ChkLimitarVelocidade.Content = Idiomas.T("RedeLimitarVelocidade");
+            TxtExemploVelocidade.Text = Idiomas.T("RedeExemploVelocidade");
+            GrpConexao.Header = Idiomas.T("RedeConexao");
+            TxtTimeoutAtualizacao.Text = Idiomas.T("RedeTimeoutAtualizacao");
+            TxtTimeoutDownload.Text = Idiomas.T("RedeTimeoutDownload");
+            TxtTentativas.Text = Idiomas.T("RedeTentativas");
+            TxtDownloadsSimultaneos.Text = Idiomas.T("RedeDownloadsSimultaneos");
+            GrpRedeLimitada.Header = Idiomas.T("RedeLimitada");
+            ChkAvisarRedeLimitada.Content = Idiomas.T("RedeAvisarLimitada");
+            TxtExemploRedeLimitada.Text = Idiomas.T("RedeExemploLimitada");
+            GrpProxy.Header = Idiomas.T("RedeProxy");
+            ChkProxyHabilitado.Content = Idiomas.T("RedeUsarProxy");
+            TxtEndereco.Text = Idiomas.T("RedeEndereco");
+            TxtPorta.Text = Idiomas.T("RedePorta");
+            TxtUsuario.Text = Idiomas.T("RedeUsuario");
+            TxtSenha.Text = Idiomas.T("RedeSenha");
+            TxtAvisoProxy.Text = Idiomas.T("RedeAvisoProxy");
+            TraduzirOpcoesRede();
+        }
+
+        private void TraduzirOpcoesRede()
+        {
+            foreach (ComboBoxItem item in CmbTimeoutAtualizacao.Items)
+                item.Content = string.Format(Idiomas.T("RedeSegundos"), item.Tag);
+
+            foreach (ComboBoxItem item in CmbTimeoutDownload.Items)
+                item.Content = string.Format(Idiomas.T("RedeMinutos"), item.Tag);
+
+            foreach (ComboBoxItem item in CmbTentativas.Items)
+                item.Content = item.Tag?.ToString() == "1"
+                    ? Idiomas.T("RedeSemRepetir")
+                    : string.Format(Idiomas.T("RedeTentativa"), item.Tag);
+
+            foreach (ComboBoxItem item in CmbDownloadsSimultaneos.Items)
+                item.Content = item.Tag?.ToString() == "1"
+                    ? Idiomas.T("RedeUmPorVez")
+                    : string.Format(Idiomas.T("RedeAoMesmoTempo"), item.Tag);
         }
 
         private void CarregarConfiguracoes()

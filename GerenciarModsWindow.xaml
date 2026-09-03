@@ -57,6 +57,40 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="PolegarScrollbarModerno" TargetType="Thumb">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Border Background="{DynamicResource CorBorda}" CornerRadius="3" Opacity="0.7"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ScrollBar">
+            <Setter Property="Width" Value="6"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Background="Transparent">
+                            <Track x:Name="PART_Track" IsDirectionReversed="True" Margin="0,4">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource PolegarScrollbarModerno}" Width="6"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="CheckBoxImagem" TargetType="CheckBox">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Foreground" Value="{DynamicResource CorTextoPrimario}"/>
@@ -113,14 +147,14 @@
                       SelectedIndex="0"/>
 
             <Button Grid.Column="1"
-                    Content="✔️ Aplicar"
+                    x:Name="BtnAplicarAcaoGlobal" Content="✔️ Aplicar"
                     Style="{StaticResource BotaoFlat}"
                     Margin="8,0,0,0"
                     Click="BtnAplicarAcaoGlobal_Click"/>
 
             <Grid Grid.Column="2" Margin="8,0,0,0">
                 <Button x:Name="BtnMenu"
-                        Content="Menu ▾"
+                    Content="Menu ▾"
                         Style="{StaticResource BotaoFlat}"
                         Click="BtnMenu_Click"/>
                 <Popup x:Name="PopupMenu"
@@ -140,7 +174,7 @@
                                     Click="MenuNovo_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Assets/menu-novo.png" Style="{StaticResource IconeMenu}" Stretch="Uniform"/>
-                                    <TextBlock Text="Novo" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMenuNovo" Text="Novo" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource BotaoFlat}"
@@ -149,7 +183,7 @@
                                     Click="MenuImportarPasta_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Assets/menu-pasta.png" Style="{StaticResource IconeMenu}" Stretch="Uniform"/>
-                                    <TextBlock Text="Importar pasta" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMenuImportarPasta" Text="Importar pasta" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource BotaoFlat}"
@@ -158,7 +192,7 @@
                                     Click="MenuImportarZip_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Assets/menu-zip.png" Style="{StaticResource IconeMenu}" Stretch="Uniform"/>
-                                    <TextBlock Text="Importar .zip" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMenuImportarZip" Text="Importar .zip" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource BotaoFlat}"
@@ -167,7 +201,7 @@
                                     Click="MenuAbrirNoExplorer_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Assets/menu-pasta.png" Style="{StaticResource IconeMenu}" Stretch="Uniform"/>
-                                    <TextBlock Text="Local do arquivo" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMenuLocalArquivo" Text="Local do arquivo" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource BotaoFlat}"
@@ -176,7 +210,7 @@
                                     Click="MenuExportarZip_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Assets/menu-exportar.png" Style="{StaticResource IconeMenu}" Stretch="Uniform"/>
-                                    <TextBlock Text="Exportar para .zip" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMenuExportarZip" Text="Exportar para .zip" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                             <Separator/>
@@ -187,7 +221,7 @@
                                     Click="MenuExcluirPackSelecionado_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="Assets/menu-excluir.png" Style="{StaticResource IconeMenu}" Stretch="Uniform"/>
-                                    <TextBlock Text="Excluir pack selecionado" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMenuExcluirPack" Text="Excluir pack selecionado" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -200,7 +234,7 @@
                   Style="{StaticResource CheckBoxImagem}"
                   IsChecked="True"
                   Margin="0,8,0,0">
-            <TextBlock Text="Aplicar somente aos ainda sem mod (não sobrescreve escolhas manuais)"
+                    <TextBlock x:Name="TxtAplicarSemMod" Text="Aplicar somente aos ainda sem mod (não sobrescreve escolhas manuais)"
                        Foreground="{DynamicResource CorTextoPrimario}"
                        FontSize="11"
                        TextWrapping="Wrap"/>
@@ -222,7 +256,7 @@
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Assets/tab-geral.png" Width="16" Height="16" Margin="0,0,5,0"/>
-                            <TextBlock Text="Geral"/>
+                            <TextBlock x:Name="TxtAbaGeral" Text="Geral"/>
                         </StackPanel>
                     </TabItem.Header>
                 </TabItem>
@@ -230,7 +264,7 @@
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Assets/tab-bgm.png" Width="16" Height="16" Margin="0,0,5,0"/>
-                            <TextBlock Text="BGM"/>
+                            <TextBlock x:Name="TxtAbaBgm" Text="BGM"/>
                         </StackPanel>
                     </TabItem.Header>
                 </TabItem>
@@ -238,7 +272,7 @@
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Assets/tab-video.png" Width="16" Height="16" Margin="0,0,5,0"/>
-                            <TextBlock Text="Vídeo"/>
+                            <TextBlock x:Name="TxtAbaVideo" Text="Vídeo"/>
                         </StackPanel>
                     </TabItem.Header>
                 </TabItem>

@@ -44,6 +44,21 @@ namespace ElsEvo
         private void AplicarIdioma()
         {
             Title = Idiomas.T("TituloGerenciarMods");
+            BtnAplicarAcaoGlobal.Content = Idiomas.T("ModsAplicar");
+            BtnMenu.Content = Idiomas.T("ModsMenu");
+            TxtAplicarSemMod.Text = Idiomas.T("ModsAplicarSemMod");
+            TxtMenuNovo.Text = Idiomas.T("ModsNovo");
+            TxtMenuImportarPasta.Text = Idiomas.T("ModsImportarPasta");
+            TxtMenuImportarZip.Text = Idiomas.T("ModsImportarZip");
+            TxtMenuLocalArquivo.Text = Idiomas.T("ModsLocalArquivo");
+            TxtMenuExportarZip.Text = Idiomas.T("ModsExportarZip");
+            TxtMenuExcluirPack.Text = Idiomas.T("ModsExcluirPack");
+            TxtAbaGeral.Text = Idiomas.T("AbaGeral");
+            TxtAbaBgm.Text = Idiomas.T("AbaBgm");
+            TxtAbaVideo.Text = Idiomas.T("AbaVideo");
+            GridMods.Columns[0].Header = Idiomas.T("ModsArquivo");
+            GridMods.Columns[1].Header = Idiomas.T("ModsDescricao");
+            GridMods.Columns[2].Header = Idiomas.T("ModsMod");
             BtnOk.Content = Idiomas.T("BotaoOk");
             BtnCancelar.Content = Idiomas.T("BotaoCancelar");
             BtnAplicar.Content = Idiomas.T("BotaoAplicar");

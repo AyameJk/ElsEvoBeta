@@ -52,7 +52,7 @@ namespace ElsEvo.Properties
         public int TimeoutVerificacaoAtualizacaoSegundos { get; set; } = 10;
         public int TimeoutDownloadMinutos { get; set; } = 30;
         public int TentativasAutomaticas { get; set; } = 3;
-        public bool AvisarRedeLimitada { get; set; } = true;
+        public bool AvisarRedeLimitada { get; set; } = false;
         public int DownloadsSimultaneos { get; set; } = 1;
         public bool ProxyHabilitado { get; set; } = false;
         public string ProxyEndereco { get; set; } = string.Empty;

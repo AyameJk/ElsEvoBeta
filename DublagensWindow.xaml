@@ -129,11 +129,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="0,0,0,12">
-            <TextBlock Text="Dublagens disponíveis"
+            <TextBlock x:Name="TxtTituloDublagens" Text="Dublagens disponíveis"
                        Foreground="{DynamicResource CorTextoPrimario}"
                        FontSize="16"
                        FontWeight="Bold"/>
-            <TextBlock Text="Escolha um ou mais pacotes para baixar e instalar nos seus mods."
+            <TextBlock x:Name="TxtInstrucaoDublagens" Text="Escolha um ou mais pacotes para baixar e instalar nos seus mods."
                        Foreground="{DynamicResource CorTextoSecundario}"
                        FontSize="11"
                        Margin="0,4,0,0"/>
@@ -202,7 +202,7 @@
                                             Visibility="{Binding VisibilidadeBaixando}">
                                     <Image Width="32" Height="32" VerticalAlignment="Center"
                                            gif:ImageBehavior.AnimatedSource="Assets/download-loading.gif"/>
-                                    <TextBlock Text="Baixando..." Foreground="#E0B060" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding TextoBaixando}" Foreground="#E0B060" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2"
@@ -212,7 +212,7 @@
                                             Visibility="{Binding VisibilidadeAguardando}">
                                     <Image Width="22" Height="22" VerticalAlignment="Center"
                                            Source="Assets/relogio-fila.png"/>
-                                    <TextBlock Text="Na fila" Foreground="#E0B060" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding TextoNaFila}" Foreground="#E0B060" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2"
@@ -221,7 +221,7 @@
                                             Margin="10,0,0,0"
                                             Visibility="{Binding VisibilidadeInstalado}">
                                     <TextBlock Style="{StaticResource IconeCheckBaixado}"/>
-                                    <TextBlock Text="Instalado" Foreground="#69E292" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding TextoInstalado}" Foreground="#69E292" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2"
@@ -230,7 +230,7 @@
                                             Margin="10,0,0,0"
                                             Visibility="{Binding VisibilidadePausado}">
                                     <TextBlock Text="&#xE769;" FontFamily="Segoe MDL2 Assets" FontSize="15" Foreground="#63B3ED" VerticalAlignment="Center"/>
-                                    <TextBlock Text="Pausado" Foreground="#63B3ED" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding TextoPausado}" Foreground="#63B3ED" FontSize="10" FontWeight="SemiBold" Margin="4,0,0,0" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -250,7 +250,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Fila (total)" Style="{StaticResource RotuloProgresso}"/>
+                <TextBlock x:Name="TxtFilaTotal" Grid.Column="0" Text="Fila (total)" Style="{StaticResource RotuloProgresso}"/>
                 <TextBlock x:Name="TxtPercentFila" Grid.Column="1" Text="0%" Style="{StaticResource RotuloProgresso}"/>
             </Grid>
             <ProgressBar x:Name="BarraProgressoFila"
@@ -266,7 +266,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Arquivo atual" Style="{StaticResource RotuloProgresso}"/>
+                <TextBlock x:Name="TxtArquivoAtual" Grid.Column="0" Text="Arquivo atual" Style="{StaticResource RotuloProgresso}"/>
                 <TextBlock x:Name="TxtPercentAtual" Grid.Column="1" Text="0%" Style="{StaticResource RotuloProgresso}"/>
             </Grid>
             <ProgressBar x:Name="BarraProgresso"

@@ -22,6 +22,10 @@ namespace ElsEvo
         public DublagemDisponivel Dublagem { get; }
         public string Nome => Dublagem.Nome;
         public string Descricao => Dublagem.Descricao;
+        public string TextoBaixando => Idiomas.T("DublagemBaixando");
+        public string TextoNaFila => Idiomas.T("DublagemNaFila");
+        public string TextoInstalado => Idiomas.T("DublagemInstalado");
+        public string TextoPausado => Idiomas.T("DublagemPausado");
 
         public string? TamanhoFormatado => Dublagem.TamanhoBytes is long bytes && bytes > 0
             ? DublagensService.FormatarTamanho(bytes)
@@ -129,6 +133,7 @@ namespace ElsEvo
         public DublagensWindow()
         {
             InitializeComponent();
+            AplicarIdioma();
             SourceInitialized += (_, _) =>
                 BarraTituloNativa.AplicarTema(this, !Properties.Settings.Default.TemaClaro);
 
@@ -136,10 +141,21 @@ namespace ElsEvo
             _animacao.Tick += (_, _) =>
             {
                 _pontos = (_pontos + 1) % 4;
-                TxtStatus.Text = "Carregando dublagens" + new string('.', _pontos);
+                TxtStatus.Text = Idiomas.T("DublagemCarregando") + new string('.', _pontos);
             };
             Loaded += async (_, _) => await CarregarDublagensAsync();
             Closed += (_, _) => _cancelamentoAtual?.Cancel();
+        }
+
+        private void AplicarIdioma()
+        {
+            TxtTituloDublagens.Text = Idiomas.T("DublagensDisponiveis");
+            TxtInstrucaoDublagens.Text = Idiomas.T("DublagensInstrucao");
+            TxtFilaTotal.Text = Idiomas.T("DublagemFilaTotal");
+            TxtArquivoAtual.Text = Idiomas.T("DublagemArquivoAtual");
+            BtnPausar.Content = Idiomas.T("DublagemPausar");
+            BtnCancelar.Content = Idiomas.T("BotaoCancelar");
+            BtnBaixar.Content = Idiomas.T("DublagemBaixar");
         }
 
         private async Task CarregarDublagensAsync()
@@ -159,19 +175,19 @@ namespace ElsEvo
 
                 ListaDublagens.ItemsSource = _dublagens;
                 TxtStatus.Text = _dublagens.Count == 0
-                    ? "Nenhuma dublagem disponível."
-                    : $"{_dublagens.Count} dublagem(ns) disponível(is).";
+                    ? Idiomas.T("DublagemNenhuma")
+                    : string.Format(Idiomas.T("DublagemQuantidade"), _dublagens.Count);
 
                 AtualizarBotaoBaixar();
             }
             catch (OperationCanceledException)
             {
-                TxtStatus.Text = "Operação cancelada.";
+                TxtStatus.Text = Idiomas.T("OperacaoCancelada");
             }
             catch (Exception ex)
             {
                 RegistroLog.Erro("Falha ao carregar catálogo de dublagens", ex);
-                TxtStatus.Text = "Não foi possível carregar as dublagens.";
+                TxtStatus.Text = Idiomas.T("DublagemFalhaCatalogo");
                 JanelaConfirmacao.Mostrar(this,
                     "Baixar dublagens",
                     "Não foi possível carregar o catálogo de dublagens.\n\n" + ex.Message,
@@ -214,7 +230,9 @@ namespace ElsEvo
         {
             int quantidade = _dublagens.Count(d => d.Selecionado);
             BtnBaixar.IsEnabled = quantidade > 0;
-            BtnBaixar.Content = quantidade > 1 ? $"Baixar selecionadas ({quantidade})" : "Baixar dublagem";
+            BtnBaixar.Content = quantidade > 1
+                ? string.Format(Idiomas.T("DublagemBaixarSelecionadas"), quantidade)
+                : Idiomas.T("DublagemBaixar");
         }
 
         private void AtualizarBarraFila(int concluidos, int total, int percentualItemAtual = 0)
@@ -276,7 +294,7 @@ namespace ElsEvo
             BtnCancelar.IsEnabled = true;
             BtnPausar.Visibility = Visibility.Visible;
             BtnPausar.IsEnabled = false;
-            BtnPausar.Content = "Pausar";
+            BtnPausar.Content = Idiomas.T("DublagemPausar");
 
             ListaDublagens.IsHitTestVisible = false;
 
@@ -380,7 +398,7 @@ namespace ElsEvo
                     item.Pausado = false;
                 }
 
-                TxtStatus.Text = "Download cancelado.";
+                TxtStatus.Text = Idiomas.T("DublagemCancelar");
             }
             else if (pausado)
             {
@@ -390,7 +408,7 @@ namespace ElsEvo
                         item.Aguardando = false;
                 }
 
-                TxtStatus.Text = "Download pausado. Clique em \"Baixar\" novamente para retomar de onde parou.";
+                TxtStatus.Text = Idiomas.T("DublagemPausadaStatus");
             }
             else
             {
@@ -424,7 +442,7 @@ namespace ElsEvo
                 RegistroLog.Registrar("Pausa do download de dublagem solicitada");
                 _pausaAtual.Cancel();
                 BtnPausar.IsEnabled = false;
-                TxtStatus.Text = "Pausando...";
+                TxtStatus.Text = Idiomas.T("DublagemPausando");
             }
         }
 
@@ -436,7 +454,7 @@ namespace ElsEvo
                 _cancelamentoAtual.Cancel();
                 BtnCancelar.IsEnabled = false;
                 BtnPausar.IsEnabled = false;
-                TxtStatus.Text = "Cancelando...";
+                TxtStatus.Text = Idiomas.T("DublagemCancelando");
             }
         }
     }

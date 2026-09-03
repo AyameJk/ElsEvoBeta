@@ -218,6 +218,72 @@ namespace ElsEvo
             }
         };
 
+        static Idiomas()
+        {
+            Adicionar("DublagensDisponiveis", "Dublagens disponíveis", "Available voice packs", "可用配音包");
+            Adicionar("DublagensInstrucao", "Escolha um ou mais pacotes para baixar e instalar nos seus mods.", "Choose one or more packs to download and install in your mods.", "选择一个或多个要下载并安装到模组中的配音包。");
+            Adicionar("DublagemBaixando", "Baixando...", "Downloading...", "正在下载...");
+            Adicionar("DublagemNaFila", "Na fila", "Queued", "排队中");
+            Adicionar("DublagemInstalado", "Instalado", "Installed", "已安装");
+            Adicionar("DublagemPausado", "Pausado", "Paused", "已暂停");
+            Adicionar("DublagemCarregando", "Carregando dublagens", "Loading voice packs", "正在加载配音包");
+            Adicionar("DublagemQuantidade", "{0} dublagem(ns) disponível(is).", "{0} voice pack(s) available.", "{0} 个配音包可用。");
+            Adicionar("DublagemFilaTotal", "Fila (total)", "Queue (total)", "队列（总计）");
+            Adicionar("DublagemArquivoAtual", "Arquivo atual", "Current file", "当前文件");
+            Adicionar("DublagemNenhuma", "Nenhuma dublagem disponível.", "No voice packs available.", "没有可用的配音包。");
+            Adicionar("DublagemFalhaCatalogo", "Não foi possível carregar as dublagens.", "Could not load voice packs.", "无法加载配音包。");
+            Adicionar("DublagemBaixar", "Baixar dublagem", "Download voice pack", "下载配音包");
+            Adicionar("DublagemBaixarSelecionadas", "Baixar selecionadas ({0})", "Download selected ({0})", "下载选中的配音包 ({0})");
+            Adicionar("DublagemCancelar", "Download cancelado.", "Download canceled.", "下载已取消。");
+            Adicionar("DublagemPausadaStatus", "Download pausado. Clique em \"Baixar\" novamente para retomar de onde parou.", "Download paused. Click \"Download\" again to resume where it stopped.", "下载已暂停。再次点击“下载”以从中断处继续。");
+            Adicionar("DublagemPausando", "Pausando...", "Pausing...", "正在暂停...");
+            Adicionar("DublagemCancelando", "Cancelando...", "Canceling...", "正在取消...");
+            Adicionar("DublagemPausar", "Pausar", "Pause", "暂停");
+            Adicionar("RedeVelocidade", "VELOCIDADE DE DOWNLOAD", "DOWNLOAD SPEED", "下载速度");
+            Adicionar("RedeLimitarVelocidade", "Limitar velocidade de download", "Limit download speed", "限制下载速度");
+            Adicionar("RedeExemploVelocidade", "Ex.: 1000 KB/s ≈ 1 MB/s.", "Ex.: 1000 KB/s ≈ 1 MB/s.", "例如：1000 KB/s ≈ 1 MB/s。");
+            Adicionar("RedeConexao", "CONEXÃO", "CONNECTION", "连接");
+            Adicionar("RedeTimeoutAtualizacao", "Tempo limite ao verificar atualizações", "Update check timeout", "检查更新超时");
+            Adicionar("RedeTimeoutDownload", "Tempo limite ao baixar dublagens", "Voice pack download timeout", "下载配音包超时");
+            Adicionar("RedeTentativas", "Tentativas automáticas em caso de falha", "Automatic retry attempts on failure", "失败时自动重试次数");
+            Adicionar("RedeDownloadsSimultaneos", "Downloads simultâneos na fila", "Simultaneous downloads in queue", "队列中的同时下载数");
+            Adicionar("RedeLimitada", "REDE LIMITADA", "METERED NETWORK", "按流量计费的网络");
+            Adicionar("RedeAvisarLimitada", "Avisar antes de baixar em rede limitada (medida)", "Warn before downloading on a metered network", "在按流量计费的网络上下载前提醒");
+            Adicionar("RedeExemploLimitada", "Ex.: hotspot do celular ou plano de dados com limite.", "Ex.: mobile hotspot or limited data plan.", "例如：手机热点或有限流量套餐。");
+            Adicionar("RedeProxy", "PROXY", "PROXY", "代理");
+            Adicionar("RedeUsarProxy", "Usar proxy manual", "Use manual proxy", "使用手动代理");
+            Adicionar("RedeEndereco", "Endereço", "Address", "地址");
+            Adicionar("RedePorta", "Porta", "Port", "端口");
+            Adicionar("RedeUsuario", "Usuário (opcional)", "Username (optional)", "用户名（可选）");
+            Adicionar("RedeSenha", "Senha", "Password", "密码");
+            Adicionar("RedeAvisoProxy", "Usuário e senha são opcionais -- só necessários se o proxy exigir autenticação.", "Username and password are optional -- only required if the proxy requires authentication.", "用户名和密码是可选的，仅当代理要求身份验证时才需要。");
+            Adicionar("RedeSegundos", "{0} segundos", "{0} seconds", "{0} 秒");
+            Adicionar("RedeMinutos", "{0} minutos", "{0} minutes", "{0} 分钟");
+            Adicionar("RedeTentativa", "{0} tentativas", "{0} attempts", "{0} 次尝试");
+            Adicionar("RedeSemRepetir", "1 (sem repetir)", "1 (no retry)", "1（不重试）");
+            Adicionar("RedeUmPorVez", "1 (um de cada vez)", "1 (one at a time)", "1（一次一个）");
+            Adicionar("RedeAoMesmoTempo", "{0} ao mesmo tempo", "{0} at the same time", "{0} 个同时进行");
+            Adicionar("ModsAplicarSemMod", "Aplicar somente aos ainda sem mod (não sobrescreve escolhas manuais)", "Apply only to files without a mod (does not overwrite manual choices)", "仅应用于尚未设置模组的文件（不会覆盖手动选择）");
+            Adicionar("ModsAplicar", "✔️ Aplicar", "✔️ Apply", "✔️ 应用");
+            Adicionar("ModsMenu", "Menu ▾", "Menu ▾", "菜单 ▾");
+            Adicionar("ModsNovo", "Novo", "New", "新建");
+            Adicionar("ModsImportarPasta", "Importar pasta", "Import folder", "导入文件夹");
+            Adicionar("ModsImportarZip", "Importar .zip", "Import .zip", "导入 .zip");
+            Adicionar("ModsLocalArquivo", "Local do arquivo", "File location", "文件位置");
+            Adicionar("ModsExportarZip", "Exportar para .zip", "Export to .zip", "导出为 .zip");
+            Adicionar("ModsExcluirPack", "Excluir pack selecionado", "Delete selected pack", "删除选中的模组包");
+            Adicionar("ModsArquivo", "Arquivo", "File", "文件");
+            Adicionar("ModsDescricao", "Descrição", "Description", "描述");
+            Adicionar("ModsMod", "Mod", "Mod", "模组");
+        }
+
+        private static void Adicionar(string chave, string portugues, string ingles, string chines)
+        {
+            _textos["pt"][chave] = portugues;
+            _textos["en"][chave] = ingles;
+            _textos["zh"][chave] = chines;
+        }
+
         public static string T(string chave)
         {
             string idioma = Properties.Settings.Default.Idioma;

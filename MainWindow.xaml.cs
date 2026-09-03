@@ -696,7 +696,7 @@ namespace ElsEvo
                     var processoInstalador = Process.Start(new ProcessStartInfo
                     {
                         FileName = caminhoInstalador,
-                        Arguments = "/VERYSILENT /SUPPRESSMSGBOXES /RESTARTAPPLICATIONS /SP-",
+                        Arguments = "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /ALLOWDOWNGRADE /SP-",
                         UseShellExecute = true
                     });
 
