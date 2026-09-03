@@ -691,21 +691,17 @@ namespace ElsEvo
                 };
                 timerPontinhos.Start();
 
-                int codigoSaida;
                 try
                 {
                     var processoInstalador = Process.Start(new ProcessStartInfo
                     {
                         FileName = caminhoInstalador,
-                        Arguments = "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-",
+                        Arguments = "/VERYSILENT /SUPPRESSMSGBOXES /RESTARTAPPLICATIONS /SP-",
                         UseShellExecute = true
                     });
 
                     if (processoInstalador == null)
                         throw new InvalidOperationException("Não foi possível iniciar o processo do instalador.");
-
-                    await Task.Run(() => processoInstalador.WaitForExit());
-                    codigoSaida = processoInstalador.ExitCode;
                 }
                 catch (Exception ex)
                 {
@@ -720,19 +716,8 @@ namespace ElsEvo
 
                 timerPontinhos.Stop();
 
-                if (codigoSaida != 0)
-                {
-                    JanelaConfirmacao.Mostrar(this,
-                        "Atenção — instalação da atualização",
-                        $"O instalador terminou com um erro (código {codigoSaida}) e a atualização pode não " +
-                        "ter sido concluída corretamente.\n\n" +
-                        "O ElsEvo vai continuar/reabrir normalmente. Se algo parecer errado, tente " +
-                        "baixar e instalar manualmente pela página de Releases no GitHub.",
-                        TipoMensagem.Aviso);
-                }
-
                 appVaiFecharComSucesso = true;
-                ReabrirAppAtualizadoEFechar();
+                Application.Current.Shutdown();
             }
             finally
             {

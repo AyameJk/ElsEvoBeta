@@ -1,6 +1,6 @@
 
 #define MyAppName "ElsEvo Beta"
-#define MyAppVersion "1.1.047"
+#define MyAppVersion "1.1.048"
 #define MyAppPublisher "AyameJk"
 #define MyAppURL "https://ayamejk.github.io/ElsEvo/"
 #define MyAppExeName "ElsEvo.exe"
@@ -10,7 +10,7 @@
 #define DoubleAmp(Value) StringChange(Value, "&", "&&")
 #define EscapeConstArgument(Value) StringChange(StringChange(StringChange(Value, "%", "%25"), ",", "%2c"), "}", "%7d")
 
-#define PublishDir "C:\Users\Victorr\OneDrive\ProjetoElsEvo\ElsEvoBeta\bin\Release\net8.0-windows\win-x64\publish"
+#define PublishDir "C:\Users\Victorr\OneDrive\ProjetoElsEvo\ElsEvoBeta\bin\Release\net10.0-windows10.0.19041.0\win-x64\publish"
 
 [Setup]
 AppId={{8910440C-BF7A-494D-B5AD-7F0A4DA85D60}
